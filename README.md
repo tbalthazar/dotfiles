@@ -3,9 +3,9 @@
 ## Installation
 
 ```
-git clone git@github.com:tbalthazar/dotfiles.git
-cd dotfiles
-./install.sh
+$ git clone git@github.com:tbalthazar/dotfiles.git
+$ cd dotfiles
+$ ./install.sh
 ```
 
 The `install.sh` script will first backup your existing dotfiles in `~/.dotfiles-backup/timestamp` before installing the new ones.
