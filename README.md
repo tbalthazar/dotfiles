@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-$ git clone git@github.com:tbalthazar/dotfiles.git
+$ git clone https://github.com/tbalthazar/dotfiles.git
 $ cd dotfiles
 $ ./install.sh
 ```
