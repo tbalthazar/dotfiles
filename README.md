@@ -2,7 +2,7 @@
 
 ## Installation
 
-```
+```bash
 $ git clone git@github.com:tbalthazar/dotfiles.git
 $ cd dotfiles
 $ ./install.sh
@@ -15,7 +15,7 @@ The `install.sh` script will first backup your existing dotfiles in `~/.dotfiles
 You can place some private configurations in `~/.bash_profile.private`. If this file exists, it will be sourced in `.bash_profile`.
 
 Example :
-```
+```bash
 git config --global user.name "John Doe"
 git config --global user.email "example@example.com"
 ```
