@@ -1,3 +1,8 @@
+" Point to location of pathogen submodule (since it's not in .vim/autoload)
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+" Call pathogen plugin management
+execute pathogen#infect()
+
 " --- solarized theme 
 syntax enable
 set background=dark
