@@ -5,6 +5,8 @@
 ```bash
 $ git clone https://github.com/tbalthazar/dotfiles.git
 $ cd dotfiles
+$ git submodule init
+$ git submodule update
 $ ./install.sh
 ```
 
