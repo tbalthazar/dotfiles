@@ -11,3 +11,4 @@ alias gemu='gem update --no-rdoc --no-ri'
 alias gvim="gvim 2>/dev/null"
 alias torbrowser="~/Downloads/tor-browser_en-US/start-tor-browser"
 alias hosts="sudo gvim /etc/hosts"
+alias ctags_for_rails="ctags -R --exclude=.git --exclude=log/*"

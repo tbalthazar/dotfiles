@@ -3,6 +3,9 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Call pathogen plugin management
 execute pathogen#infect()
 
+" --- set the ctag file
+set tags=./tags;
+
 " --- solarized theme 
 syntax enable
 set background=dark
