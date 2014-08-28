@@ -10,6 +10,7 @@ colorscheme solarized
 
 " --- gui options
 :set guioptions-=T  "remove toolbar
+:set guifont=Monospace\ Regular\ 12
 
 " --- indentation
 set shiftwidth=2
