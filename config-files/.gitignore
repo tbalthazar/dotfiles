@@ -27,3 +27,6 @@ config/*.yml
 *.swp
 *.swo
 *.swn
+
+# Ctags
+tags.ctags
