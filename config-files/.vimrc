@@ -6,6 +6,9 @@ execute pathogen#infect()
 " --- set the ctag file
 set tags=./tags;
 
+" --- Use Ack instead of grep
+set grepprg=ack-grep
+
 " --- solarized theme 
 syntax enable
 set background=dark
@@ -37,3 +40,7 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
+"  -- navigate through grep search results
+map <C-n> :cn<CR>
+map <C-p> :cp<CR>
