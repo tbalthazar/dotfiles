@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# custom scripts
+PATH="$HOME/.bin:$PATH"
+
 # rbenv
 PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
