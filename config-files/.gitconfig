@@ -1,4 +1,4 @@
 [core]
 	excludesfile = ~/.gitignore
 	quotepath = false
-  editor = gvim --nofork
+  editor = gvim -f
