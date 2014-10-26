@@ -16,7 +16,12 @@ colorscheme solarized
 
 " --- gui options
 :set guioptions-=T  "remove toolbar
-:set guifont=Monospace\ Regular\ 12
+
+if (match(system("uname -s"), "Darwin") != -1)
+  :set guifont=Menlo\ Regular:h14
+else
+  :set guifont=Monospace\ Regular\ 12
+endif
 
 " --- indentation
 set shiftwidth=2

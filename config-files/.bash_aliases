@@ -12,3 +12,4 @@ alias gvim="gvim 2>/dev/null"
 alias torbrowser="~/Downloads/tor-browser_en-US/start-tor-browser"
 alias hosts="sudo gvim /etc/hosts"
 alias ctags_for_rails="ctags -R -f tags.ctags --exclude=.git --exclude=log/*"
+alias mvim="gvim" # to use MacVim on the Mac ...
