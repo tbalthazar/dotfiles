@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 if ARGV[0].nil?
-  puts "Error. Usage : tb-backup.rb /path/to/dest"
+  puts "Error. Usage : tb-backup-medias.rb /path/to/dest"
   exit
 end
 
@@ -38,33 +38,17 @@ RSYNC_CMD = 'rsync --delete -azvv'
 # 
 # -vv increases the verbosity of the reporting process 
 
-day_of_month = Time.now.strftime("%d")
-
 from = Dir.home
-log_file = File.join(to, 'TBBackup.log')
-to = File.join(to, day_of_month)
+log_file = File.join(to, 'TBBackupMedias.log')
 
-exclude_list = [
-  '.cache',
-  '.dropbox',
-  '.dropbox-dist',
-  '.local/share/gvfs-metadata',
-  '.local/share/Trash',
-  'Downloads',
-  'Dropbox'
-]
-
-periodic_backup_list = [
+media_dirs = [
   'Pictures/Photos',
   'Music/Music'
 ]
 
-# only backup periodic_backup_list on 01 and 15
-exclude_list+=periodic_backup_list unless %w{ 01 15 }.include?(day_of_month)
+sources = media_dirs.map { |dir| "#{from}/#{dir}" }.join(' ')
 
-exclude = exclude_list.map { |dir| "--exclude #{dir}" }.join(' ')
-
-cmd = "#{RSYNC_CMD} #{exclude} #{from} #{to}"
+cmd = "#{RSYNC_CMD} #{sources} #{to}"
 puts cmd
 system(cmd)
 
@@ -83,5 +67,5 @@ system("notify-send 'tb-backup' '#{msg}' -t #{1000 * 3600} -u #{urgency}")
 
 # write to log file
 File.open(log_file, 'a+') do |file|
-  file.puts "#{Time.now} - in #{day_of_month} - #{msg}"
+  file.puts "#{Time.now} - in #{to} - #{msg}"
 end
