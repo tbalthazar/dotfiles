@@ -2,3 +2,6 @@
 	excludesfile = ~/.gitignore
 	quotepath = false
   editor = gvim -f
+
+[push]
+	default = matching
