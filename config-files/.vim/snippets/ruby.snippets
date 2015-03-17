@@ -4,6 +4,9 @@ snippet fgc
 snippet fgb
 	FactoryGirl.build(:${1:factory_name})
 
+snippet fga
+	FactoryGirl.attributes_for(:${1:factory_name})
+
 snippet iv
 	#{${1:var_name}}${2}
 
@@ -12,3 +15,8 @@ snippet [
 
 snippet params
 	params[:${1:key_name}]${2}
+
+snippet test
+	test "${1:test_name}" do
+		${2}
+	end
