@@ -20,7 +20,7 @@ colorscheme solarized
 if (match(system("uname -s"), "Darwin") != -1)
   :set guifont=Menlo\ Regular:h14
 else
-  :set guifont=Monospace\ Regular\ 12
+  :set guifont=Monospace\ Bold\ 12
 endif
 
 " --- indentation
