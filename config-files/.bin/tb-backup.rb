@@ -51,12 +51,13 @@ exclude_list = [
   '.local/share/gvfs-metadata',
   '.local/share/Trash',
   'Downloads',
-  'Dropbox'
+  'Dropbox',
+  'Pictures/Photos',
+  'Music/Music',
+  'Video'
 ]
 
 periodic_backup_list = [
-  'Pictures/Photos',
-  'Music/Music'
 ]
 
 # only backup periodic_backup_list on 01 and 15

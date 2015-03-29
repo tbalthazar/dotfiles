@@ -43,7 +43,8 @@ log_file = File.join(to, 'TBBackupMedias.log')
 
 media_dirs = [
   'Pictures/Photos',
-  'Music/Music'
+  'Music/Music',
+  'Videos'
 ]
 
 sources = media_dirs.map { |dir| "#{from}/#{dir}" }.join(' ')
