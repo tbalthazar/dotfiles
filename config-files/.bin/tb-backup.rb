@@ -54,7 +54,7 @@ exclude_list = [
   'Dropbox',
   'Pictures/Photos',
   'Music/Music',
-  'Video'
+  'Videos'
 ]
 
 periodic_backup_list = [
