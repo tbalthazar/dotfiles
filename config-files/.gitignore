@@ -30,3 +30,5 @@ config/*.yml
 
 # Ctags
 tags.ctags
+
+.bash_profile.private
