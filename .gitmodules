@@ -16,3 +16,6 @@
 [submodule "config-files/.vim/bundle/vim-colors-solarized"]
 	path = config-files/.vim/bundle/vim-colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "config-files/.vim/bundle/vim-elixir"]
+	path = config-files/.vim/bundle/vim-elixir
+	url = git://github.com/elixir-lang/vim-elixir.git
