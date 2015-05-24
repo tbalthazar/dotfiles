@@ -5,12 +5,12 @@
 ```bash
 $ git clone https://github.com/tbalthazar/dotfiles.git
 $ cd dotfiles
-$ git submodule init
-$ git submodule update
 $ ./install.sh
 ```
 
 The `install.sh` script will first backup your existing dotfiles in `~/.dotfiles-backup/timestamp` before installing the new ones.
+
+Open Vim and type `:PlugInstall`, restart Vim, done.
 
 ## Private config
 

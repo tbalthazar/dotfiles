@@ -1,7 +1,15 @@
-" Point to location of pathogen submodule (since it's not in .vim/autoload)
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-" Call pathogen plugin management
-execute pathogen#infect()
+" --- vim-plug : https://github.com/junegunn/vim-plug
+call plug#begin('~/.vim/plugged')
+
+Plug 'tpope/vim-pathogen'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-bundler'
+Plug 'msanders/snipmate.vim'
+Plug 'tomtom/tcomment_vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'elixir-lang/vim-elixir'
+
+call plug#end()
 
 " --- set the ctag file
 set tags=./tags;
