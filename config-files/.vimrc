@@ -1,15 +1,20 @@
 " --- vim-plug : https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
 
-Plug 'tpope/vim-pathogen'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
-Plug 'msanders/snipmate.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'elixir-lang/vim-elixir'
 
 call plug#end()
+
+" --- ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsEditSplit="vertical"
 
 " --- set the ctag file
 set tags=./tags;
