@@ -7,6 +7,7 @@ Plug 'tpope/vim-bundler'
 Plug 'tomtom/tcomment_vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'elixir-lang/vim-elixir'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
@@ -15,6 +16,13 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
+
+" --- automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
+
+" --- zoom a vim pane, <C-w>= to re-balance
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>= :wincmd =<cr>
 
 " --- set the ctag file
 set tags=./tags;
