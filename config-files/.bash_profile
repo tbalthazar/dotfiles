@@ -9,3 +9,5 @@ source ~/.bash_prompt
 if [ -e ~/.bash_profile.private ]; then
   source ~/.bash_profile.private
 fi
+
+[[ $TERM == "xterm" ]] && exec tmux
