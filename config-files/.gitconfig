@@ -1,7 +1,10 @@
 [core]
 	excludesfile = ~/.gitignore
 	quotepath = false
-  editor = gvim -f
+  editor = vim -f
 
 [push]
 	default = matching
+[user]
+	name = Thomas Balthazar
+	email = thomas@balthazar.info
