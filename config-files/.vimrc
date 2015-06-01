@@ -4,7 +4,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
-Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-commentary'
 Plug 'altercation/vim-colors-solarized'
 Plug 'elixir-lang/vim-elixir'
 Plug 'christoomey/vim-tmux-navigator'
