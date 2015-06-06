@@ -3,7 +3,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-rails'
-Plug 'tpope/vim-bundler'
+" Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-commentary'
 Plug 'altercation/vim-colors-solarized'
 Plug 'elixir-lang/vim-elixir'
@@ -59,13 +59,6 @@ filetype plugin on    " Enable filetype-specific plugins
 
 " --- window
 set number
-
-" --- shortcuts
-"  -- navigate through windows
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
 
 "  -- navigate through grep search results
 map <C-n> :cn<CR>
