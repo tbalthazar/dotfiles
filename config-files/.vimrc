@@ -8,6 +8,7 @@ Plug 'tpope/vim-commentary'
 Plug 'altercation/vim-colors-solarized'
 Plug 'elixir-lang/vim-elixir'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'fatih/vim-go'
 
 call plug#end()
 
