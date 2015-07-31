@@ -10,5 +10,5 @@ alias gemi='gem install --no-rdoc --no-ri'
 alias gemu='gem update --no-rdoc --no-ri'
 alias gvim="gvim 2>/dev/null"
 alias torbrowser="~/Downloads/tor-browser_en-US/start-tor-browser"
-alias hosts="sudo gvim /etc/hosts"
+alias hosts="sudo vim /etc/hosts"
 alias ctags_for_rails="ctags -R -f tags.ctags --exclude=.git --exclude=log/*"
