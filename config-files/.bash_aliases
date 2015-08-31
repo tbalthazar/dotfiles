@@ -1,6 +1,6 @@
 #!/bin/bash
 
-alias ls='ls -l'
+alias ls='ls -lh'
 alias ping='ping -c4'
 alias skill='sudo kill -9'
 alias gs='git status'
