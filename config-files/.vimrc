@@ -78,3 +78,5 @@ set number
 "  -- navigate through grep search results
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
+
+map <C-n> :NERDTreeToggle<CR>
