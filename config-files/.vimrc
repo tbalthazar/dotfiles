@@ -36,6 +36,7 @@ set grepprg=ack-grep
 syntax enable
 set background=dark
 colorscheme solarized
+let g:solarized_termtrans = 1
 
 " --- vim-go
 let g:go_highlight_functions = 1
