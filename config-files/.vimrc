@@ -10,6 +10,7 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'fatih/vim-go'
 Plug 'scrooloose/nerdtree'
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
@@ -46,6 +47,10 @@ let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
+
+" --- vimwiki
+let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
+map <Leader>x <Plug>VimwikiToggleListItem
 
 " --- gui options
 :set guioptions-=T  "remove toolbar
