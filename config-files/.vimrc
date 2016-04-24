@@ -49,7 +49,9 @@ let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 
 " --- vimwiki
-let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': $HOME . '/vimwiki',
+                     \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_global_ext = 0
 map <Leader>x <Plug>VimwikiToggleListItem
 
 " --- gui options
