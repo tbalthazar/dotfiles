@@ -4,8 +4,11 @@
 PATH="$HOME/.bin:$PATH"
 
 # rbenv
-PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+RBENV_BIN="$HOME/.rbenv/bin"
+if [ -d  "$RBENV_BIN" ]; then
+  PATH="$RBENV_BIN:$PATH"
+  eval "$(rbenv init -)"
+fi
 
 # heroku
 PATH="/usr/local/heroku/bin:$PATH"
