@@ -1,5 +1,7 @@
 # - sudo apt-get install xbacklight
 # - sudo apt-get install i3blocks
+# - sudo apt-get install lxappearance
+# - sudo apt-get install feh
 
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
@@ -191,5 +193,8 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+bindsym $mod+Shift+d exec i3lock --color "$base01"
+
 # Startups:
 exec --no-startup-id nm-applet
+exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper/wallpaper.jpg 
