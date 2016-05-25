@@ -1,0 +1,195 @@
+# - sudo apt-get install xbacklight
+# - sudo apt-get install i3blocks
+
+# Should you change your keyboard layout some time, delete
+# this file and re-run i3-config-wizard(1).
+
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+font pango:System San Francisco Display 11
+
+set $base00 #101218
+set $base01 #1f222d
+set $base02 #252936
+set $base03 #7780a1
+set $base04 #C0C5CE
+set $base05 #d1d4e0
+set $base06 #C9CCDB
+set $base07 #ffffff
+set $base08 #ee829f
+set $base09 #f99170
+set $base0A #ffefcc
+set $base0B #a5ffe1
+set $base0C #97e0ff
+set $base0D #97bbf7
+set $base0E #c0b7f9
+set $base0F #fcc09e
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start i3-dmenu-desktop which only displays applications shipping a .desktop file.
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split
+bindsym $mod+Control+h split v
+bindsym $mod+Control+v split h
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+z layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent/child container
+bindsym $mod+p focus parent
+bindsym $mod+c focus chipld
+
+# define workspaces
+set $workspace1 "1: "
+set $workspace2 "2: "
+set $workspace3 "3: "
+set $workspace4 "4: "
+set $workspace5 "5: "
+set $workspace6 "6: "
+set $workspace7 "7: "
+set $workspace8 "8: "
+set $workspace9 "9: "
+set $workspace10 "10: "
+
+# switch to workspace
+bindsym $mod+ampersand workspace $workspace1
+bindsym $mod+eacute workspace $workspace2
+bindsym $mod+quotedbl workspace $workspace3
+bindsym $mod+apostrophe workspace $workspace4
+bindsym $mod+parenleft workspace $workspace5
+bindsym $mod+section workspace $workspace6
+bindsym $mod+egrave workspace $workspace7
+bindsym $mod+exclam workspace $workspace8
+bindsym $mod+ccedilla workspace $workspace9
+bindsym $mod+agrave workspace $workspace10
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# move focused container to workspace
+bindsym $mod+Shift+ampersand move container to workspace $workspace1
+bindsym $mod+Shift+eacute move container to workspace $workspace2
+bindsym $mod+Shift+quotedbl move container to workspace $workspace3
+bindsym $mod+Shift+apostrophe move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+section move container to workspace $workspace6
+bindsym $mod+Shift+egrave move container to workspace $workspace7
+bindsym $mod+Shift+exclam move container to workspace $workspace8
+bindsym $mod+Shift+ccedilla move container to workspace $workspace9
+bindsym $mod+Shift+agrave move container to workspace $workspace10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym j resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Up resize grow height 10 px or 10 ppt
+        bindsym Down resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Widow Colours
+#                       border  background text    indicator
+client.focused          $base01 $base01    $base07 $base0F
+client.focused_inactive $base02 $base02    $base03 $base0F
+client.unfocused        $base02 $base02    $base03 $base0F
+client.urgent           $base02 $base08    $base00 $base0F
+
+# Bar
+bar {
+  font pango: System San Francisco Display, FontAwesome 11
+  status_command i3blocks -c ~/.i3/i3blocks.conf
+  colors {
+    separator $base03
+    background $base01
+    statusline $base05
+    #                  border  background text
+    focused_workspace  $base01 $base01    $base07
+    active_workspace   $base01 $base02    $base03
+    inactive_workspace $base01 $base01    $base03
+    urgent_workspace   $base01 $base01    $base08
+  }
+}
+
+assign [class="Transmission-gtk"] $workspace9
+assign [class="Clementine"] $workspace10
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Startups:
+exec --no-startup-id nm-applet
