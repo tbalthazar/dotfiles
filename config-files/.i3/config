@@ -2,6 +2,8 @@
 # - sudo apt-get install i3blocks
 # - sudo apt-get install lxappearance
 # - sudo apt-get install feh
+# - sudo apt-get install arandr
+# - list key mapping: xmodmap and xmodmap -pke
 
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
@@ -183,7 +185,7 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #i
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
 
-# Sreen brightness controls
+# Screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
@@ -192,6 +194,10 @@ bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+# Screen switch
+bindsym XF86Display exec --no-startup-id ~/.screenlayout/laptop-only.sh
+bindsym Shift+XF86Display exec --no-startup-id ~/.screenlayout/external-only.sh
 
 bindsym $mod+Shift+d exec i3lock --color "$base01"
 
