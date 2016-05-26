@@ -31,7 +31,7 @@ nnoremap <leader>= :wincmd =<cr>
 set tags=./tags;
 
 " --- Use Ack instead of grep
-set grepprg=ack-grep
+" set grepprg=ack-grep
 
 " --- solarized theme 
 syntax enable
