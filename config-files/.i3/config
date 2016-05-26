@@ -4,6 +4,7 @@
 # - sudo apt-get install feh
 # - sudo apt-get install arandr
 # - list key mapping: xmodmap and xmodmap -pke
+# - find key codes: xev
 
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
@@ -180,6 +181,8 @@ bar {
 assign [class="Transmission-gtk"] $workspace9
 assign [class="Clementine"] $workspace10
 
+# To find the sink-volume value: pactl list sinks:
+# https://faq.i3wm.org/question/3747/enabling-multimedia-keys.1.html
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
@@ -190,14 +193,16 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
+# To install playerctl:
+bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Screen switch
-bindsym XF86Display exec --no-startup-id ~/.screenlayout/laptop-only.sh
-bindsym Shift+XF86Display exec --no-startup-id ~/.screenlayout/external-only.sh
+# bindsym XF86Display exec --no-startup-id ~/.screenlayout/laptop-only.sh
+bindsym F7 exec --no-startup-id ~/.screenlayout/laptop-only.sh
+# bindsym Shift+XF86Display exec --no-startup-id ~/.screenlayout/external-only.sh
+bindsym Shift+F7 exec --no-startup-id ~/.screenlayout/external-only.sh
 
 bindsym $mod+Shift+d exec i3lock --color "$base01"
 
