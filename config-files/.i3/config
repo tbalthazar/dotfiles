@@ -116,6 +116,7 @@ bindsym $mod+ccedilla workspace $workspace9
 bindsym $mod+agrave workspace $workspace10
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
+bind $mod+49 workspace back_and_forth
 
 # move focused container to workspace
 bindsym $mod+Shift+ampersand move container to workspace $workspace1
