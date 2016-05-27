@@ -2,7 +2,8 @@
 	excludesfile = ~/.gitignore
 	quotepath = false
   editor = vim -f
-
+[diff]
+  tool = meld
 [push]
 	default = matching
 [user]
