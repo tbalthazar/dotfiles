@@ -18,9 +18,9 @@ font pango:System San Francisco Display 11
 
 set $base00 #101218
 set $base01 #1f222d
-set $base02 #252936
-set $base03 #7780a1
-set $base04 #C0C5CE
+set $base02 #5c5e66
+set $base03 #8b8c91
+set $base04 #7780a1
 set $base05 #d1d4e0
 set $base06 #C9CCDB
 set $base07 #ffffff
@@ -168,13 +168,13 @@ bar {
   font pango: System San Francisco Display, FontAwesome 11
   status_command i3blocks -c ~/.i3/i3blocks.conf
   colors {
-    separator $base03
+    separator $base04
     background $base01
     statusline $base05
     #                  border  background text
     focused_workspace  $base01 $base01    $base07
-    active_workspace   $base01 $base02    $base03
-    inactive_workspace $base01 $base01    $base03
+    active_workspace   $base01 $base02    $base04
+    inactive_workspace $base01 $base01    $base04
     urgent_workspace   $base01 $base01    $base08
   }
 }
