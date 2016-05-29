@@ -100,8 +100,8 @@ set $workspace3 "3: "
 set $workspace4 "4: "
 set $workspace5 "5: "
 set $workspace6 "6: "
-set $workspace7 "7: "
-set $workspace8 "8: "
+set $workspace7 "7: "
+set $workspace8 "8: "
 set $workspace9 "9: "
 set $workspace10 "10: "
 
@@ -181,10 +181,10 @@ bar {
   }
 }
 
-assign [class="Thunderbird"] $workspace7
-assign [class="Keepassx"] $workspace8
+assign [class="Thunderbird"] $workspace8
 assign [class="Transmission-gtk"] $workspace9
 assign [class="Clementine"] $workspace10
+for_window [class="Keepassx"] move to scratchpad
 
 # To find the sink-volume value: pactl list sinks:
 # https://faq.i3wm.org/question/3747/enabling-multimedia-keys.1.html
