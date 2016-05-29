@@ -3,6 +3,8 @@
 # - sudo apt-get install lxappearance
 # - sudo apt-get install feh
 # - sudo apt-get install arandr
+# - sudo apt-get install xautolock
+# - sudo apt-get install xfce4-power-manager
 # - list key mapping: xmodmap and xmodmap -pke
 # - find key codes: xev
 
@@ -43,7 +45,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start i3-dmenu-desktop which only displays applications shipping a .desktop file.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+space exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -82,10 +84,10 @@ bindsym $mod+z layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+w floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+w focus mode_toggle
 
 # focus the parent/child container
 bindsym $mod+p focus parent
@@ -207,9 +209,16 @@ bindsym F7 exec --no-startup-id ~/.screenlayout/laptop-only.sh
 # bindsym Shift+XF86Display exec --no-startup-id ~/.screenlayout/external-only.sh
 bindsym Shift+F7 exec --no-startup-id ~/.screenlayout/external-only.sh
 
-bindsym $mod+Shift+d exec i3lock --color "$base01"
+bindsym $mod+Shift+d exec i3lock -d -c "$base01"
 
 # Startups:
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
+exec --no-startup-id xautolock -time 10 -locker 'i3lock -d -c 1f222d'
 exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/tape.png 
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
