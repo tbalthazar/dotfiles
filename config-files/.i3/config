@@ -211,4 +211,5 @@ bindsym $mod+Shift+d exec i3lock --color "$base01"
 
 # Startups:
 exec --no-startup-id nm-applet
+exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/tape.png 
