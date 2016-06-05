@@ -16,7 +16,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
-font pango:System San Francisco Display 11
+font pango:Fira Mono, FontAwesome Regular 11
 
 set $base00 #101218
 set $base01 #1f222d
@@ -167,7 +167,7 @@ client.urgent           $base02 $base08    $base00 $base0F
 
 # Bar
 bar {
-  font pango: System San Francisco Display, FontAwesome 11
+  font pango:Fira Mono, FontAwesome Regular 11
   status_command i3blocks -c ~/.i3/i3blocks.conf
   colors {
     separator $base04
