@@ -3,9 +3,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-rails'
-" Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-commentary'
-Plug 'altercation/vim-colors-solarized'
 Plug 'elixir-lang/vim-elixir'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'fatih/vim-go'
@@ -33,11 +31,11 @@ set tags=./tags;
 " --- Use Ack instead of grep
 " set grepprg=ack-grep
 
-" --- solarized theme 
+" --- color theme 
 syntax enable
 set background=dark
-colorscheme solarized
-let g:solarized_termtrans = 1
+colorscheme base16-default
+let base16colorspace=256
 
 " --- vim-go
 let g:go_highlight_functions = 1
@@ -46,7 +44,8 @@ let g:go_highlight_structs = 1
 let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "gofmt"
+" let g:go_fmt_command = "goimports"
 
 " --- vimwiki
 let g:vimwiki_list = [{'path': $HOME . '/vimwiki',
