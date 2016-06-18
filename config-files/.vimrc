@@ -87,3 +87,7 @@ map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
 map <C-n> :NERDTreeToggle<CR>
+
+" --- add background transparency
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
