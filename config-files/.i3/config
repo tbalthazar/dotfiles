@@ -18,23 +18,6 @@
 set $mod Mod4
 font pango:Fira Mono, FontAwesome Regular 11
 
-set $base00 #101218
-set $base01 #1f222d
-set $base02 #5c5e66
-set $base03 #8b8c91
-set $base04 #7780a1
-set $base05 #d1d4e0
-set $base06 #C9CCDB
-set $base07 #ffffff
-set $base08 #ee829f
-set $base09 #f99170
-set $base0A #ffefcc
-set $base0B #a5ffe1
-set $base0C #97e0ff
-set $base0D #97bbf7
-set $base0E #c0b7f9
-set $base0F #fcc09e
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -158,26 +141,39 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Widow Colours
-#                       border  background text    indicator
-client.focused          $base01 $base01    $base07 $base0F
-client.focused_inactive $base02 $base02    $base03 $base0F
-client.unfocused        $base02 $base02    $base03 $base0F
-client.urgent           $base02 $base08    $base00 $base0F
+set $color-win-bg-focused #000000
+set $color-win-text-focused #e6e6e6
+set $color-win-bg-unfocused #444444
+set $color-win-text-unfocused #777777
+set $color-bar-bg #222222
+set $color-bar-text #6E7576
+set $color-bar-bg-focused #3f3f3f
+set $color-bar-text-focused #B3BBBB
+set $color-alert #bd2c40
+set $color-alert-text #e6e6e6
+
+# Window colors
+# state                  border                  background              text                      indicator
+client.focused           $color-win-bg-focused   $color-win-bg-focused   $color-win-text-focused   $color-win-text-unfocused
+client.focused_inactive  $color-win-bg-unfocused $color-win-bg-unfocused $color-win-text-unfocused $color-win-bg-unfocused
+client.unfocused         $color-win-bg-unfocused $color-win-bg-unfocused $color-win-text-unfocused $color-win-bg-unfocused
+client.urgent            $color-alert            $color-alert            $color-alert-text         $color-win-bg-focused
+client.placeholder       $color-win-bg-unfocused $color-win-bg-unfocused $color-win-text-focused   $color-win-bg-unfocused
+client.background        $color-win-bg-unfocused
 
 # Bar
 bar {
-  font pango:Fira Mono, FontAwesome Regular 11
+  font pango:Fira Mono, FontAwesome Regular 10
   status_command i3blocks -c ~/.i3/i3blocks.conf
   colors {
-    separator $base04
-    background $base01
-    statusline $base05
-    #                  border  background text
-    focused_workspace  $base01 $base01    $base07
-    active_workspace   $base01 $base02    $base04
-    inactive_workspace $base01 $base01    $base04
-    urgent_workspace   $base01 $base01    $base08
+    background $color-bar-bg
+    separator  $color-bar-text
+    statusline $color-bar-text
+    #                  border        background            text
+    focused_workspace  $color-bar-bg $color-bar-bg-focused $color-bar-text-focused
+    active_workspace   $color-bar-bg $color-bar-bg         $color-bar-text-focused
+    inactive_workspace $color-bar-bg $color-bar-bg         $color-bar-text
+    urgent_workspace   $color-bar-bg $color-alert          $color-alert-text
   }
 }
 
@@ -215,7 +211,8 @@ bindsym $mod+Shift+d exec i3lock -d -c "$base01"
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xautolock -time 10 -locker 'i3lock -d -c 1f222d'
-exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/tape.png 
+# exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/tape.png 
+exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/spacesurf-desat.png 
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
