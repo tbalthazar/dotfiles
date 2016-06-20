@@ -185,9 +185,9 @@ for_window [class="Keepassx"] move to scratchpad
 # To find the sink-volume value: pactl list sinks:
 # https://faq.i3wm.org/question/3747/enabling-multimedia-keys.1.html
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -205,12 +205,12 @@ bindsym F7 exec --no-startup-id ~/.screenlayout/laptop-only.sh
 # bindsym Shift+XF86Display exec --no-startup-id ~/.screenlayout/external-only.sh
 bindsym Shift+F7 exec --no-startup-id ~/.screenlayout/external-only.sh
 
-bindsym $mod+Shift+d exec i3lock -d -c "$base01"
+bindsym $mod+Shift+d exec --no-startup-id i3lock -d -c 222222
 
 # Startups:
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id xautolock -time 10 -locker 'i3lock -d -c 1f222d'
+exec --no-startup-id xautolock -time 10 -locker 'i3lock -d -c 222222'
 # exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/tape.png 
 exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/spacesurf-desat.png 
 
