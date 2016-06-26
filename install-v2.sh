@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # the directory where the dotfiles will be copied
-DEST_DIR="$HOME/Downloads/tmpdotfiles"
+DEST_DIR="$HOME"
 
 # create a directory to backup dotfiles before copying them
 NOW=$(date +'%Y-%m-%d-%H-%M-%S')
