@@ -13,3 +13,6 @@ alias torbrowser="~/Downloads/tor-browser_en-US/start-tor-browser"
 alias hosts="sudo vim /etc/hosts"
 alias ctags_for_rails="ctags -R -f tags.ctags --exclude=.git --exclude=log/*"
 alias upgradesystem='sudo apt-get update && sudo apt-get upgrade'
+alias hgrep='history | grep'
+alias psgrep='ps aux | grep'
+alias meteo='curl wttr.in'
