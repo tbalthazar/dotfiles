@@ -1,0 +1,8 @@
+/home/tb/.adobe
+/home/tb/.cache
+/home/tb/.config/google-chrome/Default/Local Storage
+/home/tb/.config/google-chrome/Default/Session Storage
+/home/tb/.local/share/Trash
+/home/tb/.rbenv
+/home/tb/Downloads
+
