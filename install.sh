@@ -80,11 +80,11 @@ setup_services() {
   mkdir -p /etc/systemd/user
   mkdir -p /etc/systemd/system
 
-  cp "$HOME/dotfiles/etc/systemd/user/mpd.service" /etc/systemd/user
+  cp "/home/$USERNAME/dotfiles/etc/systemd/user/mpd.service" /etc/systemd/user
   systemctl --user enable mpd.service
   systemctl --user start mpd.service
 
-  cp "$HOME/dotfiles/etc/systemd/system/i3lock.service" /etc/systemd/system
+  cp "/home/$USERNAME/dotfiles/etc/systemd/system/i3lock.service" /etc/systemd/system
   systemctl enable i3lock.service
   systemctl start i3lock.service
 }
@@ -177,4 +177,3 @@ main() {
 }
 
 main "$@"
-
