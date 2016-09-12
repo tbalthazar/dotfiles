@@ -73,6 +73,9 @@ get_dotfiles() {
   # copy all the dotfiles to the DEST_DIR
   CP_CMD="cd config-files && find . -type f -exec cp --parents \{\} $HOME \;"
   eval $CP_CMD
+
+  # install/update vim plugins
+  vim +PlugUpdate +qall
 }
 
 # setup systemd services
@@ -102,6 +105,7 @@ base() {
           i3 \
           i3blocks \
           i3lock \
+          keepassx \
           lxappearance \
           meld \
           mpd \
