@@ -77,12 +77,11 @@ get_dotfiles() {
 
 # setup systemd services
 setup_services() {
-  mkdir -p /etc/systemd/user
   mkdir -p /etc/systemd/system
 
-  cp "/home/$USERNAME/dotfiles/etc/systemd/user/mpd.service" /etc/systemd/user
-  systemctl --user enable mpd.service
-  systemctl --user start mpd.service
+  cp "/home/$USERNAME/dotfiles/etc/systemd/system/mpd.service" /etc/systemd/system
+  systemctl enable mpd.service
+  systemctl start mpd.service
 
   cp "/home/$USERNAME/dotfiles/etc/systemd/system/i3lock.service" /etc/systemd/system
   systemctl enable i3lock.service

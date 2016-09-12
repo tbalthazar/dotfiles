@@ -2,6 +2,7 @@
 Description=Music Player Daemon
 
 [Service]
+User=tb
 ExecStart=/usr/bin/mpd --no-daemon
 Restart=always
 
