@@ -29,17 +29,16 @@ setup_sudo() {
 
 # install virtualbox guest drivers, use when running *inside* a virtual machine
 install_virtualbox_guest_drivers() {
-  cat <<-EOF >> /etc/apt/sources.list
-  # added to install virtualbox-guest-x11
-  deb http://httpredir.debian.org/debian/ stretch main contrib
-EOF
-  
   apt-get update
   apt-get install -y \
           build-essential \
           linux-headers-amd64 \
-          virtualbox-guest-x11 \
           --no-install-recommends
+
+  echo -e "\nPlease insert the Guest Additions CD image, then run:"
+  echo "$ sudo mount /dev/sr0 /media/cdrom"
+  echo "$ cd /media/cdrom"
+  echo -e "$ sudo sh ./VBoxLinuxAdditions.run\n"
 }
 
 # get dotfiles
