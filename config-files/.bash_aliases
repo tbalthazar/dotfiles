@@ -15,3 +15,5 @@ alias ctags_for_rails="ctags -R -f tags.ctags --exclude=.git --exclude=log/*"
 alias upgradesystem='sudo apt-get update && sudo apt-get upgrade'
 alias meteo='curl wttr.in'
 alias hardware-network='sudo lshw -class network'
+alias audio-volume='pactl set-sink-volume @DEFAULT_SINK@'
+alias mic-volume='pactl set-source-volume @DEFAULT_SOURCE@'
