@@ -35,10 +35,13 @@ install_virtualbox_guest_drivers() {
           linux-headers-amd64 \
           --no-install-recommends
 
-  echo -e "\nPlease insert the Guest Additions CD image, then run:"
+  echo -e "\n-----------------------------------------------------"
+  echo "Please insert the Guest Additions CD image, then run:"
   echo "$ sudo mount /dev/sr0 /media/cdrom"
   echo "$ cd /media/cdrom"
-  echo -e "$ sudo sh ./VBoxLinuxAdditions.run\n"
+  echo "$ sudo sh ./VBoxLinuxAdditions.run"
+  echo "$ sudo reboot now"
+  echo -e "-----------------------------------------------------\n"
 }
 
 # get dotfiles
@@ -97,6 +100,7 @@ base() {
   
   apt-get install -y \
           adduser \
+          arandr \
           curl \
           dmenu \
           iceweasel \
@@ -111,6 +115,8 @@ base() {
           network-manager \
           ncmpcpp \
           openvpn \
+          pulseaudio \
+          pulseaudio-utils \
           rxvt-unicode-256color \
           sudo \
           tmux \
@@ -119,6 +125,8 @@ base() {
           tzdata \
           vim-nox \
           vlc \
+          xautolock \
+          xbacklight \
           xclip \
           xorg \
           --no-install-recommends
