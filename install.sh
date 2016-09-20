@@ -91,6 +91,10 @@ setup_services() {
   cp "/home/$USERNAME/dotfiles/etc/systemd/system/i3lock.service" /etc/systemd/system
   systemctl enable i3lock.service
   systemctl start i3lock.service
+
+  cp "/home/$USERNAME/dotfiles/etc/systemd/system/offlineimap@.service" /etc/systemd/system
+  systemctl enable offlineimap@$USERNAME.service
+  systemctl start offlineimap@$USERNAME.service
 }
 
 # install base system packages
@@ -112,8 +116,10 @@ base() {
           lxappearance \
           meld \
           mpd \
+          mutt \
           network-manager \
           ncmpcpp \
+          offlineimap \
           openvpn \
           pulseaudio \
           pulseaudio-utils \
