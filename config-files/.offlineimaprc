@@ -1,0 +1,37 @@
+# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
+# get started fast.
+
+[general]
+pythonfile = ~/.offlineimap.py
+accounts = Test
+
+[mbnames]
+enabled = yes
+filename = ~/.mutt/mailboxes
+header = "mailboxes "
+peritem = "+%(accountname)s/%(foldername)s"
+sep = " "
+footer = "\n"
+
+[Account Test]
+localrepository = Local
+remoterepository = Remote
+# minutes between syncs
+autorefresh = 0.5 
+# nb quick refresh between each full refresh
+quick = 10      
+status_backend = sqlite
+
+[Repository Local]
+type = Maildir
+localfolders = ~/Mail/TestOfflineIMAP
+
+[Repository Remote]
+type = IMAP
+remotehost = mail.gandi.net
+remoteuser = get_property("~/.email-pwds.gpg", "gandi", "email")
+remotepasseval = get_property("~/.email-pwds.gpg", "gandi", "pwd")
+remoteport = 993
+ssl = yes
+starttls = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt

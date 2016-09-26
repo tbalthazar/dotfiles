@@ -1,0 +1,9 @@
+# encrypt:
+# gpg2 -er 'Your Name' .email-pwds
+# decrypt:
+# gpg2 -dq .email-pwds.gpg
+
+set my_email_gandi = "hello@example.com"
+set my_pwd_gandi = "fakepwd"
+set my_email_fastmail = "hello@example.org"
+set my_pwd_fastmail = "anotherfakepwd"
