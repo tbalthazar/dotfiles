@@ -25,6 +25,7 @@ set smtp_pass       = $my_pwd_gandi
 # account
 folder-hook Gandi set from=$my_email_gandi
 
+# headers
 # appearance
 set sort              = threads                     
 set sort_aux          = reverse-last-date-received 
@@ -46,3 +47,4 @@ set send_charset="utf-8"
 
 # Colors, pasted from base16-builder generated file
 source ~/.mutt/colors
+source ~/.mutt/headers
