@@ -1,9 +1,11 @@
 # Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
 # get started fast.
+# Doc: https://github.com/OfflineIMAP/offlineimap/blob/master/offlineimap.conf
 
 [general]
 pythonfile = ~/.offlineimap.py
-accounts = Test
+accounts = Gandi
+maxsyncaccounts = 3
 
 [mbnames]
 enabled = yes
@@ -13,25 +15,25 @@ peritem = "+%(accountname)s/%(foldername)s"
 sep = " "
 footer = "\n"
 
-[Account Test]
-localrepository = Local
-remoterepository = Remote
-# minutes between syncs
+[Account Gandi]
+localrepository = GandiLocal
+remoterepository = GandiRemote
 autorefresh = 0.5 
-# nb quick refresh between each full refresh
-quick = 10      
+quick = 0
 status_backend = sqlite
 
-[Repository Local]
+[Repository GandiLocal]
 type = Maildir
-localfolders = ~/Mail/TestOfflineIMAP
+localfolders = ~/Mail/Gandi
 
-[Repository Remote]
+[Repository GandiRemote]
 type = IMAP
 remotehost = mail.gandi.net
-remoteuser = get_property("~/.email-pwds.gpg", "gandi", "email")
+remoteusereval = get_property("~/.email-pwds.gpg", "gandi", "email")
 remotepasseval = get_property("~/.email-pwds.gpg", "gandi", "pwd")
 remoteport = 993
 ssl = yes
-starttls = yes
+# starttls = yes
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+holdconnectionopen = yes
+keepalive = 120
