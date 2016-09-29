@@ -5,7 +5,6 @@
 [general]
 pythonfile = ~/.offlineimap.py
 accounts = Gandi
-maxsyncaccounts = 3
 
 [mbnames]
 enabled = yes
@@ -33,7 +32,6 @@ remoteusereval = get_property("~/.email-pwds.gpg", "gandi", "email")
 remotepasseval = get_property("~/.email-pwds.gpg", "gandi", "pwd")
 remoteport = 993
 ssl = yes
-# starttls = yes
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 holdconnectionopen = yes
 keepalive = 120
