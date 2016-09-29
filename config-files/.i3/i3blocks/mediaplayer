@@ -1,0 +1,9 @@
+#!/bin/bash
+
+value=`mpc current -f "%artist%"`
+printf "[%s]" "$value"
+
+case $BLOCK_BUTTON in
+  1) `mpc toggle` ;; # left click
+  3) notify-send "`mpc current`" ;; # right click
+esac

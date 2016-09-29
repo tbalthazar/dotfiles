@@ -1,0 +1,4 @@
+#!/bin/bash
+
+value=$(~/.bin/volume mic)
+echo $value

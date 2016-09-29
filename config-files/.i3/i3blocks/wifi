@@ -35,8 +35,12 @@ NAME=$(iwgetid -r)
 
 #------------------------------------------------------------------------
 
-echo " $QUALITY%[$NAME]" # full text
+# echo " $QUALITY%[$NAME]" # full text
 echo " $QUALITY%" # short text
+
+case $BLOCK_BUTTON in
+  1) notify-send " $QUALITY% [$NAME]" ;; # lef click
+esac
 
 # color
 # if [[ $QUALITY -ge 80 ]]; then
