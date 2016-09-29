@@ -10,23 +10,11 @@ set sort_alias= alias
 set reverse_alias=yes
 source $alias_file
 
-# folders
-set folder      = "~/Mail"
-set spoolfile   = "+Gandi/INBOX"
-set record      = "+Gandi/Sent"
-set postponed   = "+Gandi/Drafts"
-set trash       = "+Gandi/Trash"
+source ~/.mutt/fastmail
 
-# smtp
-set my_smtp_server  = "mail.gandi.net"
-set my_user         = $my_email_gandi
-set smtp_url        = "smtp://$my_user@$my_smtp_server:587"
-set smtp_pass       = $my_pwd_gandi
+folder-hook 'Fastmail' 'source ~/.mutt/fastmail'
+folder-hook 'Gandi' 'source ~/.mutt/gandi'
 
-# account
-folder-hook Gandi set from=$my_email_gandi
-
-# headers
 # appearance
 set sort              = threads                     
 set sort_aux          = reverse-last-date-received 
