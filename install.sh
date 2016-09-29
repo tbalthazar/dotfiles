@@ -80,21 +80,26 @@ get_dotfiles() {
   vim +PlugUpdate +qall
 }
 
-# setup systemd services
-setup_services() {
+# setup system services
+setup_system_services() {
   mkdir -p /etc/systemd/system
-
-  cp "/home/$USERNAME/dotfiles/etc/systemd/system/mpd.service" /etc/systemd/system
-  systemctl enable mpd.service
-  systemctl start mpd.service
 
   cp "/home/$USERNAME/dotfiles/etc/systemd/system/i3lock.service" /etc/systemd/system
   systemctl enable i3lock.service
   systemctl start i3lock.service
+}
 
-  cp "/home/$USERNAME/dotfiles/etc/systemd/system/offlineimap@.service" /etc/systemd/system
-  systemctl enable offlineimap@$USERNAME.service
-  systemctl start offlineimap@$USERNAME.service
+# setup user services
+setup_services() {
+  mkdir -p /etc/systemd/user
+
+  cp "/home/$USERNAME/dotfiles/etc/systemd/user/mpd.service" /etc/systemd/user
+  systemctl --user enable mpd.service
+  systemctl --user start mpd.service
+
+  cp "/home/$USERNAME/dotfiles/etc/systemd/user/offlineimap.service" /etc/systemd/user
+  systemctl --user enable offlineimap.service
+  systemctl --user start offlineimap.service
 }
 
 # install base system packages
@@ -162,7 +167,8 @@ usage() {
 	echo "  base                     - install base pkgs"
 	echo "  virtualbox               - install virtualbox guest drivers, use when running *inside* a virtual machine"
 	echo "  dotfiles                 - get dotfiles"
-	echo "  services                 - install and configure services"
+	echo "  system-services          - install and configure system services"
+	echo "  user-services            - install and configure user services"
 }
 
 main() {
@@ -182,9 +188,12 @@ main() {
   elif [[ $cmd == "dotfiles" ]]; then
     check_is_not_sudo
     get_dotfiles
-  elif [[ $cmd == "services" ]]; then
+  elif [[ $cmd == "system-services" ]]; then
     check_is_sudo
-    setup_services
+    setup_system_services
+  elif [[ $cmd == "user-services" ]]; then
+    check_is_not_sudo
+    setup_user_services
   elif [[ $cmd == "test" ]]; then
     test
   else
