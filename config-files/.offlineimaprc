@@ -4,7 +4,7 @@
 
 [general]
 pythonfile = ~/.offlineimap.py
-accounts = Gandi
+accounts = Fastmail, Gandi
 
 [mbnames]
 enabled = yes
@@ -14,12 +14,34 @@ peritem = "+%(accountname)s/%(foldername)s"
 sep = " "
 footer = "\n"
 
+[Account Fastmail]
+localrepository = FastmailLocal
+remoterepository = FastmailRemote
+autorefresh = 0.5 
+quick = 0
+status_backend = sqlite
+
 [Account Gandi]
 localrepository = GandiLocal
 remoterepository = GandiRemote
 autorefresh = 0.5 
 quick = 0
 status_backend = sqlite
+
+[Repository FastmailLocal]
+type = Maildir
+localfolders = ~/Mail/Fastmail
+
+[Repository FastmailRemote]
+type = IMAP
+remotehost = mail.messagingengine.com
+remoteusereval = get_property("~/.email-pwds.gpg", "fastmail", "user")
+remotepasseval = get_property("~/.email-pwds.gpg", "fastmail", "pwd")
+remoteport = 993
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+holdconnectionopen = yes
+keepalive = 120
 
 [Repository GandiLocal]
 type = Maildir
@@ -28,7 +50,7 @@ localfolders = ~/Mail/Gandi
 [Repository GandiRemote]
 type = IMAP
 remotehost = mail.gandi.net
-remoteusereval = get_property("~/.email-pwds.gpg", "gandi", "email")
+remoteusereval = get_property("~/.email-pwds.gpg", "gandi", "user")
 remotepasseval = get_property("~/.email-pwds.gpg", "gandi", "pwd")
 remoteport = 993
 ssl = yes
