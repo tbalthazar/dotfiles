@@ -37,3 +37,4 @@ set send_charset="utf-8"
 # Colors, pasted from base16-builder generated file
 source ~/.mutt/colors
 source ~/.mutt/headers
+source ~/.mutt/sidebar
