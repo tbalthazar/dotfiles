@@ -204,7 +204,7 @@ bindsym XF86AudioPrev exec mpc prev
 # bindsym XF86Display exec --no-startup-id ~/.screenlayout/laptop-only.sh
 bindsym F7 exec --no-startup-id ~/.screenlayout/laptop-only.sh
 # bindsym Shift+XF86Display exec --no-startup-id ~/.screenlayout/external-only.sh
-bindsym Shift+F7 exec --no-startup-id ~/.screenlayout/external-only.sh
+bindsym Shift+F7 exec --no-startup-id ~/.screenlayout/external-vertical-only.sh
 
 bindsym $mod+Shift+d exec --no-startup-id i3lock -d -c 222222
 
