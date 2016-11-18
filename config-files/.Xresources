@@ -11,6 +11,12 @@ URxvt.shading: 20
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 
+!! bind home/end (also on keypad)
+URxvt.keysym.Home: \033[1~
+URxvt.keysym.End: \033[4~
+URxvt.keysym.KP_Home: \033[1~
+URxvt.keysym.KP_End:  \033[4~
+
 ! Base16 Default
 ! Scheme: Chris Kempson (http://chriskempson.com)
 
