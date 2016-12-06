@@ -69,6 +69,8 @@ set softtabstop=2
 set expandtab " Spaces instead of tabs
 set autoindent
 
+set smartcase
+
 set nocompatible      " We're running Vim, not Vi!
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
