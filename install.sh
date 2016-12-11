@@ -90,16 +90,17 @@ setup_system_services() {
 }
 
 # setup user services
-setup_services() {
+setup_user_services() {
   mkdir -p /etc/systemd/user
 
   cp "/home/$USERNAME/dotfiles/etc/systemd/user/mpd.service" /etc/systemd/user
   systemctl --user enable mpd.service
   systemctl --user start mpd.service
 
-  cp "/home/$USERNAME/dotfiles/etc/systemd/user/offlineimap.service" /etc/systemd/user
-  systemctl --user enable offlineimap.service
-  systemctl --user start offlineimap.service
+  crontab -l > /tmp/mycron
+  echo "*/3 * * * * /home/tb/.bin/oimap-quick.sh" >> /tmp/mycron
+  echo "0 * * * * /home/tb/.bin/oimap-full.sh" >> /tmp/mycron
+  crontab /tmp/mycron
 }
 
 # install base system packages
