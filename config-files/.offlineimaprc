@@ -17,15 +17,11 @@ footer = "\n"
 [Account Fastmail]
 localrepository = FastmailLocal
 remoterepository = FastmailRemote
-autorefresh = 0.5 
-quick = 0
 status_backend = sqlite
 
 [Account Gandi]
 localrepository = GandiLocal
 remoterepository = GandiRemote
-autorefresh = 0.5 
-quick = 0
 status_backend = sqlite
 
 [Repository FastmailLocal]
@@ -41,7 +37,6 @@ remoteport = 993
 ssl = yes
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 holdconnectionopen = yes
-keepalive = 120
 
 [Repository GandiLocal]
 type = Maildir
@@ -56,4 +51,3 @@ remoteport = 993
 ssl = yes
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 holdconnectionopen = yes
-keepalive = 120
