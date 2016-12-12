@@ -5,6 +5,7 @@ source "gpg2 -dq ~/.email-pwds.gpg |"
 source ~/.mutt/mailboxes
 source ~/.mutt/gpg
 
+set mailcap_path = ~/.mutt/mailcap
 set alias_file= ~/.mutt/aliases
 set sort_alias= alias
 set reverse_alias=yes
@@ -16,14 +17,16 @@ folder-hook 'Fastmail' 'source ~/.mutt/fastmail'
 folder-hook 'Gandi' 'source ~/.mutt/gandi'
 
 # appearance
-set sort              = threads                     
-set sort_aux          = reverse-last-date-received 
+# set sort              = threads                     
+# set sort_aux          = reverse-last-date-received 
+# set sort_aux          = reverse-last-date-received 
+set sort          = reverse-last-date-received 
 set timeout           = 3          # idle time before scanning
 set mail_check        = 1       # minimum time between scans
-set date_format       = "%b %d, %I:%M"
+set date_format       = "%b %d, %H:%M"
 set index_format      = "[%Z]  %D  %-20.20F  %s"
-set pager_index_lines = 10 # number of index lines to show
-set pager_context     = 3  # number of context lines to show
+# set pager_index_lines = 10 # number of index lines to show
+# set pager_context     = 3  # number of context lines to show
 set pager_stop        # don't go to next message automatically
 set menu_scroll       # scroll in menus
 set tilde             # show tildes like in vim
@@ -32,9 +35,15 @@ set fast_reply = yes
 set include = yes
 set mark_old = no
 set send_charset="utf-8"
+set confirmappend = no
 # set markers = no
+set sleep_time = 0
+
+macro index,pager Gi "<change-folder>=Fastmail/INBOX<enter>" "Go to Inbox"
 
 # Colors, pasted from base16-builder generated file
 source ~/.mutt/colors
 source ~/.mutt/headers
 source ~/.mutt/sidebar
+
+# bind index \; tag-prefix
