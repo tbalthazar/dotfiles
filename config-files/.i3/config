@@ -204,7 +204,7 @@ bindsym XF86AudioPrev exec mpc prev
 # bindsym XF86Display exec --no-startup-id ~/.screenlayout/laptop-only.sh
 bindsym F7 exec --no-startup-id ~/.screenlayout/laptop-only.sh
 # bindsym Shift+XF86Display exec --no-startup-id ~/.screenlayout/external-only.sh
-bindsym Shift+F7 exec --no-startup-id ~/.screenlayout/external-vertical-only.sh
+bindsym Shift+F7 exec --no-startup-id ~/.screenlayout/external-only-v.sh
 
 bindsym $mod+Shift+d exec --no-startup-id i3lock -d -c 222222
 
@@ -213,7 +213,8 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xautolock -time 10 -locker 'i3lock -d -c 222222'
 # exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/tape.png 
-exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/spacesurf-desat.png 
+# exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/spacesurf-desat.png 
+exec_always --no-startup-id feh --bg-center ~/Pictures/wallpapers/tape-recording-wallpaper-iphone-5-01.png
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
