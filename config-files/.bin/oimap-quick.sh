@@ -1,6 +1,7 @@
 #!/bin/sh
 
 folders="INBOX"
+folders="$folders,INBOX.Sent Items"
 folders="$folders,INBOX.Rules.Lists.Neutrinet.Cube"
 folders="$folders,INBOX.Rules.Lists.Neutrinet.Tech"
 folders="$folders,INBOX.Rules.Lists.Neutrinet.Admin"
