@@ -21,3 +21,4 @@ alias connect-vpn='sudo /usr/sbin/openvpn --daemon ovpn --status /run/openvpn/op
 alias home-usage='du -hx -d 1 -t 1G ~/ | sort -h'
 alias restartnm='sudo pkill NetworkManager && sleep 1 && sudo NetworkManager'
 alias nsaudit='sudo netstat -plunt'
+alias vdirsyncer='~/.vdirsyncer-env/bin/vdirsyncer'
