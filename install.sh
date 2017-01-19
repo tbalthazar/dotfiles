@@ -120,6 +120,7 @@ base() {
           i3blocks \
           i3lock \
           keepassx \
+          khard \
           lxappearance \
           meld \
           mpd \
@@ -136,6 +137,7 @@ base() {
           transmission \
           tree \
           tzdata \
+          vdirsyncer \
           vim-nox \
           vlc \
           xautolock \
