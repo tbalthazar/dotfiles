@@ -100,6 +100,7 @@ setup_user_services() {
   crontab -l > /tmp/mycron
   echo "*/3 * * * * /home/tb/.bin/oimap-quick.sh" >> /tmp/mycron
   echo "0 * * * * /home/tb/.bin/oimap-full.sh" >> /tmp/mycron
+  echo "0 * * * * /home/tb/.vdirsyncer-env/bin/vdirsyncer sync" >> /tmp/mycron
   crontab /tmp/mycron
 }
 
