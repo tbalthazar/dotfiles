@@ -45,5 +45,6 @@ macro index,pager Gi "<change-folder>=Fastmail/INBOX<enter>" "Go to Inbox"
 source ~/.mutt/colors
 source ~/.mutt/headers
 source ~/.mutt/sidebar
+source ~/.mutt/addresses
 
 # bind index \; tag-prefix
