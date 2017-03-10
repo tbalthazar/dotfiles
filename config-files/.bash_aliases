@@ -6,6 +6,7 @@ alias skill='sudo kill -9'
 alias gs='git status'
 alias gd='git difftool'
 alias gc='git commit -a'
+alias gls='git log --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr %an)%Creset" --abbrev-commit --date=relative'
 alias gemi='gem install --no-rdoc --no-ri'
 alias gemu='gem update --no-rdoc --no-ri'
 alias gvim="gvim 2>/dev/null"
