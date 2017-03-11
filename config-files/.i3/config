@@ -55,8 +55,8 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split
-bindsym $mod+Control+h split v
-bindsym $mod+Control+v split h
+bindsym $mod+Control+Shift+h split v
+bindsym $mod+Control+Shift+v split h
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -99,8 +99,10 @@ bindsym $mod+egrave workspace $workspace7
 bindsym $mod+exclam workspace $workspace8
 bindsym $mod+ccedilla workspace $workspace9
 bindsym $mod+agrave workspace $workspace10
-bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace prev
+# bindsym $mod+Tab workspace next
+# bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+Control+l workspace next
+bindsym $mod+Control+h workspace prev
 bind $mod+49 workspace back_and_forth
 
 # move focused container to workspace
@@ -183,7 +185,7 @@ assign [class="Thunderbird"] $workspace8
 assign [class="Transmission-gtk"] $workspace9
 assign [class="Clementine"] $workspace10
 for_window [class="Keepassx"] move to scratchpad
-for_window [class="Thunar"] floating enable
+# for_window [class="Thunar"] floating enable
 
 # To find the sink-volume value: pactl list sinks:
 # https://faq.i3wm.org/question/3747/enabling-multimedia-keys.1.html
