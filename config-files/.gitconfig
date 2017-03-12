@@ -3,7 +3,7 @@
 	quotepath = false
   editor = vim -f
 [diff]
-  tool = meld
+  tool = vimdiff
 [push]
 	default = matching
 [user]
