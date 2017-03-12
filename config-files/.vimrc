@@ -30,6 +30,8 @@ nnoremap <leader>= :wincmd =<cr>
 " --- commandT
 map <C-t> :CommandT<CR>
 map <C-b> :CommandTBuffer<CR>
+let g:CommandTSelectPrevMap='<C-k>'
+let g:CommandTAcceptSelectionSplitMap='<C-p>'
 
 " --- set the ctag file
 set tags=./tags;
