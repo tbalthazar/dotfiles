@@ -16,7 +16,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
-font pango:Fira Mono, FontAwesome Regular 11
+font pango:Fira Mono, FontAwesome Regular 12
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -165,7 +165,7 @@ client.background        $color-win-bg-unfocused
 
 # Bar
 bar {
-  font pango:Fira Mono, FontAwesome Regular 10
+  font pango:Fira Mono, FontAwesome Regular 12
   status_command i3blocks -c ~/.i3/i3blocks.conf
   colors {
     background $color-bar-bg

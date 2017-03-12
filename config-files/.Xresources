@@ -1,4 +1,4 @@
-URxvt.font: xft:Fira Mono:size=12:antialias=true:hinting=true
+URxvt.font: xft:Fira Mono:size=14:antialias=true:hinting=true
 URxvt.scrollBar: false
 
 URxvt.perl-ext-common: default,matcher
