@@ -62,15 +62,6 @@ let g:vimwiki_global_ext = 0
 let g:vimwiki_table_mappings = 0
 map <Leader>x <Plug>VimwikiToggleListItem
 
-" --- gui options
-:set guioptions-=T  "remove toolbar
-
-if (match(system("uname -s"), "Darwin") != -1)
-  :set guifont=Menlo\ Regular:h14
-else
-  :set guifont=Monospace\ Bold\ 12
-endif
-
 " --- indentation
 set shiftwidth=2
 set tabstop=2
