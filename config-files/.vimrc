@@ -72,6 +72,10 @@ set autoindent
 
 set smartcase
 
+set ignorecase  " ignore case of searches
+" highlight dynamically as pattern is typed
+set incsearch
+
 set nocompatible      " We're running Vim, not Vi!
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
@@ -84,6 +88,14 @@ set undodir=~/.vim/undodir
 
 " --- window
 set number
+" enable ruler
+set ruler
+
+set showcmd
+
+" disable cursorline in insert mode
+set cul
+autocmd InsertEnter,InsertLeave * set nocul!
 
 "  -- navigate through grep search results
 map <C-n> :cn<CR>
