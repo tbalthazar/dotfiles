@@ -28,7 +28,7 @@ bindsym $mod+Return exec /usr/bin/urxvt
 bindsym $mod+Shift+q kill
 
 # start i3-dmenu-desktop which only displays applications shipping a .desktop file.
-bindsym $mod+space exec --no-startup-id i3-dmenu-desktop -dmenu="dmenu -fn 'Fira Mono:normal:pixelsize=20'"
+bindsym $mod+space exec --no-startup-id i3-dmenu-desktop -dmenu="dmenu -i -fn 'Fira Mono:normal:pixelsize=20'"
 
 # change focus
 bindsym $mod+h focus left
