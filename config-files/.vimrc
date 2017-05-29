@@ -93,10 +93,6 @@ set ruler
 
 set showcmd
 
-" disable cursorline in insert mode
-set cul
-autocmd InsertEnter,InsertLeave * set nocul!
-
 "  -- navigate through grep search results
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
