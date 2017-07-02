@@ -12,7 +12,7 @@ Plug 'fatih/vim-go'
 Plug 'scrooloose/nerdtree'
 Plug 'vimwiki/vimwiki'
 Plug 'thoughtbot/vim-rspec'
-Plug 'wincent/command-t', { 'do': 'cd ruby/command-t && ruby extconf.rb && make' }
+Plug 'wincent/command-t', { 'do': 'cd .vim/plugged/command-t/ruby/command-t/ext/command-t && ruby extconf.rb && make' }
 
 call plug#end()
 
