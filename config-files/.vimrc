@@ -11,6 +11,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'fatih/vim-go'
 Plug 'scrooloose/nerdtree'
 Plug 'vimwiki/vimwiki'
+Plug 'thoughtbot/vim-rspec'
 Plug 'wincent/command-t', { 'do': 'cd ruby/command-t && ruby extconf.rb && make' }
 
 call plug#end()
@@ -62,6 +63,13 @@ let g:vimwiki_list = [{'path': $HOME . '/vimwiki',
 let g:vimwiki_global_ext = 0
 let g:vimwiki_table_mappings = 0
 map <Leader>x <Plug>VimwikiToggleListItem
+
+" --- vim-rspec
+let g:rspec_command = "!bundle exec rspec {spec}"
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>n :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
 
 " --- indentation
 set shiftwidth=2
