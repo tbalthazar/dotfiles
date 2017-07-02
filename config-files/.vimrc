@@ -16,6 +16,9 @@ Plug 'wincent/command-t', { 'do': 'cd .vim/plugged/command-t/ruby/command-t/ext/
 
 call plug#end()
 
+" --- leader key
+let mapleader = ","
+
 " --- ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
