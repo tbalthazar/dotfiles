@@ -17,7 +17,13 @@ Dir.entries(from).each do |entry|
   next unless File.file?(src_path)
 
   # get the exif info
-  exif_infos = MiniExiftool.new(src_path)
+  begin
+    exif_infos = MiniExiftool.new(src_path)
+  rescue StandardError => e
+    puts "Error: #{e.message}"
+    puts "File: #{src_path}"
+    next
+  end
   create_date = exif_infos['CreateDate']
   gps_position = exif_infos['GPSPosition']
 
