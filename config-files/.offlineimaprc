@@ -4,25 +4,26 @@
 
 [general]
 pythonfile = ~/.offlineimap.py
-accounts = Fastmail, Gandi
+# accounts = Fastmail, Gandi
+accounts = Fastmail
 
-[mbnames]
-enabled = yes
-filename = ~/.mutt/mailboxes
-header = "mailboxes "
-peritem = "+%(accountname)s/%(foldername)s"
-sep = " "
-footer = "\n"
+# [mbnames]
+# enabled = yes
+# filename = ~/.mutt/mailboxes
+# header = "mailboxes "
+# peritem = "+%(accountname)s/%(foldername)s"
+# sep = " "
+# footer = "\n"
 
 [Account Fastmail]
 localrepository = FastmailLocal
 remoterepository = FastmailRemote
-status_backend = sqlite
+# status_backend = sqlite
 
-[Account Gandi]
-localrepository = GandiLocal
-remoterepository = GandiRemote
-status_backend = sqlite
+# [Account Gandi]
+# localrepository = GandiLocal
+# remoterepository = GandiRemote
+# status_backend = sqlite
 
 [Repository FastmailLocal]
 type = Maildir
@@ -38,16 +39,16 @@ ssl = yes
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 holdconnectionopen = yes
 
-[Repository GandiLocal]
-type = Maildir
-localfolders = ~/Mail/Gandi
+# [Repository GandiLocal]
+# type = Maildir
+# localfolders = ~/Mail/Gandi
 
-[Repository GandiRemote]
-type = IMAP
-remotehost = mail.gandi.net
-remoteusereval = get_property("~/.email-pwds.gpg", "gandi", "user")
-remotepasseval = get_property("~/.email-pwds.gpg", "gandi", "pwd")
-remoteport = 993
-ssl = yes
-sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-holdconnectionopen = yes
+# [Repository GandiRemote]
+# type = IMAP
+# remotehost = mail.gandi.net
+# remoteusereval = get_property("~/.email-pwds.gpg", "gandi", "user")
+# remotepasseval = get_property("~/.email-pwds.gpg", "gandi", "pwd")
+# remoteport = 993
+# ssl = yes
+# sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+# holdconnectionopen = yes
