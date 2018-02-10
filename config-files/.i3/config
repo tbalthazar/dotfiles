@@ -22,7 +22,7 @@ font pango:Fira Mono, FontAwesome Regular 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec /usr/bin/urxvt
+bindsym $mod+Return exec /usr/bin/xterm
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -218,8 +218,9 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xautolock -time 10 -locker 'i3lock -d -c 222222'
 # exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/tape.png 
-# exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/spacesurf-desat.png 
-exec_always --no-startup-id feh --bg-center ~/Pictures/wallpapers/tape-recording-wallpaper-iphone-5-01.png
+exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/spacesurf-desat.png 
+# exec_always --no-startup-id feh --bg-center ~/Pictures/wallpapers/tape-recording-wallpaper-iphone-5-01.png
+# exec_always --no-startup-id feh --bg-center ~/Pictures/wallpapers/fox-in-snow.jpg
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad

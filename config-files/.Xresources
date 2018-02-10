@@ -1,53 +1,62 @@
-URxvt.font: xft:Fira Mono:size=14:antialias=true:hinting=true
-URxvt.scrollBar: false
+! Xft.dpi: 180
+Xft.dpi: 135
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
 
-URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: /usr/bin/xdg-open
-URxvt.matcher.button: 1
-URxvt.transparent: true
-URxvt.shading: 20
+! --- Xterm
 
-!! disable default bindings for Control-Shift
-URxvt.iso14755: false
-URxvt.iso14755_52: false
+XTerm.termName: xterm-256color
+XTerm*faceName: Fira Mono
+XTerm*faceSize: 12
+XTerm*fullscreen: never
+XTerm*VT100*translations: #override \n\
+  Ctrl Alt <Key>C: copy-selection(SELECT) \n\
+  Ctrl Alt <Key>V: insert-selection(SELECT) \n\
+  Shift <Btn1Up>: exec-formatted("/usr/bin/xdg-open '%t'", PRIMARY)
 
-!! bind home/end (also on keypad)
-URxvt.keysym.Home: \033[1~
-URxvt.keysym.End: \033[4~
-URxvt.keysym.KP_Home: \033[1~
-URxvt.keysym.KP_End:  \033[4~
+! --- colors
 
-! Base16 Default
-! Scheme: Chris Kempson (http://chriskempson.com)
+! special
+*.foreground:   #d0d0d0
+*.background:   #151515
+*.cursorColor:  #d0d0d0
 
-URxvt*background:                     #181818
-URxvt*foreground:                     #d8d8d8
-URxvt*cursorColor:                    #d8d8d8
+*scrollColor:                    #d8d8d8
+*highlightColor:                 #383838
+*highlightTextColor:             #b8b8b8
 
-URxvt*scrollColor:                    #d8d8d8
-URxvt*highlightColor:                 #383838
-URxvt*highlightTextColor:             #b8b8b8
+! black
+*.color0:       #151515
+*.color8:       #505050
 
-URxvt*color0:                         #181818
-URxvt*color1:                         #ab4642
-URxvt*color2:                         #a1b56c
-URxvt*color3:                         #f7ca88
-URxvt*color4:                         #7cafc2
-URxvt*color5:                         #ba8baf
-URxvt*color6:                         #86c1b9
-URxvt*color7:                         #d8d8d8
-URxvt*color8:                         #585858
-URxvt*color9:                         #ab4642
-URxvt*color10:                        #a1b56c
-URxvt*color11:                        #f7ca88
-URxvt*color12:                        #7cafc2
-URxvt*color13:                        #ba8baf
-URxvt*color14:                        #86c1b9
-URxvt*color15:                        #f8f8f8
+! red
+*.color1:       #ac4142
+*.color9:       #ac4142
 
-URxvt*color16:                        #dc9656
-URxvt*color17:                        #a16946
-URxvt*color18:                        #282828
-URxvt*color19:                        #383838
-URxvt*color20:                        #b8b8b8
-URxvt*color21:                        #e8e8e8
+! green
+*.color2:       #90a959
+*.color10:      #90a959
+
+! yellow
+*.color3:       #f4bf75
+*.color11:      #f4bf75
+
+! blue
+*.color4:       #6a9fb5
+*.color12:      #6a9fb5
+
+! magenta
+*.color5:       #aa759f
+*.color13:      #aa759f
+
+! cyan
+*.color6:       #75b5aa
+*.color14:      #75b5aa
+
+! white
+*.color7:       #d0d0d0
+*.color15:      #f5f5f5
