@@ -10,9 +10,10 @@ Xft.rgba: rgb
 ! --- Xterm
 
 XTerm.termName: xterm-256color
-XTerm*faceName: Fira Mono
+XTerm*faceName: DejaVu Sans Mono
 XTerm*faceSize: 12
 XTerm*fullscreen: never
+XTerm.vt100.locale: true
 XTerm*VT100*translations: #override \n\
   Ctrl Alt <Key>C: copy-selection(SELECT) \n\
   Ctrl Alt <Key>V: insert-selection(SELECT) \n\
