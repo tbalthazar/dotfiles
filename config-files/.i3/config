@@ -22,7 +22,7 @@ font pango:Fira Mono, FontAwesome Regular 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec /usr/bin/xterm
+bindsym $mod+Return exec /usr/bin/urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill

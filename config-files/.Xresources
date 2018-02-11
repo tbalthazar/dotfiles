@@ -7,17 +7,26 @@ Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
 
-! --- Xterm
+! --- urxvt
 
-XTerm.termName: xterm-256color
-XTerm*faceName: DejaVu Sans Mono
-XTerm*faceSize: 12
-XTerm*fullscreen: never
-XTerm.vt100.locale: true
-XTerm*VT100*translations: #override \n\
-  Ctrl Alt <Key>C: copy-selection(SELECT) \n\
-  Ctrl Alt <Key>V: insert-selection(SELECT) \n\
-  Shift <Btn1Up>: exec-formatted("/usr/bin/xdg-open '%t'", PRIMARY)
+URxvt.font: xft:Fira Mono:size=14:antialias=true:hinting=true
+URxvt.scrollBar: false
+
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+URxvt.transparent: true
+URxvt.shading: 20
+
+!! disable default bindings for Control-Shift
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+!! bind home/end (also on keypad)
+URxvt.keysym.Home: \033[1~
+URxvt.keysym.End: \033[4~
+URxvt.keysym.KP_Home: \033[1~
+URxvt.keysym.KP_End:  \033[4~
 
 ! --- colors
 
