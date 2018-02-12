@@ -47,9 +47,6 @@ set tags=./tags;
 
 " --- color theme 
 syntax enable
-set background=dark
-colorscheme base16-default
-let base16colorspace=256
 
 " --- vim-go
 let g:go_highlight_functions = 1
