@@ -1,19 +1,20 @@
 " --- vim-plug : https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
 
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'elixir-lang/vim-elixir'
-Plug 'christoomey/vim-tmux-navigator'
+" - languages
 Plug 'fatih/vim-go'
-Plug 'scrooloose/nerdtree'
-Plug 'vimwiki/vimwiki'
+Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
-Plug 'wincent/command-t', { 'do': 'cd .vim/plugged/command-t/ruby/command-t/ext/command-t && ruby extconf.rb && make' }
 
+" - config
+Plug 'scrooloose/nerdtree'
+Plug 'christoomey/vim-tmux-navigator'
+
+" - others
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " --- leader key
