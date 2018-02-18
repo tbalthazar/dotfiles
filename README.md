@@ -3,7 +3,7 @@
 ## Documentation
 
 - [terminal](doc/terminal.md)
-- [resolution](doc/resulution.md)
+- [resolution](doc/resolution.md)
 
 ## Installation
 
