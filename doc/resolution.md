@@ -7,7 +7,7 @@
 - Get current resolution: `xdpyinfo | grep -B 2 resolution`
 - List supported screen resulutions: `xrandr` (prefered has a `+`, current has a `*`)
 - Manually add unlisted resolutions:
-  ```
+  ```bash
   # create a modline with the resolution/rate you want
   $ gtf 3840 2160 30.0
   # create a new mode using the modeline
