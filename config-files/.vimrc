@@ -40,10 +40,8 @@ let g:CommandTSelectPrevMap='<C-k>'
 let g:CommandTAcceptSelectionSplitMap='<C-p>'
 
 " --- set the ctag file
-set tags=./tags;
-
-" --- Use Ack instead of grep
-" set grepprg=ack-grep
+set tags=./tags.ctags;
+nnoremap t <C-]>
 
 " --- color theme 
 syntax enable
@@ -99,6 +97,9 @@ set undodir=~/.vim/undodir
 set number
 " enable ruler
 set ruler
+
+" --- always display filepath
+set ls=2
 
 set showcmd
 
