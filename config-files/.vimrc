@@ -115,3 +115,9 @@ highlight NonText ctermbg=none
 
 " --- colors
 hi Visual cterm=bold ctermbg=yellow  ctermfg=black
+
+" --- vimdiff colors (:help hl-DiffAdd)
+hi DiffAdd    cterm=bold ctermbg=green   ctermfg=black
+hi DiffDelete cterm=bold ctermbg=red     ctermfg=black
+hi DiffChange cterm=bold ctermbg=blue  ctermfg=black
+hi DiffText   cterm=bold ctermbg=yellow  ctermfg=black
