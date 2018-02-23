@@ -113,11 +113,16 @@ map <C-n> :NERDTreeToggle<CR>
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
 
-" --- colors
+" --- colors: list current colors  `:highlight`
+
+" visual selection
 hi Visual cterm=bold ctermbg=yellow  ctermfg=black
 
-" --- vimdiff colors (:help hl-DiffAdd)
+" match pattern
+hi MatchParen cterm=none ctermbg=yellow ctermfg=black
+
+" vimdiff colors (:help hl-DiffAdd)
 hi DiffAdd    cterm=bold ctermbg=green   ctermfg=black
 hi DiffDelete cterm=bold ctermbg=red     ctermfg=black
-hi DiffChange cterm=bold ctermbg=blue  ctermfg=black
+hi DiffChange cterm=bold ctermbg=blue    ctermfg=black
 hi DiffText   cterm=bold ctermbg=yellow  ctermfg=black
