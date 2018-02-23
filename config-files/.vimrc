@@ -11,6 +11,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
 
 " - others
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -32,12 +34,6 @@ autocmd VimResized * :wincmd =
 " --- zoom a vim pane, <C-w>= to re-balance
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>
-
-" --- commandT
-map <C-t> :CommandT<CR>
-map <C-b> :CommandTBuffer<CR>
-let g:CommandTSelectPrevMap='<C-k>'
-let g:CommandTAcceptSelectionSplitMap='<C-p>'
 
 " --- set the ctag file
 set tags=./tags.ctags;
@@ -69,6 +65,10 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>n :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
+
+" --- fzf
+map <C-t> :FZF<CR>
+map <C-h> :Buffers<CR>
 
 " --- indentation
 set shiftwidth=2
