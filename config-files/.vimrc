@@ -112,3 +112,6 @@ map <C-n> :NERDTreeToggle<CR>
 " --- add background transparency
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
+
+" --- colors
+hi Visual cterm=bold ctermbg=yellow  ctermfg=black

@@ -10,4 +10,4 @@ Configured in `~/.tmux.conf`. Status bar colors are configured there.
 
 ## Vim
 
-Configured in `~/.vimrc`. No specific color configuration set.
+Configured in `~/.vimrc`. Vim uses the default color scheme, with minor color tweaks in `~/.vimrc`
