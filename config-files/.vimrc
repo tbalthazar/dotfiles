@@ -68,7 +68,7 @@ map <Leader>a :call RunAllSpecs()<CR>
 
 " --- fzf
 map <C-t> :FZF<CR>
-map <C-h> :Buffers<CR>
+map <C-y> :Buffers<CR>
 
 " --- indentation
 set shiftwidth=2
