@@ -6,10 +6,10 @@ source ~/.mutt/mailboxes
 # source ~/.mutt/gpg
 
 set mailcap_path = ~/.mutt/mailcap
-set alias_file= ~/.mutt/aliases
-set sort_alias= alias
-set reverse_alias=yes
-source $alias_file
+# set alias_file= ~/.mutt/aliases
+# set sort_alias= alias
+# set reverse_alias=yes
+# source $alias_file
 
 source ~/.mutt/fastmail
 
@@ -20,7 +20,7 @@ folder-hook 'Fastmail' 'source ~/.mutt/fastmail'
 # set sort              = threads                     
 # set sort_aux          = reverse-last-date-received 
 # set sort_aux          = reverse-last-date-received 
-set sort          = reverse-last-date-received 
+set sort              = reverse-last-date-received 
 set timeout           = 3          # idle time before scanning
 set mail_check        = 1       # minimum time between scans
 set date_format       = "%b %d, %H:%M"

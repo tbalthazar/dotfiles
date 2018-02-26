@@ -3,9 +3,9 @@
 ## Receive options.
 set folder      = "~/Mail"
 set spoolfile   = "+Fastmail/INBOX"
-set record      = "+Fastmail/INBOX.Sent Items"
-set postponed   = "+Fastmail/INBOX.Drafts"
-set trash       = "+Fastmail/INBOX.Trash"
+set record      = "+Fastmail/Sent Items"
+set postponed   = "+Fastmail/Drafts"
+set trash       = "+Fastmail/Trash"
 
 ## Send options.
 set realname        = "Thomas Balthazar"

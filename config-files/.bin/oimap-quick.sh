@@ -1,9 +1,9 @@
 #!/bin/sh
 
 folders="INBOX"
-folders="$folders,INBOX.Drafts"
-folders="$folders,INBOX.Sent Items"
-folders="$folders,INBOX.Archive.2017"
+folders="$folders,Drafts"
+folders="$folders,Sent Items"
+folders="$folders,Archive.2018"
 
 /usr/local/bin/offlineimap -o \
                            -a Fastmail \
