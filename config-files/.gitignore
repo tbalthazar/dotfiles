@@ -32,3 +32,6 @@ config/*.yml
 tags.ctags
 
 .bash_profile.private
+.env
+.DS_Store
+.byebug_history
