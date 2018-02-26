@@ -154,6 +154,14 @@ base() {
   systemctl disable mpd
 }
 
+source_os_specific_files() {
+  if [[ `uname` == "Linux" ]]; then
+    echo "Linux here"
+  else
+    echo "macOS here"
+  fi
+}
+
 test() {
   # echo "Username: $USERNAME"
   # echo "Home: $HOME"
@@ -198,6 +206,8 @@ main() {
   elif [[ $cmd == "user-services" ]]; then
     check_is_not_sudo
     setup_user_services
+  elif [[ $cmd == "test-source" ]]; then
+    source_os_specific_files
   elif [[ $cmd == "test" ]]; then
     test
   else
