@@ -1,0 +1,22 @@
+[general]
+# where the get_property method used below is defined
+pythonfile = ~/.offlineimap.py
+accounts = Perso
+
+[Account Perso]
+localrepository = PersoLocal
+remoterepository = PersoRemote
+
+[Repository PersoLocal]
+type = Maildir
+localfolders = ~/Mail/Perso
+
+[Repository PersoRemote]
+type = IMAP
+remotehost = get_property("~/.email-config.gpg", "perso", "imap")
+remoteusereval = get_property("~/.email-config.gpg", "perso", "user")
+remotepasseval = get_property("~/.email-config.gpg", "perso", "pwd")
+remoteport = 993
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+holdconnectionopen = yes

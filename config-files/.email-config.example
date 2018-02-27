@@ -1,0 +1,13 @@
+# encrypt the file:
+# gpg2 -er 'Your Name' .email-pwds
+# decrypt the file:
+# gpg2 -dq .email-pwds.gpg
+
+set my_imap_perso = "imap.example.org"
+set my_smtp_perso = "smtp.example.org"
+set my_email_perso = "hello@example.org"
+set my_pwd_perso = "fakepwd"
+set my_imap_pro = "imap.example.com"
+set my_smtp_pro = "smtp.example.com"
+set my_email_pro = "hello@example.com"
+set my_pwd_pro = "fakepwd"
