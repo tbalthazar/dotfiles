@@ -151,20 +151,21 @@ client.placeholder       $color-win-bg-unfocused $color-win-bg-unfocused $color-
 client.background        $color-win-bg-unfocused
 
 # Bar
-bar {
-  font pango:DejaVu Sans Mono, FontAwesome Regular 12
-  # status_command i3blocks -c ~/.i3/i3blocks.conf
-  colors {
-    background $color-bar-bg
-    separator  $color-bar-text
-    statusline $color-bar-text
-    #                  border        background            text
-    focused_workspace  $color-bar-bg $color-bar-bg-focused $color-bar-text-focused
-    active_workspace   $color-bar-bg $color-bar-bg         $color-bar-text-focused
-    inactive_workspace $color-bar-bg $color-bar-bg         $color-bar-text
-    urgent_workspace   $color-bar-bg $color-alert          $color-alert-text
-  }
-}
+# bar {
+#   font pango:DejaVu Sans Mono, FontAwesome Regular 12
+#   # status_command i3blocks -c ~/.i3/i3blocks.conf
+#   colors {
+#     background $color-bar-bg
+#     separator  $color-bar-text
+#     statusline $color-bar-text
+#     #                  border        background            text
+#     focused_workspace  $color-bar-bg $color-bar-bg-focused $color-bar-text-focused
+#     active_workspace   $color-bar-bg $color-bar-bg         $color-bar-text-focused
+#     inactive_workspace $color-bar-bg $color-bar-bg         $color-bar-text
+#     urgent_workspace   $color-bar-bg $color-alert          $color-alert-text
+#   }
+# }
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # To get the class of a window, use xprop, click on the window, then look for
 # the WM_CLASS(STRING) = "instance", "class"
