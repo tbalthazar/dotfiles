@@ -2,6 +2,8 @@
 
 ## GNUPG
 
+The default key is set in `~/.gnupg/gpg.conf`.
+
 It is used to encrypt/decrypt email credentials found in `.email-config.gpg`.
 Export keys:
 ```
@@ -20,3 +22,7 @@ $ gpg --allow-secret-key-import --import new-gpg-private-key.asc
 It syncs an IMAP inbox with local Maildirs.
 It is configured in `.offlineimaprc`.
 It uses a method in `.offlineimap.py` to read email config and creds from `.email-config.gpg`.
+
+## Mutt
+
+It also uses `.email-config.gpg` to get creds.
