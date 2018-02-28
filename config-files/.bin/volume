@@ -1,0 +1,64 @@
+#!/bin/bash
+
+format() {
+  perl_filter='if (/.*\[(\d+%)\] (\[(-?\d+.\d+dB)\] )?\[(on|off)\]/)'
+  perl_filter+='{CORE::say $4 eq "off" ? "MUTE" : "'
+  # If dB was selected, print that instead
+  perl_filter+=$([[ $STEP = *dB ]] && echo '$3' || echo '$1')
+  perl_filter+='"; exit}'
+  perl -ne "$perl_filter"
+}
+
+get_mic_volume() {
+  amixer -D pulse get Capture | format
+}
+
+get_audio_volume() {
+  amixer -D pulse get Master | format
+}
+
+set_audio_volume() {
+  amixer -q -D pulse sset Master $1
+}
+
+set_mic_volume() {
+  amixer -q -D pulse sset Capture $1
+}
+
+usage() {
+	echo -e "volume\n\tThis script changes the volume of the audio device or microphone.\n"
+	echo "Usage:"
+	echo "  audio     - get the audio volume"
+	echo "  mic       - get the microphone volume"
+	echo "  audio 25% - set the audio volume to 25%"
+	echo "  mic 25%   - set the microphone volume to 25%"
+}
+
+main() {
+  local cmd=$1
+  sub_cmd=$2
+  
+  if [[ -z "$cmd" ]]; then
+    usage
+    exit 1
+  fi
+
+  if [[ $cmd == "audio" ]]; then
+    if [[ -z "$sub_cmd" ]]; then
+      get_audio_volume
+    else
+      set_audio_volume $sub_cmd
+    fi
+  elif [[ $cmd == "mic" ]]; then
+    if [[ -z "$sub_cmd" ]]; then
+      get_mic_volume
+    else
+      set_mic_volume $sub_cmd
+    fi
+  else
+    usage
+  fi
+
+}
+
+main "$@"
