@@ -33,7 +33,7 @@ set confirmappend = no
 # set markers = no
 set sleep_time = 0
 
-macro index,pager Gi "<change-folder>=Fastmail/INBOX<enter>" "Go to Inbox"
+macro index,pager Gi "<change-folder>=Perso/INBOX<enter>" "Go to Inbox"
 
 # Colors, pasted from base16-builder generated file
 source ~/.mutt/colors
