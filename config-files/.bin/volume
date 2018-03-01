@@ -10,19 +10,19 @@ format() {
 }
 
 get_mic_volume() {
-  amixer -D pulse get Capture | format
+  amixer get Capture | format
 }
 
 get_audio_volume() {
-  amixer -D pulse get Master | format
+  amixer get Master | format
 }
 
 set_audio_volume() {
-  amixer -q -D pulse sset Master $1
+  amixer -q sset Master $1
 }
 
 set_mic_volume() {
-  amixer -q -D pulse sset Capture $1
+  amixer -q sset Capture $1
 }
 
 usage() {
