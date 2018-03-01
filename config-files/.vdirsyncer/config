@@ -1,0 +1,18 @@
+[general]
+status_path = "~/.vdirsyncer/status/"
+
+[pair perso]
+a = "perso_local"
+b = "perso_remote"
+collections = ["from a", "from b"]
+
+[storage perso_local]
+type = "filesystem"
+path = "~/.contacts/"
+fileext = ".vcf"
+
+[storage perso_remote]
+type = "carddav"
+url = "https://carddav.fastmail.com/"
+username.fetch = ["command", "~/.vdirsyncer/read_secret.py", "~/.email-config.gpg", "perso", "user"]
+password.fetch = ["command", "~/.vdirsyncer/read_secret.py", "~/.email-config.gpg", "perso", "pwd"]

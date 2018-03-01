@@ -26,3 +26,12 @@ It uses a method in `.offlineimap.py` to read email config and creds from `.emai
 ## Mutt
 
 It also uses `.email-config.gpg` to get creds.
+
+## vdirsyncer
+
+Used to sync contacts with a CardDav server.
+It also uses `.email-config.gpg` to get creds to sync with the CardDav server.
+
+## khard
+
+Used by Mutt to read VCards downloaded by vdirsyncer.
