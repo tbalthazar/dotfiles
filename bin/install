@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -e
+
+source "bin/common"
+if [[ `uname` == "Linux" ]]; then
+  source "bin/linux"
+else
+  source "bin/macos"
+fi
+
+main() {
+  local cmd=$1
+  
+  if [[ -z "$cmd" ]]; then
+    usage
+    exit 1
+  fi
+  
+  if [[ $cmd == "setup" ]]; then
+    setup
+  elif [[ $cmd == "dotfiles" ]]; then
+    dotfiles
+  else
+    usage
+  fi
+}
+
+main "$@"
