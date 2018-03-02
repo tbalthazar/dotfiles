@@ -26,8 +26,6 @@ usage() {
 
 # get dotfiles
 dotfiles() {
-  check_is_not_sudo
-  exit 0
   if [[ -e "$HOME/dotfiles" ]]; then
     cd "$HOME/dotfiles"
     git pull
