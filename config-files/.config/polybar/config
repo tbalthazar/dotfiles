@@ -46,8 +46,6 @@ font-3 = Font Awesome 5 Free Solid:pixelsize=12;2
 font-4 = Font Awesome 5 Brands:pixelsize=12;2
 
 modules-left = i3
-; modules-center = mpd
-; modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
 modules-right = mpd mic pulseaudio battery wlan eth xbacklight filesystem date
 
 tray-position = right
@@ -74,17 +72,17 @@ label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
+label-focused = %name%
 label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
+label-unfocused = ${self.label-focused}
 label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%
+label-visible = ${self.label-focused}
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
