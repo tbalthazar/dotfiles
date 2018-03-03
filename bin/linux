@@ -50,26 +50,27 @@ setup_system_services() {
   cp "/home/$USERNAME/dotfiles/etc/systemd/system/i3lock.service" /etc/systemd/system
   systemctl enable i3lock.service
   systemctl start i3lock.service
-}
 
-# setup user services
-setup_user_services() {
   # disable system-wide mpd
   systemctl stop mpd.socket
   systemctl stop mpd
   systemctl disable mpd
-
+  
+  # copy mpd service
   mkdir -p /etc/systemd/user
-
   cp "/home/$USERNAME/dotfiles/etc/systemd/user/mpd.service" /etc/systemd/user
+}
+
+# setup user services
+setup_user_services() {
   systemctl --user enable mpd.service
   systemctl --user start mpd.service
 
-  crontab -l -u $USERNAME > /tmp/mycron
+  crontab -l > /tmp/mycron
   echo "*/3 * * * * /home/tb/.bin/oimap-quick.sh" >> /tmp/mycron
   echo "0 * * * * /home/tb/.bin/oimap-full.sh" >> /tmp/mycron
   echo "0 * * * * /home/tb/.vdirsyncer-env/bin/vdirsyncer sync" >> /tmp/mycron
-  crontab -u $USERNAME /tmp/mycron
+  crontab /tmp/mycron
 }
 
 setup() {
@@ -77,5 +78,9 @@ setup() {
   install_base_packages
   setup_sudo
   setup_system_services
+}
+
+configure() {
+  check_is_not_sudo
   setup_user_services
 }
