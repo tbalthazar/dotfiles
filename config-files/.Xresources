@@ -10,7 +10,7 @@ Xft.rgba: rgb
 
 ! --- urxvt
 
-URxvt.font: xft:Fira Mono:size=14:antialias=true:hinting=true
+URxvt.font: xft:DejaVu Sans Mono:size=14:antialias=true:hinting=true
 URxvt.scrollBar: false
 
 URxvt.perl-ext-common: default,matcher
