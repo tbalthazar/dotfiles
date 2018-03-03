@@ -64,6 +64,7 @@ install_base_packages() {
           arandr \
           curl \
           dmenu \
+          feh \
           git \
           i3 \
           i3lock \
