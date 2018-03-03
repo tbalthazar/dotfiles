@@ -1,5 +1,81 @@
 #!/bin/bash
 
+USERNAME=$(find /home/* -maxdepth 0 -printf "%f" -type d)
+export DEBIAN_FRONTEND=noninteractive
+
+# install base system packages
+install_base_packages() {
+  apt-get update
+  apt-get -y dist-upgrade
+  
+  apt-get install -y \
+          adduser \
+          arandr \
+          curl \
+          dmenu \
+          git \
+          i3 \
+          keepassxc \
+          khard \
+          lxappearance \
+          mpd \
+          mutt \
+          network-manager \
+          ncmpcpp \
+          offlineimap \
+          openvpn \
+          rxvt-unicode-256color \
+          sudo \
+          tmux \
+          transmission \
+          vdirsyncer \
+          vim-nox \
+          vlc \
+          xautolock \
+          xbacklight \
+          xclip \
+          xorg \
+          --no-install-recommends
+}
+
+# setup sudo for a user
+setup_sudo() {
+  adduser $USERNAME sudo
+}
+
+# setup system services
+setup_system_services() {
+  mkdir -p /etc/systemd/system
+
+  cp "/home/$USERNAME/dotfiles/etc/systemd/system/i3lock.service" /etc/systemd/system
+  systemctl enable i3lock.service
+  systemctl start i3lock.service
+}
+
+# setup user services
+setup_user_services() {
+  # disable system-wide mpd
+  systemctl stop mpd.socket
+  systemctl stop mpd
+  systemctl disable mpd
+
+  mkdir -p /etc/systemd/user
+
+  cp "/home/$USERNAME/dotfiles/etc/systemd/user/mpd.service" /etc/systemd/user
+  systemctl --user enable mpd.service
+  systemctl --user start mpd.service
+
+  crontab -l -u $USERNAME > /tmp/mycron
+  echo "*/3 * * * * /home/tb/.bin/oimap-quick.sh" >> /tmp/mycron
+  echo "0 * * * * /home/tb/.bin/oimap-full.sh" >> /tmp/mycron
+  echo "0 * * * * /home/tb/.vdirsyncer-env/bin/vdirsyncer sync" >> /tmp/mycron
+  crontab -u $USERNAME /tmp/mycron
+}
+
 setup() {
-  echo "-- setup Linux"
+  check_is_sudo
+  install_base_packages
+  setup_sudo
+  setup_system_services
+  setup_user_services
 }
