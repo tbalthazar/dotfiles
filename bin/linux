@@ -110,7 +110,6 @@ setup_user_services() {
   systemctl --user enable mpd.service
   systemctl --user start mpd.service
 
-  crontab -l > /tmp/mycron
   echo "*/3 * * * * /home/tb/.bin/oimap-quick.sh" >> /tmp/mycron
   echo "0 * * * * /home/tb/.bin/oimap-full.sh" >> /tmp/mycron
   echo "0 * * * * /home/tb/.vdirsyncer-env/bin/vdirsyncer sync" >> /tmp/mycron
