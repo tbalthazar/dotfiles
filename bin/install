@@ -19,6 +19,8 @@ main() {
   
   if [[ $cmd == "setup" ]]; then
     setup
+  elif [[ $cmd == "setup_virtualbox" ]]; then
+    setup_virtualbox
   elif [[ $cmd == "configure_system" ]]; then
     configure_system
   elif [[ $cmd == "configure_user" ]]; then

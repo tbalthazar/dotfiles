@@ -19,6 +19,8 @@ Login as `tb`:
 ```bash
 user$ git clone https://github.com/tbalthazar/dotfiles.git && cd dotfiles
 user$ sudo su
+# if running in VirtualBox
+root$ bin/install setup_virtualbox
 root$ bin/install setup
 root$ exit
 user$ bin/install dotfiles

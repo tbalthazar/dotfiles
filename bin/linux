@@ -10,6 +10,15 @@ check_x_running() {
   fi
 }
 
+setup_virtualbox() {
+  check_is_sudo
+  echo "deb http://httpredir.debian.org/debian/ buster main contrib" >> /etc/apt/sources.list
+  apt-get install -y \
+          build-essential \
+          linux-headers-$(uname -r) \
+          virtualbox-guest-x11
+}
+
 install_polybar() {
   sudo apt-get install -y \
                cmake \
@@ -50,6 +59,7 @@ install_base_packages() {
   
   apt-get install -y \
           adduser \
+          alsa-utils \
           arandr \
           curl \
           dmenu \
