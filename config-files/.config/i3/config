@@ -156,7 +156,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # To get the class of a window, use xprop, click on the window, then look for
 # the WM_CLASS(STRING) = "instance", "class"
 assign [class="Transmission-gtk"] $workspace9
-for_window [class="Keepassx"] move to scratchpad
+for_window [class="keepassxc"] move to scratchpad
 
 # To find the sink-volume value: pactl list sinks:
 # https://faq.i3wm.org/question/3747/enabling-multimedia-keys.1.html
