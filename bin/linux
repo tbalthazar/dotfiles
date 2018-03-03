@@ -66,6 +66,7 @@ install_base_packages() {
           dmenu \
           git \
           i3 \
+          i3lock \
           keepassxc \
           khard \
           lxappearance \
