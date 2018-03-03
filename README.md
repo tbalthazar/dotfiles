@@ -9,14 +9,14 @@
 
 Login as `root`:
 
-```console
+```bash
 root$ apt-get update && apt-get dist-upgrade && apt-get install git su
 root$ adduser tb sudo
 root$ logout
 ```
 
 Login as `tb`:
-```console
+```bash
 user$ git clone https://github.com/tbalthazar/dotfiles.git && cd dotfiles
 user$ sudo su
 root$ bin/install setup

@@ -63,6 +63,8 @@ install_base_packages() {
           ncmpcpp \
           offlineimap \
           openvpn \
+          pulseaudio \
+          pulseaudio-utils \
           rxvt-unicode-256color \
           sudo \
           tmux \
@@ -71,6 +73,7 @@ install_base_packages() {
           vim-nox \
           vlc \
           wicd \
+          wicd-curses \
           xautolock \
           xbacklight \
           xclip \
