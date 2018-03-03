@@ -3,6 +3,13 @@
 USERNAME=$(find /home/* -maxdepth 0 -printf "%f" -type d)
 export DEBIAN_FRONTEND=noninteractive
 
+check_x_running() {
+  if ! xset q &>/dev/null; then
+    echo "Please run in X."
+    exit
+  fi
+}
+
 install_polybar() {
   sudo apt-get install -y \
                cmake \
@@ -114,11 +121,17 @@ setup() {
   check_is_sudo
   install_base_packages
   setup_sudo
+}
+
+configure_system() {
+  check_is_sudo
+  check_x_running
   setup_system_services
 }
 
-configure() {
+configure_user() {
   check_is_not_sudo
-  # setup_user_services
+  check_x_running
+  setup_user_services
   install_polybar
 }

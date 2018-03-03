@@ -19,8 +19,10 @@ main() {
   
   if [[ $cmd == "setup" ]]; then
     setup
-  elif [[ $cmd == "configure" ]]; then
-    configure
+  elif [[ $cmd == "configure_system" ]]; then
+    configure_system
+  elif [[ $cmd == "configure_user" ]]; then
+    configure_user
   elif [[ $cmd == "dotfiles" ]]; then
     dotfiles
   else
