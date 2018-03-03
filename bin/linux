@@ -37,6 +37,7 @@ install_polybar() {
 
 # install base system packages
 install_base_packages() {
+  echo "deb http://ftp.hr.debian.org/debian sid main contrib non-free" >> /etc/apt/sources.list
   apt-get update
   apt-get -y dist-upgrade
   
@@ -68,6 +69,10 @@ install_base_packages() {
           xclip \
           xorg \
           --no-install-recommends
+
+  # unstable packages
+  apt-get install -y -t sid \
+          firefox
 }
 
 # setup sudo for a user
