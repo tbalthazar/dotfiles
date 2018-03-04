@@ -24,6 +24,7 @@ install_polybar() {
   sudo apt-get install -y \
                cmake \
                cmake-data \
+               g++ \
                libcairo2-dev \
                libxcb1-dev \
                libxcb-ewmh-dev \
@@ -54,6 +55,7 @@ install_polybar() {
 
 # install base system packages
 install_base_packages() {
+  echo "deb http://httpredir.debian.org/debian/ stretch main contrib non-free" >> /etc/apt/sources.list
   echo "deb http://ftp.hr.debian.org/debian sid main contrib non-free" >> /etc/apt/sources.list
   apt-get update
   apt-get -y dist-upgrade
@@ -74,6 +76,7 @@ install_base_packages() {
           mpd \
           mutt \
           ncmpcpp \
+          network-manager \
           offlineimap \
           openvpn \
           pulseaudio \
@@ -85,13 +88,15 @@ install_base_packages() {
           vdirsyncer \
           vim-nox \
           vlc \
-          wicd \
-          wicd-curses \
           xautolock \
           xbacklight \
           xclip \
           xorg \
           --no-install-recommends
+
+  # non-free packages
+  apt-get install -y -t stretch \
+          firemware-iwlwifi
 
   # unstable packages
   apt-get install -y -t sid \
