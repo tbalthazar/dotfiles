@@ -46,7 +46,7 @@ font-3 = Font Awesome 5 Free Solid:pixelsize=12;2
 font-4 = Font Awesome 5 Brands:pixelsize=12;2
 
 modules-left = i3
-modules-right = mpd mic pulseaudio battery wlan eth xbacklight filesystem date
+modules-right = mpd mic pulseaudio battery wifi ethernet xbacklight filesystem date
 
 tray-position = right
 tray-padding = 2
@@ -115,7 +115,9 @@ label-song-maxlen = 25
 label-song-ellipsis = true
 
 [module/xbacklight]
-type = internal/xbacklight
+type = internal/backlight
+monitor_name = eDP-1
+card = intel_backlight
 
 format = <label> <bar>
 label = BL
@@ -131,9 +133,9 @@ bar-empty = ─
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
 
-[module/wlan]
+[module/wifi]
 type = internal/network
-interface = net1
+interface = wlp3s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
@@ -146,16 +148,16 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
 
-[module/eth]
+[module/ethernet]
 type = internal/network
-interface = enp0s3
+interface = enp0s25
 interval = 3.0
 
 format-connected-underline = #55aa55
@@ -187,6 +189,7 @@ label = %date% %time%
 
 [module/mic]
 type = internal/pulseaudio
+sink = alsa_input.pci-0000_00_1b.0.analog-stereo
 
 ramp-volume-0 = 
 ramp-volume-1 = 
@@ -204,6 +207,7 @@ label-muted-underline = #00FFFF
 
 [module/pulseaudio]
 type = internal/pulseaudio
+synk = alsa_output.pci-0000_00_1b.0.analog-stereo.monitor
 
 ramp-volume-0 = 
 ramp-volume-1 = 
