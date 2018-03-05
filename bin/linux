@@ -124,6 +124,10 @@ setup_system_services() {
   # copy mpd service
   mkdir -p /etc/systemd/user
   cp "/home/$USERNAME/dotfiles/etc/systemd/user/mpd.service" /etc/systemd/user
+
+  # copy Xorg config
+  mkdir -p /usr/share/X11/xorg.conf.d
+  cp "/home/$USERNAME/dotfiles/usr/share/X11/xorg.conf.d/05-backlight.conf" /usr/share/X11/xorg.conf.d
 }
 
 # setup user services
