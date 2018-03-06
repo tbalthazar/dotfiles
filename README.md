@@ -10,7 +10,7 @@
 Login as `root`:
 
 ```bash
-root$ apt-get update && apt-get dist-upgrade && apt-get install git su
+root$ apt-get update && apt-get dist-upgrade && apt-get install git sudo
 root$ adduser tb sudo
 root$ logout
 ```

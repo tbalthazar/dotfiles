@@ -131,7 +131,7 @@ install_base_packages() {
 
   # non-free packages
   apt-get install -y \
-          firemware-iwlwifi
+          firmware-iwlwifi
 
   # unstable packages
   apt-get install -y -t sid \
