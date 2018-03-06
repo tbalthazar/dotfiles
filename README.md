@@ -30,3 +30,14 @@ root$ bin/install configure_system
 root$ exit
 user$ bin/install configure_user
 ```
+
+## Notes
+
+- solution for xbacklight: https://unix.stackexchange.com/questions/301724/xbacklight-not-working and https://wiki.archlinux.org/index.php/backlight#Overview
+- set default release for apt: https://unix.stackexchange.com/a/253866  
+- show the source of an installed package:
+  - get info for that package `dpkg -s <package>`
+  - show available versions and the source for each version: `apt-cache showpkg <package>`
+- configure trackpad: https://unix.stackexchange.com/a/396357 and https://wiki.archlinux.org/index.php/Libinput#Button_re-mapping
+- terminte install script: https://github.com/Corwind/termite-install
+- termite themes: https://github.com/khamer/base16-termite/tree/master/themes
