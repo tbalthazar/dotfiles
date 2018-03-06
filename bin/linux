@@ -128,7 +128,7 @@ setup_system_services() {
 
   # copy Xorg config
   mkdir -p /usr/share/X11/xorg.conf.d
-  cp "/home/$USERNAME/dotfiles/usr/share/X11/xorg.conf.d/05-backlight.conf" /usr/share/X11/xorg.conf.d
+  cp "/home/$USERNAME/dotfiles/usr/share/X11/xorg.conf.d/*" /usr/share/X11/xorg.conf.d
 }
 
 # setup user services
