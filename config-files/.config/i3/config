@@ -9,7 +9,7 @@ font pango:DejaVu Sans Mono 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec /usr/bin/urxvt
+bindsym $mod+Return exec /usr/local/bin/termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
