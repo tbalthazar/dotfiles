@@ -46,7 +46,7 @@ font-3 = Font Awesome 5 Free Solid:pixelsize=12;2
 font-4 = Font Awesome 5 Brands:pixelsize=12;2
 
 modules-left = i3
-modules-right = mpd mic pulseaudio battery wifi ethernet xbacklight filesystem date
+modules-right = mpd mic pulseaudio xbacklight battery wifi ethernet filesystem date
 
 tray-position = right
 tray-padding = 2
@@ -116,22 +116,11 @@ label-song-ellipsis = true
 
 [module/xbacklight]
 type = internal/backlight
-monitor_name = eDP-1
 card = intel_backlight
 
-format = <label> <bar>
-label = BL
-
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #ff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
+label =  %percentage%%
+format = <label> 
+format-underline = #77FF00
 
 [module/wifi]
 type = internal/network
