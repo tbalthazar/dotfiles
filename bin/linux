@@ -127,6 +127,7 @@ install_base_packages() {
           xbacklight \
           xclip \
           xorg \
+          xserver-xorg-video-intel \
           --no-install-recommends
 
   # non-free packages
