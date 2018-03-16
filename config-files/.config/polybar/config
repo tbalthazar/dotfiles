@@ -46,7 +46,7 @@ font-3 = Font Awesome 5 Free Solid:pixelsize=12;2
 font-4 = Font Awesome 5 Brands:pixelsize=12;2
 
 modules-left = i3
-modules-right = mpd mic pulseaudio xbacklight battery wifi ethernet filesystem date
+modules-right = mpd mic pulseaudio xbacklight battery battery2 wifi ethernet filesystem date
 
 tray-position = right
 tray-padding = 2
@@ -252,6 +252,10 @@ ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
 ramp-capacity-foreground = ${colors.foreground-alt}
+
+[module/battery2]
+inherit = module/battery
+battery = BAT1
 
 [settings]
 screenchange-reload = true
