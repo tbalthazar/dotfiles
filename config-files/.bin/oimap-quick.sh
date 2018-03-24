@@ -6,6 +6,6 @@ folders="$folders,Sent Items"
 folders="$folders,Archive.2018"
 
 /usr/bin/offlineimap -o \
-                     -a Fastmail \
+                     -a Perso \
                      -f "$folders" \
                      -u quiet
