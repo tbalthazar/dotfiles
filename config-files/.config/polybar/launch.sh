@@ -9,6 +9,6 @@ while pgrep polybar >/dev/null; do sleep 1; done
 
 # Launch bar1 and bar2
 polybar example &
-
+polybar 28inches &
 
 echo "Bars launched..."

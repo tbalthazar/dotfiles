@@ -16,7 +16,18 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
+[bar/28inches]
+inherit = bar/example
+monitor = DP1
+height = 50
+font-0 = DejaVu Sans Mono:pixelsize=18;1
+font-1 = unifont:fontformat=truetype:size=18:antialias=false;0
+font-2 = Font Awesome 5 Free:pixelsize=18;2
+font-3 = Font Awesome 5 Free Solid:pixelsize=18;2
+font-4 = Font Awesome 5 Brands:pixelsize=18;2
+
 [bar/example]
+monitor = eDP1
 width = 100%
 height = 27
 radius = 6.0
