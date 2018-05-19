@@ -54,39 +54,6 @@ install_termite() {
   sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/local/bin/termite 60
 }
 
-install_polybar() {
-  sudo apt-get install -y \
-               cmake \
-               cmake-data \
-               g++ \
-               libcairo2-dev \
-               libxcb1-dev \
-               libxcb-ewmh-dev \
-               libxcb-icccm4-dev \
-               libxcb-image0-dev \
-               libxcb-randr0-dev \
-               libxcb-util0-dev \
-               libxcb-xkb-dev \
-               pkg-config \
-               python-xcbgen \
-               xcb-proto \
-               libxcb-xrm-dev \
-               i3-wm \
-               libasound2-dev \
-               libpulse-dev \
-               libmpdclient-dev \
-               libiw-dev \
-               libcurl4-openssl-dev \
-               libxcb-cursor-dev
-  mkdir -p ~/src
-  cd ~/src/
-  git clone --recursive https://github.com/jaagr/polybar
-  mkdir polybar/build
-  cd polybar/build/
-  cmake ..
-  sudo make install
-}
-
 # install base system packages
 install_base_packages() {
   cp "/home/$USERNAME/dotfiles/etc/apt/apt.conf.d/80default-release" /etc/apt/apt.conf.d
@@ -116,7 +83,6 @@ install_base_packages() {
           openvpn \
           pulseaudio \
           pulseaudio-utils \
-          rxvt-unicode-256color \
           sudo \
           tmux \
           transmission \
@@ -193,6 +159,5 @@ configure_user() {
   check_is_not_sudo
   check_x_running
   setup_user_services
-  install_polybar
   install_termite
 }
