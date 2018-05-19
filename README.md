@@ -24,6 +24,9 @@ root$ bin/install setup_virtualbox && reboot
 root$ bin/install setup
 root$ exit
 user$ bin/install dotfiles
+# if startx fails, try installing the guest additions from the VirtualBox Devices menu.
+# in the virtual machine, sudo mount /media/cdrom
+# then sh /media/cdrom/VBoxLinuxAdditions.sh then reboot
 user$ startx
 user$ sudo su
 root$ bin/install configure_system
