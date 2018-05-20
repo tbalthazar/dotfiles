@@ -31,12 +31,12 @@ QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }
 
 #------------------------------------------------------------------------
 
-NAME=$(iwgetid -r)
+NAME=$(nmcli -t -f ssid dev wifi)
 
 #------------------------------------------------------------------------
 
-# echo "$QUALITY%[$NAME]" # full text
-echo " $QUALITY%" # short text
+#echo "$QUALITY%[$NAME]" # full text
+echo "$QUALITY%" # short text
 
 case $BLOCK_BUTTON in
   1) notify-send " $QUALITY% [$NAME]" ;; # lef click
