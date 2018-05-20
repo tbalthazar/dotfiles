@@ -71,6 +71,7 @@ install_base_packages() {
           feh \
           git \
           i3 \
+          i3blocks \
           i3lock \
           keepassxc \
           khard \
