@@ -176,8 +176,8 @@ for_window [class="keepassxc"] move to scratchpad
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id volume audio increase && volume audio notify
 bindsym XF86AudioLowerVolume exec --no-startup-id volume audio decrease && volume audio notify
-bindsym XF86AudioMute exec --no-startup-id volume audio toggle
-bindsym XF86AudioMicMute exec --no-startup-id volume mic toggle
+bindsym XF86AudioMute exec --no-startup-id volume audio toggle && volume audio notify
+bindsym XF86AudioMicMute exec --no-startup-id volume mic toggle && volume mic notify
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec brightness increase && brightness notify
