@@ -1,7 +1,8 @@
 #!/bin/bash
 
 get_brightness() {
-  xbacklight -get
+  value=`xbacklight -get`
+  LC_ALL=C printf '%.*f%%' 0 $value
 }
 
 increase_brightness() {
