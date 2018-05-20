@@ -152,7 +152,7 @@ client.background        $color-win-bg-unfocused
 
 # Bar
 bar {
-  font pango:DejaVu Sans Mono, FontAwesome Regular 12
+  font pango:DejaVu Sans Mono, FontAwesome Regular 10
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
   colors {
     background $color-bar-bg
@@ -174,14 +174,14 @@ for_window [class="keepassxc"] move to scratchpad
 # To find the sink-volume value: pactl list sinks:
 # https://faq.i3wm.org/question/3747/enabling-multimedia-keys.1.html
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle # mute mic
+bindsym XF86AudioRaiseVolume exec --no-startup-id volume audio increase && volume audio notify
+bindsym XF86AudioLowerVolume exec --no-startup-id volume audio decrease && volume audio notify
+bindsym XF86AudioMute exec --no-startup-id volume audio toggle
+bindsym XF86AudioMicMute exec --no-startup-id volume mic toggle
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec brightness increase && brightness notify
+bindsym XF86MonBrightnessDown exec brightness decrease && brightness notify
 
 # Media player controls
 # To install playerctl:
