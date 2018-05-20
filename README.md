@@ -44,3 +44,4 @@ user$ bin/install configure_user
 - configure trackpad: https://unix.stackexchange.com/a/396357 and https://wiki.archlinux.org/index.php/Libinput#Button_re-mapping
 - terminte install script: https://github.com/Corwind/termite-install
 - termite themes: https://github.com/khamer/base16-termite/tree/master/themes
+- change keyboard layout: `setxkbmap be`
