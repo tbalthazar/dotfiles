@@ -66,14 +66,19 @@ install_base_packages() {
           adduser \
           alsa-utils \
           arandr \
+          arc-theme \
           curl \
           dmenu \
+          dunst \
           feh \
           git \
+          htop \
           i3 \
+          i3blocks \
           i3lock \
           keepassxc \
           khard \
+          libnotify-bin \
           lxappearance \
           mpd \
           mutt \
@@ -85,6 +90,7 @@ install_base_packages() {
           pulseaudio-utils \
           sudo \
           tmux \
+          thunar \
           transmission \
           vdirsyncer \
           vim-nox \
