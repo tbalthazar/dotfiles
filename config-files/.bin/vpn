@@ -1,0 +1,6 @@
+#!/bin/bash
+
+config_path="/etc/openvpn/ovpn_udp"
+cmd="/bin/ls -1 $config_path"
+response=$(echo -e $"`$cmd`" | dmenu -i -p "VPN: ")
+sudo openvpn --config $config_path/$response --auth-user-pass /home/tb/.nordvpn
