@@ -190,15 +190,13 @@ bindsym XF86AudioNext exec mpc next
 bindsym XF86AudioPrev exec mpc prev
 
 # Screen switch
-bindsym F7 exec --no-startup-id ~/.screenlayout/laptop-only.sh
-# bindsym Shift+F7 exec --no-startup-id ~/.screenlayout/external-only-v.sh
+bindsym XF86Display exec --no-startup-id ~/.screenlayout/laptop.sh
+bindsym Shift+XF86Display exec --no-startup-id ~/.screenlayout/external.sh
 
 # Lock Screen
 bindsym $mod+Shift+d exec --no-startup-id i3lock -d -c 222222
 
 # Startups:
-# exec --no-startup-id nm-applet
-# exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xautolock -time 10 -locker 'i3lock -d -c 222222'
 exec --no-startup-id caffeine-indicator
 
