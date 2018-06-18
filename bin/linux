@@ -93,6 +93,7 @@ install_base_packages() {
           thunar \
           transmission \
           vdirsyncer \
+          vim-gtk \
           vim-nox \
           vlc \
           xautolock \
