@@ -28,6 +28,7 @@ user$ bin/install dotfiles
 # in the virtual machine, sudo mount /media/cdrom
 # then sh /media/cdrom/VBoxLinuxAdditions.sh then reboot
 user$ startx
+# at this point, Termite is not installed yet, use xterm
 user$ sudo su
 root$ bin/install configure_system
 root$ exit
