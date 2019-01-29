@@ -1,0 +1,35 @@
+#!/bin/bash
+
+set -e
+
+source "bin/common"
+if [[ `uname` == "Linux" ]]; then
+  source "bin/linux"
+else
+  source "bin/macos"
+fi
+
+main() {
+  local cmd=$1
+  
+  if [[ -z "$cmd" ]]; then
+    usage
+    exit 1
+  fi
+  
+  if [[ $cmd == "setup" ]]; then
+    setup
+  elif [[ $cmd == "setup_virtualbox" ]]; then
+    setup_virtualbox
+  elif [[ $cmd == "configure_system" ]]; then
+    configure_system
+  elif [[ $cmd == "configure_user" ]]; then
+    configure_user
+  elif [[ $cmd == "dotfiles" ]]; then
+    dotfiles
+  else
+    usage
+  fi
+}
+
+main "$@"

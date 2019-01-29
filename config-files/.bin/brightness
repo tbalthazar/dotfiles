@@ -1,0 +1,52 @@
+#!/bin/bash
+
+get_brightness() {
+  value=`xbacklight -get`
+  LC_ALL=C printf '%.*f%%' 0 $value
+}
+
+increase_brightness() {
+  xbacklight -inc 10
+}
+
+decrease_brightness() {
+  xbacklight -dec 10
+}
+
+notify_brightness() {
+  notify-send -t 750 -c brightnesss "  $(get_brightness)"
+}
+
+usage() {
+	echo -e "brightness\n\tThis script changes the brightness of the screen.\n"
+	echo "Usage:"
+	echo "  get      - get the brightness"
+	echo "  increase - increase the brightness by 10%"
+	echo "  decrease - increase the brightness by 10%"
+	echo "  notify   - display brightness notification"
+}
+
+main() {
+  local cmd=$1
+  sub_cmd=$2
+  
+  if [[ -z "$cmd" ]]; then
+    usage
+    exit 1
+  fi
+
+  pkill -RTMIN+1 i3blocks
+  if [[ $cmd == "get" ]]; then
+    get_brightness
+  elif [[ $cmd == "increase" ]]; then
+    increase_brightness
+  elif [[ $cmd == "decrease" ]]; then
+    decrease_brightness
+  elif [[ $cmd == "notify" ]]; then
+    notify_brightness
+  else
+    usage
+  fi
+}
+
+main "$@"

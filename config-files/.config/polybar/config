@@ -1,0 +1,280 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+[colors]
+background = #222
+background-alt = #444
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[bar/28inches]
+inherit = bar/example
+monitor = DP1
+height = 50
+font-0 = DejaVu Sans Mono:pixelsize=18;1
+font-1 = unifont:fontformat=truetype:size=18:antialias=false;0
+font-2 = Font Awesome 5 Free:pixelsize=18;2
+font-3 = Font Awesome 5 Free Solid:pixelsize=18;2
+font-4 = Font Awesome 5 Brands:pixelsize=18;2
+
+[bar/example]
+monitor = eDP1
+width = 100%
+height = 27
+radius = 6.0
+fixed-center = false
+bottom = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 4
+border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+; font-0 = fixed:pixelsize=12;1
+font-0 = DejaVu Sans Mono:pixelsize=12;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = Font Awesome 5 Free:pixelsize=12;2
+font-3 = Font Awesome 5 Free Solid:pixelsize=12;2
+font-4 = Font Awesome 5 Brands:pixelsize=12;2
+
+modules-left = i3
+modules-right = mpd mic pulseaudio xbacklight battery battery2 wifi ethernet filesystem date
+
+tray-position = right
+tray-padding = 2
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+mount-0 = /
+label-mounted = %free%
+format-mounted-prefix = " "
+format-mounted-underline = #ffb52a
+format-mounted-prefix-foreground = ${colors.foreground-alt}
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %name%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = ${self.label-focused}
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = ${self.label-focused}
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+[module/mpd]
+type = internal/mpd
+format-online =  <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+format-online-underline = #FF0000
+
+; icon-prev = 
+; icon-next = 
+; icon-play = 
+; icon-pause = 
+; icon-stop = 
+
+icon-prev = 
+icon-next = 
+icon-play = 
+icon-pause = 
+icon-stop = 
+
+label-song-maxlen = 25
+label-song-ellipsis = true
+
+[module/xbacklight]
+type = internal/backlight
+card = intel_backlight
+
+label =  %percentage%%
+format = <label> 
+format-underline = #77FF00
+
+[module/wifi]
+type = internal/network
+interface = wlp3s0
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-underline = #9f78e1
+label-connected = %essid%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.foreground-alt}
+
+[module/ethernet]
+type = internal/network
+interface = enp0s25
+interval = 3.0
+
+format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %b %d,"
+
+time = %H:%M
+time-alt = %H:%M
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #0a6cf5
+
+label = %date% %time%
+
+[module/mic]
+type = internal/pulseaudio
+sink = alsa_input.pci-0000_00_1b.0.analog-stereo
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+; format-volume = <label-volume> <bar-volume>
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${root.foreground}
+format-volume-underline = #00FFFF
+
+label-muted =  MUTE
+label-muted-foreground = #66
+label-muted-underline = #00FFFF
+
+[module/pulseaudio]
+type = internal/pulseaudio
+synk = alsa_output.pci-0000_00_1b.0.analog-stereo.monitor
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+; format-volume = <label-volume> <bar-volume>
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${root.foreground}
+format-volume-underline = #FF00FF
+
+label-muted =  MUTE
+label-muted-foreground = #66
+label-muted-underline = #FF00FF
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+label-charging = %percentage%%
+format-charging =  <label-charging>
+format-charging-underline = #ffb52a
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+[module/battery2]
+inherit = module/battery
+battery = BAT1
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5

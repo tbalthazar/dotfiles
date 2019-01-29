@@ -1,4 +1,4 @@
 #!/bin/sh
 
-/usr/local/bin/offlineimap -o \
-                           -u quiet
+/usr/bin/offlineimap -o \
+                     -u quiet

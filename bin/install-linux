@@ -1,0 +1,23 @@
+#!/bin/bash
+set -e
+
+# get the user that is not root
+# TODO: makes a pretty bad assumption that there is only one other user
+
+
+# install virtualbox guest drivers, use when running *inside* a virtual machine
+install_virtualbox_guest_drivers() {
+  apt-get update
+  apt-get install -y \
+          build-essential \
+          linux-headers-amd64 \
+          --no-install-recommends
+
+  echo -e "\n-----------------------------------------------------"
+  echo "Please insert the Guest Additions CD image, then run:"
+  echo "$ sudo mount /dev/sr0 /media/cdrom"
+  echo "$ cd /media/cdrom"
+  echo "$ sudo sh ./VBoxLinuxAdditions.run"
+  echo "$ sudo reboot now"
+  echo -e "-----------------------------------------------------\n"
+}

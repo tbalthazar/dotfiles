@@ -1,19 +1,22 @@
 " --- vim-plug : https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
 
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'elixir-lang/vim-elixir'
-Plug 'christoomey/vim-tmux-navigator'
+" - languages
 Plug 'fatih/vim-go'
-Plug 'scrooloose/nerdtree'
-Plug 'vimwiki/vimwiki'
+Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
-Plug 'wincent/command-t', { 'do': 'cd .vim/plugged/command-t/ruby/command-t/ext/command-t && ruby extconf.rb && make' }
 
+" - config
+Plug 'scrooloose/nerdtree'
+Plug 'christoomey/vim-tmux-navigator'
+
+" - others
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " --- leader key
@@ -32,23 +35,12 @@ autocmd VimResized * :wincmd =
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>
 
-" --- commandT
-map <C-t> :CommandT<CR>
-map <C-b> :CommandTBuffer<CR>
-let g:CommandTSelectPrevMap='<C-k>'
-let g:CommandTAcceptSelectionSplitMap='<C-p>'
-
 " --- set the ctag file
-set tags=./tags;
-
-" --- Use Ack instead of grep
-" set grepprg=ack-grep
+set tags=./tags.ctags;
+nnoremap t <C-]>
 
 " --- color theme 
 syntax enable
-set background=dark
-colorscheme base16-default
-let base16colorspace=256
 
 " --- vim-go
 let g:go_highlight_functions = 1
@@ -73,6 +65,10 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>n :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
+
+" --- fzf
+map <C-t> :FZF<CR>
+map <C-y> :Buffers<CR>
 
 " --- indentation
 set shiftwidth=2
@@ -102,6 +98,9 @@ set number
 " enable ruler
 set ruler
 
+" --- always display filepath
+set ls=2
+
 set showcmd
 
 "  -- navigate through grep search results
@@ -113,3 +112,17 @@ map <C-n> :NERDTreeToggle<CR>
 " --- add background transparency
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
+
+" --- colors: list current colors  `:highlight`
+
+" visual selection
+hi Visual cterm=bold ctermbg=yellow  ctermfg=black
+
+" match pattern
+hi MatchParen cterm=none ctermbg=yellow ctermfg=black
+
+" vimdiff colors (:help hl-DiffAdd)
+hi DiffAdd    cterm=bold ctermbg=green   ctermfg=black
+hi DiffDelete cterm=bold ctermbg=red     ctermfg=black
+hi DiffChange cterm=bold ctermbg=blue    ctermfg=black
+hi DiffText   cterm=bold ctermbg=yellow  ctermfg=black

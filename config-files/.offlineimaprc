@@ -1,54 +1,22 @@
-# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
-# get started fast.
-# Doc: https://github.com/OfflineIMAP/offlineimap/blob/master/offlineimap.conf
-
 [general]
+# where the get_property method used below is defined
 pythonfile = ~/.offlineimap.py
-# accounts = Fastmail, Gandi
-accounts = Fastmail
+accounts = Perso
 
-# [mbnames]
-# enabled = yes
-# filename = ~/.mutt/mailboxes
-# header = "mailboxes "
-# peritem = "+%(accountname)s/%(foldername)s"
-# sep = " "
-# footer = "\n"
+[Account Perso]
+localrepository = PersoLocal
+remoterepository = PersoRemote
 
-[Account Fastmail]
-localrepository = FastmailLocal
-remoterepository = FastmailRemote
-# status_backend = sqlite
-
-# [Account Gandi]
-# localrepository = GandiLocal
-# remoterepository = GandiRemote
-# status_backend = sqlite
-
-[Repository FastmailLocal]
+[Repository PersoLocal]
 type = Maildir
-localfolders = ~/Mail/Fastmail
+localfolders = ~/Mail/Perso
 
-[Repository FastmailRemote]
+[Repository PersoRemote]
 type = IMAP
-remotehost = mail.messagingengine.com
-remoteusereval = get_property("~/.email-pwds.gpg", "fastmail", "user")
-remotepasseval = get_property("~/.email-pwds.gpg", "fastmail", "pwd")
+remotehosteval = get_property("~/.email-config.gpg", "perso", "imap")
+remoteusereval = get_property("~/.email-config.gpg", "perso", "user")
+remotepasseval = get_property("~/.email-config.gpg", "perso", "pwd")
 remoteport = 993
 ssl = yes
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 holdconnectionopen = yes
-
-# [Repository GandiLocal]
-# type = Maildir
-# localfolders = ~/Mail/Gandi
-
-# [Repository GandiRemote]
-# type = IMAP
-# remotehost = mail.gandi.net
-# remoteusereval = get_property("~/.email-pwds.gpg", "gandi", "user")
-# remotepasseval = get_property("~/.email-pwds.gpg", "gandi", "pwd")
-# remoteport = 993
-# ssl = yes
-# sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-# holdconnectionopen = yes

@@ -13,6 +13,12 @@ fi
 # heroku
 PATH="/usr/local/heroku/bin:$PATH"
 
+# postgres on Mac
+POSTGRES_BIN="/Applications/Postgres.app/Contents/Versions/latest/bin"
+if [ -d "$POSTGRES_BIN" ]; then
+  PATH="$POSTGRES_BIN:$PATH"
+fi
+
 # go
 export GOPATH=$HOME/Code/go
 PATH="/usr/local/go/bin:$PATH"
