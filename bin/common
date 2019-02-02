@@ -22,8 +22,8 @@ dotfiles() {
   BACKUP_DIR="$HOME/.dotfiles-backup/$NOW"
   mkdir -p $BACKUP_DIR
   
-  # find each file/dir in config-files
-  FIND_CMD='find ./config-files -maxdepth 1 ! -name config-files -exec basename {} ;'
+  # find each file/dir in dotfiles
+  FIND_CMD='find ./dotfiles -maxdepth 1 ! -name dotfiles -exec basename {} ;'
   
   for file in $($FIND_CMD)
   do
@@ -36,9 +36,9 @@ dotfiles() {
   
   # copy all the dotfiles to the DEST_DIR
   if [[ `uname` == "Linux" ]]; then
-    CP_CMD="cd config-files && find . -type f -exec cp --parents \{\} $HOME \;"
+    CP_CMD="cd dotfiles && find . -type f -exec cp --parents \{\} $HOME \;"
   else
-    CP_CMD="cd config-files && find . -type f -exec rsync -R \{\} $HOME \;"
+    CP_CMD="cd dotfiles && find . -type f -exec rsync -R \{\} $HOME \;"
   fi
   eval $CP_CMD
 
