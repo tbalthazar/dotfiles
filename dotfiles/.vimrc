@@ -7,7 +7,6 @@ Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
 
 " - config
-Plug 'scrooloose/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
 
 " - others
@@ -106,8 +105,6 @@ set showcmd
 "  -- navigate through grep search results
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
-
-map <C-n> :NERDTreeToggle<CR>
 
 " --- add background transparency
 highlight Normal ctermbg=none
