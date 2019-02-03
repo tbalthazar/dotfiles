@@ -6,11 +6,20 @@ setup() {
   echo "setup..."
   setup_sudo
   install_base_packages
+  remove_unneeded_packages
 }
 
 # setup sudo for a user
 setup_sudo() {
   adduser $USERNAME sudo
+}
+
+# remove unneeded packages
+remove_unneeded_packages() {
+  apt-get remove -y \
+    evolution-data-server \
+    firefox-esr
+  apt-get autoremove
 }
 
 # install base system packages
@@ -30,6 +39,7 @@ install_base_packages() {
           git \
           htop \
           gnome-core \
+          gnome-tweak-tool \
           keepassxc \
           sudo \
           tmux \
