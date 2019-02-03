@@ -11,7 +11,10 @@ if [ -d  "$RBENV_BIN" ]; then
 fi
 
 # heroku
-PATH="/usr/local/heroku/bin:$PATH"
+HEROKU_BIN="/usr/local/heroku/bin"
+if [ -d "$HEROKU_BIN" ]; then
+  PATH="$HEROKU_BIN:$PATH"
+fi
 
 # postgres on Mac
 POSTGRES_BIN="/Applications/Postgres.app/Contents/Versions/latest/bin"
@@ -21,7 +24,10 @@ fi
 
 # go
 export GOPATH=$HOME/Code/go
-PATH="/usr/local/go/bin:$PATH"
 PATH="$PATH:$GOPATH/bin"
+GO_BIN="/usr/local/go/bin"
+if [ -d "$GO_BIN" ]; then
+  PATH="$GO_BIN:$PATH"
+fi
 
 export PATH

@@ -8,7 +8,7 @@ export HISTCONTROL=ignoredups
 
 # Increase the maximum number of lines contained in the history file
 # (default is 500)
-export HISTFILESIZE=10000
+export HISTFILESIZE=100000
 
 # Increase the maximum number of commands to remember
 # (default is 500)
