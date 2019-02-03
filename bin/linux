@@ -17,8 +17,8 @@ setup_sudo() {
 # remove unneeded packages
 remove_unneeded_packages() {
   apt-get remove -y \
-    evolution-data-server \
-    firefox-esr
+    firefox-esr \
+    totem
   apt-get autoremove
 }
 
