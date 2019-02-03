@@ -6,8 +6,25 @@ usage() {
 	echo -e "\tsetup      - install base programs and services"
 }
 
+# check if the current user has root privileges
+check_is_sudo() {
+	if [ "$EUID" -ne 0 ]; then
+		echo "Please run as root."
+		exit
+	fi
+}
+
+# check if the current user doesn't have root privileges
+check_is_not_sudo() {
+	if [ "$EUID" -eq 0 ]; then
+		echo "Please do not run as root."
+		exit
+	fi
+}
+
 # get dotfiles
 dotfiles() {
+  check_is_not_sudo
   if [[ -e "$HOME/dotfiles" ]]; then
     cd "$HOME/dotfiles"
     git pull

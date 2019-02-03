@@ -1,8 +1,17 @@
+USERNAME=$(find /home/* -maxdepth 0 -printf "%f" -type d)
+export DEBIAN_FRONTEND=noninteractive
+
 setup() {
+  check_is_sudo
   echo "setup..."
+  setup_sudo
   install_base_packages
 }
 
+# setup sudo for a user
+setup_sudo() {
+  adduser $USERNAME sudo
+}
 
 # install base system packages
 install_base_packages() {
