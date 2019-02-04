@@ -18,6 +18,7 @@ alias rctags='ctags -f tags.ctags -R --languages=ruby --exclude=.git --exclude=l
 alias rib='h run:inside web.1 bash -a'
 
 # others
+alias fixcamera='sudo killall VDCAssistant'
 alias hosts="sudo vim /etc/hosts"
 alias ls='ls -lh'
 alias meteo='curl wttr.in'
