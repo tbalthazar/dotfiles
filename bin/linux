@@ -1,3 +1,5 @@
+#!/bin/bash
+
 USERNAME=$(find /home/* -maxdepth 0 -printf "%f" -type d)
 export DEBIAN_FRONTEND=noninteractive
 
