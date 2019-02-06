@@ -2,7 +2,7 @@
 
 unset HISTFILE
 
-source ~/.env.restic
+source ~/.config/restic/env
 
 if [ -z ${B2_ACCOUNT_ID+x} ]; then
   echo "B2_ACCOUNT_ID is not set"
@@ -22,14 +22,15 @@ if [ -z ${RESTIC_PASSWORD+x} ]; then
 fi
 
 if [ "$1" = "backup" ]; then
-  exclude_file="$HOME/.restic/exclude-file"
+  exclude_file="$HOME/.config/restic/exclude-file"
   if [ ! -f $exclude_file ]; then
     echo "$exclude_file not found!"
     exit 1
   fi
 
   ./restic backup \
-    /media/tb/4TB_BLACK/Music/music-library \
+    /media/tb/4TB_BLACK/Music \
+    /media/tb/4TB_BLACK/Archives \
     /home/tb \
     --exclude-file=$exclude_file
 else
