@@ -21,7 +21,7 @@ remove_unneeded_packages() {
   apt-get remove -y \
     firefox-esr \
     totem
-  apt-get autoremove
+  apt-get autoremove -y
 }
 
 # install base system packages
