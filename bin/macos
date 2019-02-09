@@ -63,3 +63,7 @@ install_ruby() {
   rbenv global "$RUBY_VERSION"
   gem install bundler
 }
+
+docker() {
+  echo "Visit https://docker.com and use the installer provided there"
+}

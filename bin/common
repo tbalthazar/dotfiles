@@ -4,6 +4,7 @@ usage() {
 	echo "Usage:"
 	echo -e "\tdotfiles   - get dotfiles"
 	echo -e "\tsetup      - install base programs and services"
+	echo -e "\tdocker     - install Docker"
 }
 
 # check if the current user has root privileges

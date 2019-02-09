@@ -21,6 +21,8 @@ main() {
     setup
   elif [[ $cmd == "dotfiles" ]]; then
     dotfiles
+  elif [[ $cmd == "docker" ]]; then
+    docker
   else
     usage
   fi
