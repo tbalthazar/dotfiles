@@ -37,14 +37,16 @@ install_base_packages() {
   apt-get install -y \
           adduser \
           arc-theme \
+          bluez-firmware \
           curl \
           git \
-          htop \
           gnome-core \
           gnome-tweak-tool \
+          htop \
           keepassxc \
           libblockdev-crypto2 \
           network-manager \
+          pulseaudio-module-bluetooth \
           sudo \
           tmux \
           transmission \
