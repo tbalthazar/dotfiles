@@ -43,6 +43,8 @@ install_base_packages() {
           gnome-core \
           gnome-tweak-tool \
           keepassxc \
+          libblockdev-crypto2 \
+          network-manager \
           sudo \
           tmux \
           transmission \
