@@ -41,11 +41,13 @@ install_base_packages() {
           curl \
           git \
           gnome-core \
+          gnome-network-manager \
           gnome-tweak-tool \
           htop \
           keepassxc \
           libblockdev-crypto2 \
           network-manager \
+          openvpn \
           pulseaudio-module-bluetooth \
           sudo \
           tmux \
