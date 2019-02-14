@@ -9,6 +9,7 @@ setup() {
   setup_sudo
   install_base_packages
   remove_unneeded_packages
+  gnome_shell_extensions
 }
 
 # setup sudo for a user
@@ -92,4 +93,12 @@ docker() {
   apt-get update && apt-get install -y docker-ce
 
   usermod -aG docker $USERNAME
+}
+
+gnome_shell_extensions() {
+  check_is_not_sudo
+  echo "installing Gnome Shell Extensions..."
+  mkdir -p ~/.local/share/gnome-shell/extensions 2>/dev/null
+  git clone git://github.com/windsorschmidt/disable-workspace-switcher-popup \
+    ~/.local/share/gnome-shell/extensions/disable-workspace-switcher-popup@github.com
 }
