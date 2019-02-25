@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
+Plug 'w0rp/ale'
 
 " - config
 Plug 'christoomey/vim-tmux-navigator'
@@ -65,6 +66,10 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>n :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
+
+" --- ale
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_set_highlights = 0
 
 " --- fzf
 map <C-t> :FZF<CR>

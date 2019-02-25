@@ -5,7 +5,7 @@
 [diff]
   tool = vimdiff
 [push]
-	default = matching
+	default = simple
 [user]
 	name = Thomas Balthazar
 	email = thomas@balthazar.info
