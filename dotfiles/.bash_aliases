@@ -6,6 +6,7 @@ alias gc='git commit -a'
 alias gd='git difftool'
 alias gls='git log --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr %an)%Creset" --abbrev-commit --date=relative'
 alias gs='git status'
+alias gcm='git checkout master && git pull && git branch'
 
 # ruby/dev
 alias be='bundle exec'
