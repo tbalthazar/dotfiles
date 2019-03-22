@@ -3,7 +3,7 @@
 setup() {
   install_brew
   install_brew_packages
-  # install_ruby
+  install_ruby
 }
 
 install_brew() {
@@ -26,7 +26,6 @@ install_brew_packages() {
       brew install "$pkg"
     fi
   done
-  brew services start mpd
 }
 
 install_ruby() {
