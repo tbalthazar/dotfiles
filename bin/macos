@@ -16,16 +16,18 @@ install_brew() {
 }
 
 install_brew_packages() {
-  PKGS=('git' 'htop' 'tmux' 'vim' 'wget')
+  PKGS=('git' 'htop' 'node' 'tmux' 'vim' 'wget' 'yubikey-personalization')
 
   for pkg in ${PKGS[@]}; do
     if brew list -1 | grep -q "^${pkg}\$"; then
       echo "Package '$pkg' is installed; updating:"
-      brew upgrade "$pkg" --cleanup || true
+      brew upgrade "$pkg" || true
     else
       brew install "$pkg"
     fi
   done
+
+  brew tap heroku/brew && brew install heroku
 }
 
 install_ruby() {
