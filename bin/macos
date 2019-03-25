@@ -16,7 +16,7 @@ install_brew() {
 }
 
 install_brew_packages() {
-  PKGS=('git' 'htop' 'node' 'tmux' 'vim' 'wget' 'yubikey-personalization')
+  PKGS=('git' 'htop' 'libpq' 'node' 'tmux' 'vim' 'wget' 'yubikey-personalization')
 
   for pkg in ${PKGS[@]}; do
     if brew list -1 | grep -q "^${pkg}\$"; then
@@ -63,6 +63,7 @@ install_ruby() {
   eval "$(rbenv init -)"
   rbenv global "$RUBY_VERSION"
   gem install bundler
+  gem install pg -- --with-opt-dir="/usr/local/opt/libpq"
 }
 
 docker() {
