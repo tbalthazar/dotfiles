@@ -17,6 +17,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'vimwiki/vimwiki'
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 " --- leader key
@@ -41,6 +42,8 @@ nnoremap t <C-]>
 
 " --- color theme 
 syntax enable
+colorscheme nord
+set cursorline
 
 " --- vim-go
 let g:go_highlight_functions = 1
