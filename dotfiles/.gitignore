@@ -33,5 +33,6 @@ tags.ctags
 
 .bash_profile.private
 .env
+.env.*.local
 .DS_Store
 .byebug_history
