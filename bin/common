@@ -63,5 +63,9 @@ dotfiles() {
   # install/update vim plugins
   vim +PlugUpdate +qall
 
+  # install tmux plugins
+  mkdir -p ~/.tmux/themes
+  git clone https://github.com/arcticicestudio/nord-tmux ~/.tmux/themes/nord-tmux
+
   source "$HOME/.bash_profile"
 }

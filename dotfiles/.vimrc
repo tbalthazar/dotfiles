@@ -44,6 +44,7 @@ nnoremap t <C-]>
 syntax enable
 colorscheme nord
 set cursorline
+set fillchars+=stl:-,stlnc:-
 
 " --- vim-go
 let g:go_highlight_functions = 1
@@ -118,19 +119,19 @@ map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
 " --- add background transparency
-highlight Normal ctermbg=none
-highlight NonText ctermbg=none
+" highlight Normal ctermbg=none
+" highlight NonText ctermbg=none
 
 " --- colors: list current colors  `:highlight`
 
 " visual selection
-hi Visual cterm=bold ctermbg=yellow  ctermfg=black
+" hi Visual cterm=bold ctermbg=yellow  ctermfg=black
 
 " match pattern
-hi MatchParen cterm=none ctermbg=yellow ctermfg=black
+" hi MatchParen cterm=none ctermbg=yellow ctermfg=black
 
 " vimdiff colors (:help hl-DiffAdd)
-hi DiffAdd    cterm=bold ctermbg=green   ctermfg=black
-hi DiffDelete cterm=bold ctermbg=red     ctermfg=black
-hi DiffChange cterm=bold ctermbg=blue    ctermfg=black
-hi DiffText   cterm=bold ctermbg=yellow  ctermfg=black
+" hi DiffAdd    cterm=bold ctermbg=green   ctermfg=black
+" hi DiffDelete cterm=bold ctermbg=red     ctermfg=black
+" hi DiffChange cterm=bold ctermbg=blue    ctermfg=black
+" hi DiffText   cterm=bold ctermbg=yellow  ctermfg=black
