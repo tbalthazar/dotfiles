@@ -29,3 +29,10 @@ PS1+="\$(parse_git_branch)" # git repository details
 PS1+="$ " # $ (and reset color)
 
 export PS1
+
+update_terminal_cwd() {
+    # fix this error when launching a terminal in VSCode:
+    # bash: update_terminal_cwd: command not found
+    # https://apple.stackexchange.com/questions/139807/what-does-update-terminal-cwd-do-in-the-terminal-of-os-x
+    return
+}
