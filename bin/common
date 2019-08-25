@@ -65,7 +65,12 @@ dotfiles() {
 
   # install tmux plugins
   mkdir -p ~/.tmux/themes
-  git clone https://github.com/arcticicestudio/nord-tmux ~/.tmux/themes/nord-tmux
+  if [[ -e "$HOME/.tmux/themes/nord-tmux" ]]; then
+    cd "$HOME/.tmux/themes/nord-tmux" 
+    git pull
+  else
+    git clone https://github.com/arcticicestudio/nord-tmux ~/.tmux/themes/nord-tmux
+  fi
 
   source "$HOME/.bash_profile"
 }
