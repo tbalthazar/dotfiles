@@ -3,19 +3,22 @@
 # Make vim the default editor
 export EDITOR="vim"
 
-# Ignore duplicate commands in the history
-export HISTCONTROL=ignoredups
-
-# Increase the maximum number of lines contained in the history file
-# (default is 500)
-export HISTFILESIZE=100000
+# Ignore commands in the history:
+# - ignoredups: duplicates
+# - ignorespace: commands starting with a space
+# - ignoreboth: both of the above
+# - erasedups :causes all previous lines matching the current line to be removed from the history list before that line is saved
+export HISTCONTROL=ignorespace
 
 # Increase the maximum number of commands to remember
 # (default is 500)
 export HISTSIZE=100000
 
+# Add date and time for command history
+export HISTTIMEFORMAT="%Y-%m-%d %T  "
+
 # Make some commands not show up in history
-export HISTIGNORE=""
+export HISTIGNORE="ls:history"
 
 # Make new shells get the history lines from all previous
 # shells instead of the default "last window closed" history
