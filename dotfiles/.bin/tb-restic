@@ -28,11 +28,10 @@ if [ "$1" = "backup" ]; then
     exit 1
   fi
 
-  ./restic backup \
-    /media/tb/4TB_BLACK/Music \
-    /media/tb/4TB_BLACK/Archives \
-    /home/tb \
+  restic backup \
+    /media/tb/1_5_TB_ENCRYPTED \
+    /media/tb/2_5_TB_BLACK \
     --exclude-file=$exclude_file
 else
-  ./restic $@
+  restic $@
 fi
