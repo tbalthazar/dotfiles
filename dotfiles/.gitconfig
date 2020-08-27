@@ -1,3 +1,19 @@
+[alias]
+  am = commit --amend --no-edit
+  ap = add -p
+  ci = commit
+  co = checkout
+  cp = commit -p
+  cm = "!git checkout master && git pull && git branch"
+  di = diff
+  ds = diff --staged
+  dt = difftool
+  lo = log --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr %an)%Creset' \
+           --abbrev-commit --date=relative
+  lp = lo --patch
+  st = status --short --branch
+  current-branch = rev-parse --abbrev-ref HEAD
+  pb = "!git push -u origin $(git current-branch)"
 [core]
 	excludesfile = ~/.gitignore
 	quotepath = false
