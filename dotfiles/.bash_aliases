@@ -26,3 +26,5 @@ alias upgradesystem='sudo apt-get update && sudo apt-get dist-upgrade && sudo ap
 alias k='kubectl'
 alias d='docker'
 alias dc='docker-compose'
+alias mp='multipass'
+alias mk='microk8s kubectl'
