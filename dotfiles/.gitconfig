@@ -22,6 +22,8 @@
   tool = vimdiff
 [push]
 	default = current
+[pull]
+  rebase = false
 [user]
 	name = Thomas Balthazar
 	email = thomas@balthazar.info
