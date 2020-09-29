@@ -1,6 +1,0 @@
-#!/bin/bash -e
-
-exec curl --netrc-optional \
-    --header 'Accept: application/vnd.heroku+json; version=3' \
-    --header 'Content-Type: application/json' \
-    "https://api.heroku.com$@"

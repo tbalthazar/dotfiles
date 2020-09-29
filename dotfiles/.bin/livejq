@@ -1,7 +1,0 @@
-#!/bin/bash -e
-fzf \
-  --phony \
-  --preview-window='up:90%' \
-  --print-query \
-  --preview \
-  "cat $@| jq --color-output {q}"

@@ -1,5 +1,0 @@
-#!/bin/bash -e
-
-exec curl -s --netrc-optional \
-    --header 'Content-Type: application/json' \
-    "https://api.github.com$@"

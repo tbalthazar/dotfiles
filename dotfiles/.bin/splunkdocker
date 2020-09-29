@@ -1,7 +1,0 @@
-docker run --rm \
-  -p 8000:8000 \
-  -e 'SPLUNK_START_ARGS=--accept-license' \
-  -e 'SPLUNK_PASSWORD=splunk00' \
-  -v splunk-data:/opt/splunk/var \
-  -v splunk-config:/opt/splunk/etc \
-  store/splunk/splunk:7.3
