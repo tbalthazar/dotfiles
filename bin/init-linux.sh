@@ -10,8 +10,14 @@ sudo apt-get install rcm
 
 printf "\n\n-- rcm installed\n\n"
 
+# Init rcm
+rcup -d $HOME/.dotfiles/dotfiles -t linux
+
+printf "\n\n-- rcm configured\n\n"
+
 # Install zsh
 sudo apt-get update && sudo apt-get -y install zsh
 chsh -s /bin/zsh
 
 printf "\n\n-- zsh installed. Please log out and log back in.\n\n"
+
