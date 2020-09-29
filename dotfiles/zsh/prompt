@@ -1,0 +1,28 @@
+# git prompt
+function parse_git_dirty {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
+}
+function parse_git_branch {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
+}
+
+setopt PROMPT_SUBST
+
+# prompt
+if [[ $UID -eq 0 ]]; then
+    local user_host='%n@%m'
+    local user_symbol='#'
+else
+    local user_host='%n@%m'
+    local user_symbol='$'
+fi
+
+local current_dir="%~"
+local git_status='$(parse_git_branch)'
+
+# TODO: check if kubectl and kube-ps1 are installed first
+source $HOME/.kube-ps1/kube-ps1.sh
+local kube_status='$(kube_ps1)'
+
+PROMPT="╭─${user_host} ${current_dir} ${git_status} ${kube_status}
+╰─%B${user_symbol}%b "
