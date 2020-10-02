@@ -3,9 +3,11 @@ source $HOME/.zsh/prompt
 source $HOME/.zsh/bindings
 source $HOME/.zsh/aliases
 
-# fzf
-# TODO: check if fzf is installed first
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
-
 export PATH=$PATH:$HOME/.bin:$HOME/.bin/third-party
+
+# fzf
+which fzf &>/dev/null
+if [[ $? -eq 0 ]]; then
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
+  source /usr/share/doc/fzf/examples/completion.zsh
+fi
