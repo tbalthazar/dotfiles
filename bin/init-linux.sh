@@ -51,3 +51,7 @@ $HOME/.fzf/install --completion --key-bindings --no-update-rc
 
 printf "\n\n-- fzf installed\n\n"
 
+# Install vim plugins
+vim -es -u $HOME/.vimrc -i NONE -c "PlugInstall" -c "qa"
+
+printf "\n\n-- vim plugins installed\n\n"
