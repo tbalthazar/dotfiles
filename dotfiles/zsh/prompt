@@ -10,19 +10,23 @@ setopt PROMPT_SUBST
 
 # prompt
 if [[ $UID -eq 0 ]]; then
-    local user_host='%n@%m'
-    local user_symbol='#'
+  local user_host='%n@%m'
+  local user_symbol='#'
 else
-    local user_host='%n@%m'
-    local user_symbol='$'
+  local user_host='%n@%m'
+  local user_symbol='$'
 fi
 
 local current_dir="%~"
 local git_status='$(parse_git_branch)'
 
-# TODO: check if kubectl and kube-ps1 are installed first
-source $HOME/.kube-ps1/kube-ps1.sh
-local kube_status='$(kube_ps1)'
+local kube_ps1_src='$HOME/.kube-ps1/kube-ps1.sh'
+if [ -f $kube_ps1_src ]; then
+  source $kube_ps1_src
+  local kube_status='$(kube_ps1)'
+else
+  local kube_status=''
+fi  
 
 PROMPT="╭─${user_host} ${current_dir} ${git_status} ${kube_status}
 ╰─%B${user_symbol}%b "
