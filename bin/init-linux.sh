@@ -39,15 +39,15 @@ git clone https://github.com/arcticicestudio/nord-tmux $HOME/.tmux/themes/nord-t
 
 printf "\n\n-- tmux theme installed\n\n"
 
-# Install fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
-$HOME/.fzf/install --completion --key-bindings --no-update-rc
-
-printf "\n\n-- fzf installed\n\n"
-
 # Install zsh
 sudo apt-get update && sudo apt-get -y install zsh
 chsh -s /bin/zsh
 
 printf "\n\n-- zsh installed. Please log out and log back in.\n\n"
+
+# Install fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
+$HOME/.fzf/install --completion --key-bindings --no-update-rc
+
+printf "\n\n-- fzf installed\n\n"
 
