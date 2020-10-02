@@ -1,0 +1,3 @@
+#!/bin/bash
+
+du -hx -d 1 -t 1G "$@" | sort -hr

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+docker run --rm -it \
+  -p 5432:5432 \
+  -v "$HOME/DockerVolumes/pg11":/var/lib/postgresql/data \
+  -e POSTGRES_HOST_AUTH_METHOD=trust \
+  --name postgres \
+  postgres:11-alpine
