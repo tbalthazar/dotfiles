@@ -3,9 +3,9 @@ HISTSIZE=100000
 SAVEHIST=100000
 HISTORY_IGNORE="ls*|history"
 
-setopt    appendhistory     #Append history to the history file (no overwriting)
-setopt    sharehistory      #Share history across terminals
-setopt    incappendhistory  #Immediately append to the history file, not ju
+setopt appendhistory          # Append history to the history file (no overwriting)
+setopt sharehistory           # Share history across terminals
+setopt incappendhistory       # Immediately append to the history file, not ju
 setopt extended_history       # record timestamp of command in HISTFILE
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_ignore_dups       # ignore duplicated commands history list
