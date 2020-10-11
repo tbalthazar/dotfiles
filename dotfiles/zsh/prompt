@@ -29,5 +29,5 @@ else
   local kube_status=''
 fi  
 
-PROMPT="╭─${user_host} ${current_dir} ${git_status} ${kube_status}
+PROMPT="╭─%F{yellow}${user_host}%f %F{green}${current_dir}%f %F{blue}${git_status}%f ${kube_status}
 ╰─%B${user_symbol}%b "
