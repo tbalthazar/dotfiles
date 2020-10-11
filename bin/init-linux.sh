@@ -35,21 +35,34 @@ rcup -v -d $HOME/.dotfiles/dotfiles -t linux
 printf "\n\n-- dotfiles installed\n\n"
 
 # Tmux theme
-mkdir -p $HOME/.tmux/themes
-git clone https://github.com/arcticicestudio/nord-tmux $HOME/.tmux/themes/nord-tmux
+tmux_themes_dir=$HOME/.tmux/themes
+tmux_theme_dir=$tmux_themes_dir/nord-tmux
+tmux_theme_repo=https://github.com/arcticicestudio/nord-tmux
+mkdir -p $tmux_themes_dir
+if [ -d $tmux_theme_dir ]; then
+  cd $tmux_theme_dir && git pull 
+else
+  git clone $tmux_theme_repo $tmux_theme_dir
+fi
 
 printf "\n\n-- tmux theme installed\n\n"
 
 # Install fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
+fzf_dir=$HOME/.fzf
+if [ -d $fzf_dir ]; then
+  cd $fzf_dir && git pull
+else
+  git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
+fi
 $HOME/.fzf/install --completion --key-bindings --no-update-rc
 
 printf "\n\n-- fzf installed\n\n"
 
 # Install vim plugins
-vim -es -u $HOME/.vimrc -i NONE -c "PlugInstall" -c "qa"
+# TODO: seems to block, to investigate
+#vim -es -u $HOME/.vimrc -i NONE -c "PlugInstall" -c "qa"
 
-printf "\n\n-- vim plugins installed\n\n"
+#printf "\n\n-- vim plugins installed\n\n"
 
 # Install zsh
 chsh -s /bin/zsh
