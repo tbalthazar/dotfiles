@@ -1,7 +1,7 @@
 ! external screen:
 ! https://winaero.com/find-change-screen-dpi-linux/
-Xft.dpi: 180
-! Xft.dpi: 96
+! laptop: 96dpi - HD screen: 192dpi
+Xft.dpi: 192
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintfull
