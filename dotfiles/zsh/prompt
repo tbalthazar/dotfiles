@@ -21,12 +21,12 @@ fi
 local current_dir="%~"
 local git_status='$(parse_git_branch)'
 
-local kube_ps1_src='$HOME/.kube-ps1/kube-ps1.sh'
+local kube_ps1_src=$HOME/.kube-ps1/kube-ps1.sh
 if [ -f $kube_ps1_src ]; then
   source $kube_ps1_src
   local kube_status='$(kube_ps1)'
 else
-  local kube_status=''
+  local kube_status='booo'
 fi  
 
 PROMPT="╭─%F{yellow}${user_host}%f %F{green}${current_dir}%f %F{blue}${git_status}%f ${kube_status}
