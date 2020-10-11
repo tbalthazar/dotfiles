@@ -30,7 +30,7 @@ sudo apt-get install rcm
 printf "\n\n-- rcm installed\n\n"
 
 # Init rcm
-rcup -v -d $HOME/.dotfiles/dotfiles -t linux
+rcup -v -d $HOME/.dotfiles/dotfiles -t linux-desktop
 
 printf "\n\n-- dotfiles installed\n\n"
 

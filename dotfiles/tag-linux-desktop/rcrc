@@ -1,2 +1,2 @@
 DOTFILES_DIRS="$HOME/.dotfiles/dotfiles"
-TAGS="linux"
+TAGS="linux-desktop"
