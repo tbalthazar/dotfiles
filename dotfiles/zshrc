@@ -3,7 +3,7 @@ source $HOME/.zsh/prompt
 source $HOME/.zsh/bindings
 source $HOME/.zsh/aliases
 
-export PATH=$PATH:$HOME/.bin:$HOME/.bin/third-party
+export PATH=$PATH:$HOME/.bin:$HOME/.bin-dl
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
