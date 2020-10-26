@@ -31,7 +31,7 @@ QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }
 
 #------------------------------------------------------------------------
 
-NAME=$(nmcli -t -f ssid dev wifi)
+NAME=$(nmcli -t -f active,ssid dev wifi | egrep '^yes' | cut -d\' -f2 | cut -d\: -f 2)
 
 #------------------------------------------------------------------------
 
