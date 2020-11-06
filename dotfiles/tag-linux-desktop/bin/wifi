@@ -1,0 +1,6 @@
+#!/bin/bash
+
+network_names="belgatich\nbelgatich-bureau"
+network_name=$(echo -e $network_names | dmenu -i -p "Wifi: ")
+
+nmcli d w c $network_name
