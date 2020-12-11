@@ -21,6 +21,7 @@ fi
 local current_dir="%~"
 local git_status='$(parse_git_branch)'
 
+# k8s
 local kube_ps1_src=$HOME/.kube-ps1/kube-ps1.sh
 if [ -f $kube_ps1_src ]; then
   source $kube_ps1_src
@@ -29,5 +30,17 @@ else
   local kube_status='booo'
 fi  
 
-PROMPT="╭─%F{yellow}${user_host}%f %F{green}${current_dir}%f %F{blue}${git_status}%f ${kube_status}
+# terraform
+function tf_prompt_info() {
+    # dont show 'default' workspace in home dir
+    [[ "$PWD" == ~ ]] && return
+    # check if in terraform dir
+    if [ -d .terraform ]; then
+      workspace=$(terraform workspace show 2> /dev/null) || return
+      echo "[tf:${workspace}]"
+    fi
+}
+local tf_status='$(tf_prompt_info)'
+
+PROMPT="╭─%F{yellow}${user_host}%f %F{green}${current_dir}%f %F{blue}${git_status}%f ${kube_status} ${tf_status}
 ╰─%B${user_symbol}%b "
