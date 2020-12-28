@@ -11,6 +11,7 @@ sudo apt-get install -y \
   git \
   gnupg2 \
   htop \
+  rcm \
   tmux \
   vim-gtk \
   vim-nox \
@@ -20,14 +21,6 @@ sudo apt-get install -y \
   --no-install-recommends
 
 printf "\n\n-- base package installed\n\n"
-
-# Install rcm
-wget -qO - https://apt.thoughtbot.com/thoughtbot.gpg.key | sudo apt-key add -
-echo "deb https://apt.thoughtbot.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/thoughtbot.list
-sudo apt-get update
-sudo apt-get install rcm
-
-printf "\n\n-- rcm installed\n\n"
 
 # Init rcm
 rcup -v -d $HOME/.dotfiles/dotfiles -t linux-desktop
