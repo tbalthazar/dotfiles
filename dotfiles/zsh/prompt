@@ -3,7 +3,8 @@ function parse_git_dirty {
   [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
 }
 function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
+  #                                   his is where the prompt begins -> space[branch*]
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ [\1$(parse_git_dirty)]/"
 }
 
 # perform parameter expansion, cmd substitution, arithmetic expansion in prompt
@@ -19,15 +20,20 @@ else
 fi
 
 local current_dir="%~"
+
 local git_status='$(parse_git_branch)'
 
 # k8s
+local kube_status=''
 local kube_ps1_src=$HOME/.kube-ps1/kube-ps1.sh
 if [ -f $kube_ps1_src ]; then
+  KUBE_PS1_PREFIX=" ["
+  KUBE_PS1_SUFFIX="]"
+  KUBE_PS1_SYMBOL_DEFAULT="k8s"
+  KUBE_PS1_SEPARATOR=":"
+  KUBE_PS1_DIVIDER="|"
   source $kube_ps1_src
   local kube_status='$(kube_ps1)'
-else
-  local kube_status='booo'
 fi  
 
 # terraform
@@ -37,10 +43,10 @@ function tf_prompt_info() {
     # check if in terraform dir
     if [ -d .terraform ]; then
       workspace=$(terraform workspace show 2> /dev/null) || return
-      echo "[tf:${workspace}]"
+      echo " [%F{blue}tf%f:%F{red}${workspace}%f]"
     fi
 }
 local tf_status='$(tf_prompt_info)'
 
-PROMPT="╭─%F{yellow}${user_host}%f %F{green}${current_dir}%f %F{blue}${git_status}%f ${kube_status} ${tf_status}
+PROMPT="╭─%F{yellow}${user_host}%f %F{green}${current_dir}%f%F{blue}${git_status}%f${kube_status}${tf_status}
 ╰─%B${user_symbol}%b "
