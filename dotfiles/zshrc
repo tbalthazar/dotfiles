@@ -13,7 +13,8 @@ export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init -)"
 
 # go
-export PATH=/usr/local/go/bin:$PATH
+export GOPATH=$HOME/Code/go
+export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
 
 # terraform
 autoload -U +X bashcompinit && bashcompinit
