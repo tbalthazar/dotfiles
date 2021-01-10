@@ -10,6 +10,9 @@ export PATH=$PATH:$HOME/.bin:$HOME/.bin-dl
 
 # asdf
 . $HOME/.asdf/asdf.sh
+fpath=(${ASDF_DIR}/completions $fpath)
+autoload -Uz compinit
+compinit
 
 # ruby
 # export PATH=$HOME/.rbenv/bin:$PATH
