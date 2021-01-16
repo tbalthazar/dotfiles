@@ -5,23 +5,20 @@ source $HOME/.zsh/aliases
 
 export PATH=$PATH:$HOME/.bin:$HOME/.bin-dl
 
+autoload -Uz compinit
+compinit
+
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # asdf
-. $HOME/.asdf/asdf.sh
-fpath=(${ASDF_DIR}/completions $fpath)
-autoload -Uz compinit
-compinit
-
-# ruby
-# export PATH=$HOME/.rbenv/bin:$PATH
-# eval "$(rbenv init -)"
-
-# go
-# export GOPATH=$HOME/Code/go
-# export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
+if [ -f $HOME/.asdf/asdf.sh ]; then
+  . $HOME/.asdf/asdf.sh
+  fpath=(${ASDF_DIR}/completions $fpath)
+fi
 
 # terraform
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /home/tb/.bin-dl/terraform terraform
+if terraform version &> /dev/null; then
+  autoload -U +X bashcompinit && bashcompinit
+  complete -o nospace -C /home/tb/.bin-dl/terraform terraform
+fi
