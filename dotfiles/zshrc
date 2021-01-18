@@ -17,6 +17,12 @@ if [ -f $HOME/.asdf/asdf.sh ]; then
   fpath=(${ASDF_DIR}/completions $fpath)
 fi
 
+# kubectl
+if kubectl version &> /dev/null; then
+  source <(kubectl completion zsh)
+  complete -F __start_kubectl k
+fi
+
 # terraform
 if terraform version &> /dev/null; then
   autoload -U +X bashcompinit && bashcompinit
