@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  gather_facts: true
+  vars:
+  - asdf_plugins:
+    - golang
+    - ruby
+  - asdf_version: "v0.8.0"
+  - dotfiles_tag: "linux-desktop"
+  - tools:
+    - fzf
+    - kubectl
+    - nordvpn
+    - virtualbox
+    - vscode
+  - ubuntu_codename: focal
+  - virtualbox_version: "6.1"
+  roles:
+  - laptop_base
+  - dotfiles
+  - asdf
+  - tools
+  - regolith
