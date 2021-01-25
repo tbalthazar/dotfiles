@@ -3,4 +3,5 @@
 docker run --rm -it \
   -v ~/.aws:/root/.aws \
   -v $(pwd):/aws \
+  -e AWS_PROFILE \
   amazon/aws-cli $@
