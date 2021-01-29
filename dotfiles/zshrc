@@ -29,13 +29,18 @@ if [ -f $HOME/.asdf/asdf.sh ]; then
 fi
 
 # kubectl
-if kubectl version &> /dev/null; then
-  source <(kubectl completion zsh)
-  complete -F __start_kubectl k
+if which kubectl &> /dev/null; then
+  # enable completing on demand, cause it's slow:
+  # https://github.com/kubernetes/kubernetes/issues/59078
+  # https://github.com/kubernetes/kubernetes/pull/96087
+  function ka() {
+    source <(command kubectl completion zsh)
+    complete -F __start_kubectl k
+  }
 fi
 
 # terraform
-if terraform version &> /dev/null; then
+if which terraform &> /dev/null; then
   autoload -U +X bashcompinit && bashcompinit
   complete -o nospace -C /home/tb/.bin-dl/terraform terraform
 fi
