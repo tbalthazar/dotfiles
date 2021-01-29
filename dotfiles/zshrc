@@ -1,3 +1,6 @@
+# uncomment to profile:
+# zmodload zsh/zprof
+
 source $HOME/.zsh/history
 source $HOME/.zsh/prompt
 source $HOME/.zsh/bindings
@@ -32,3 +35,6 @@ if terraform version &> /dev/null; then
   autoload -U +X bashcompinit && bashcompinit
   complete -o nospace -C /home/tb/.bin-dl/terraform terraform
 fi
+
+# uncomment to profile:
+# zprof
