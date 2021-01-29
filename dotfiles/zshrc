@@ -12,8 +12,12 @@ export PATH=$PATH:$HOME/.bin:$HOME/.bin-dl
 export GOPATH=$HOME/Code/go
 export PATH=$PATH:$GOPATH/bin
 
+# check for compinit cache regenerating once a day
 autoload -Uz compinit
-compinit
+for dump in $HOME/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
