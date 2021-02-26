@@ -8,7 +8,8 @@ source $HOME/.zsh/aliases
 
 export PATH=$PATH:$HOME/.bin:$HOME/.bin-dl
 
-# path for go
+# env for go
+export GOPRIVATE="github.com/heroku/*,git.soma.salesforce.com/*"
 export GOPATH=$HOME/Code/go
 export PATH=$PATH:$GOPATH/bin
 
