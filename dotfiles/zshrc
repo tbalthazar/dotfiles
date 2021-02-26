@@ -46,5 +46,11 @@ if which terraform &> /dev/null; then
   complete -o nospace -C /home/tb/.bin-dl/terraform terraform
 fi
 
+# heroku stuff
+cloud() {
+  eval "$(ion-client shell)"
+  cloud "$@"
+}
+
 # uncomment to profile:
 # zprof
