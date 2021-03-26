@@ -99,6 +99,9 @@ filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
+" the position before the cursor marks the end of the selection
+set selection=exclusive
+
 " --- undo
 set undofile
 set undodir=~/.vim/undodir
