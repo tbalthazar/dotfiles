@@ -41,8 +41,8 @@ nnoremap t <C-]>
 
 " --- color theme 
 syntax enable
-colorscheme nord
-set cursorline
+" colorscheme nord
+" set cursorline
 set fillchars+=stl:-,stlnc:-
 
 " --- vim-go
