@@ -16,7 +16,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'arcticicestudio/nord-vim'
+Plug 'chriskempson/base16-vim'
 call plug#end()
 
 " --- leader key
@@ -41,9 +41,10 @@ nnoremap t <C-]>
 
 " --- color theme 
 syntax enable
-" colorscheme nord
-" set cursorline
-set fillchars+=stl:-,stlnc:-
+" colorscheme base16-eighties
+highlight Pmenu ctermbg=gray ctermfg=black
+highlight PmenuSel ctermbg=green ctermfg=black
+" set fillchars+=stl:-,stlnc:-
 
 " --- vim-go
 let g:go_highlight_functions = 1
