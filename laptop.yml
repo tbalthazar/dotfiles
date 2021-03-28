@@ -8,6 +8,7 @@
   - asdf_version: "v0.8.0"
   - dotfiles_tag: "linux-desktop"
   - tools:
+    - alacritty
     - chrome
     - fzf
     - kubectl
