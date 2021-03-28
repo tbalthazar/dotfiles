@@ -8,13 +8,16 @@
   - asdf_version: "v0.8.0"
   - dotfiles_tag: "linux-desktop"
   - tools:
+    - chrome
     - fzf
     - kubectl
+    - kube-ps1
+    - nextcloud-client
     - nordvpn
-    - virtualbox
+    - signal
+    - terraform
+    - transmission-client
     - vscode
-  - ubuntu_codename: focal
-  - virtualbox_version: "6.1"
   roles:
   - laptop_base
   - dotfiles
