@@ -18,9 +18,12 @@
     - terraform
     - transmission-client
     - vscode
+  - users:
+    - name: tb
   roles:
   - laptop_base
   - dotfiles
   - asdf
+  - docker
   - tools
   - regolith
