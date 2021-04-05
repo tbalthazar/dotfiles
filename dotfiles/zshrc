@@ -43,7 +43,7 @@ fi
 # terraform
 if which terraform &> /dev/null; then
   autoload -U +X bashcompinit && bashcompinit
-  complete -o nospace -C /home/tb/.bin-dl/terraform terraform
+  complete -o nospace -C $(which terraform) terraform
 fi
 
 # heroku stuff
