@@ -32,6 +32,7 @@ local kube_ps1_src=$HOME/.kube-ps1/kube-ps1.sh
 if [ -f $kube_ps1_src ]; then
   KUBE_PS1_PREFIX=" ["
   KUBE_PS1_SUFFIX="]"
+  KUBE_PS1_SYMBOL_PADDING=false
   KUBE_PS1_SYMBOL_DEFAULT="k8s"
   KUBE_PS1_SEPARATOR=":"
   KUBE_PS1_DIVIDER="|"
