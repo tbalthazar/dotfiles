@@ -11,6 +11,7 @@
     - alacritty
     - chrome
     - fzf
+    - helm
     - kubectl
     - kube-ps1
     - nextcloud-client
