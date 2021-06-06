@@ -1,0 +1,3 @@
+! ignore wallpaper configured by current look, use the one configured in Gnome
+gnome.wallpaper: 
+i3-wm.bar.position:	bottom
