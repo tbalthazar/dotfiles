@@ -84,7 +84,7 @@
     "speed-limit-up-enabled": true,
     "start-added-torrents": true,
     "statusbar-stats": "total-ratio",
-    "torrent-added-notification-enabled": true,
+    "torrent-added-notification-enabled": false,
     "torrent-complete-notification-enabled": false,
     "torrent-complete-sound-command": "canberra-gtk-play -i complete-download -d 'transmission torrent downloaded'",
     "torrent-complete-sound-enabled": false,
