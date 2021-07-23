@@ -120,6 +120,14 @@ vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 -- Telescope
 ---------------------------------------------------------------------
 require("telescope").setup {
+  defaults = {
+    layout_strategy = "vertical",
+    layout_config = {
+      vertical = {
+        width = 0.9,
+      },
+    },
+  },
   pickers = {
     -- Your special builtin config goes in here
     -- buffers = {
@@ -128,7 +136,6 @@ require("telescope").setup {
     --   previewer = false,
     -- },
     find_files = {
-      -- theme = "dropdown"
       previewer = false,
     }
   },
