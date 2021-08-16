@@ -12,6 +12,13 @@ call plug#end()
 
 lua require("lsp")
 
+let mapleader = ","
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fs <cmd>lua require('telescope.builtin').treesitter()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
 " the position before the cursor marks the end of the selection
 set selection=exclusive
 
