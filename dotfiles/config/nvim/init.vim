@@ -14,3 +14,6 @@ set number
 
 " for nvim-compe
 set completeopt=menuone,noselect
+
+syntax on
+colorscheme onedark

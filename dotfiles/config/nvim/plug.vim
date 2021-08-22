@@ -8,4 +8,5 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 " end: for telesocpe
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'joshdick/onedark.vim'
 call plug#end()
