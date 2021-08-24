@@ -17,3 +17,6 @@ set completeopt=menuone,noselect
 
 syntax on
 colorscheme onedark
+
+let g:vimwiki_list = [{'path': '~/Nextcloud/Notes',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
