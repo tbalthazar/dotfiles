@@ -20,3 +20,8 @@ colorscheme onedark
 
 let g:vimwiki_list = [{'path': '~/Nextcloud/Notes',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
+
+" yank full path
+nnoremap <silent> <leader>cP :let @"=expand("%:p")<cr>
+" yank relative path
+nnoremap <silent> <leader>cp :let @"=expand("%")<cr>
