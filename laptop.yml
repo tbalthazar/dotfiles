@@ -8,24 +8,26 @@
   - asdf_version: "v0.8.0"
   - dotfiles_tag: "linux-desktop"
   - tools:
-    - alacritty
-    - chrome
-    - fzf
-    - helm
-    - kubectl
-    - kube-ps1
-    - nextcloud-client
-    - nordvpn
-    - signal
-    - terraform
-    - transmission-client
-    - vscode
+    # - alacritty
+    # - chrome
+    # - fzf
+    # - helm
+    # - kubectl
+    # - kube-ps1
+    # - nextcloud-client
+    # - nordvpn
+    # - signal
+    # - terraform
+    # - transmission-client
+    - virtualbox
+    - virtualbox-guest-additions
+    # - vscode
   - users:
     - name: tb
   roles:
-  - laptop_base
-  - dotfiles
-  - asdf
-  - docker
+  # - laptop_base
+  # - dotfiles
+  # - asdf
+  # - docker
   - tools
-  - regolith
+  # - regolith
