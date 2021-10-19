@@ -25,3 +25,10 @@ let g:vimwiki_list = [{'path': '~/Nextcloud/Notes',
 nnoremap <silent> <leader>cP :let @"=expand("%:p")<cr>
 " yank relative path
 nnoremap <silent> <leader>cp :let @"=expand("%")<cr>
+
+if executable("rg")
+  set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
+  set grepformat=%f:%l:%c:%m
+endif
+
+map <leader>* :grep <cword> *<CR><CR>:copen<CR>
