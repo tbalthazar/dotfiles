@@ -15,6 +15,9 @@ set number
 " for nvim-compe
 set completeopt=menuone,noselect
 
+" spaces not tabs 🤓
+set tabstop=2 shiftwidth=2 expandtab
+
 syntax on
 colorscheme onedark
 
