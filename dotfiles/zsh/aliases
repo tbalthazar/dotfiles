@@ -28,3 +28,6 @@ alias dc='docker-compose'
 alias mp='multipass'
 alias mk='microk8s kubectl'
 alias notes='tmux rename-window notes && cd ~/Nextcloud/Notes && nvim index.md'
+dsize() {
+  du -hx -d 1 -t 1G $1 | sort -hr
+}
