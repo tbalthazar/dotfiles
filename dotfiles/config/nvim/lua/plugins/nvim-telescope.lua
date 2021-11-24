@@ -1,5 +1,11 @@
+-- https://github.com/nvim-telescope/telescope.nvim/blob/master/doc/telescope.txt
 require("telescope").setup {
   defaults = {
+    -- uses lua regexes: https://www.lua.org/manual/5.1/manual.html#5.4.1
+    file_ignore_patterns = {
+      "^vendor/",
+      ".*/vendor/",
+    },
     layout_strategy = "vertical",
     layout_config = {
       vertical = {
