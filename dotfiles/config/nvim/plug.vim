@@ -15,6 +15,7 @@ Plug 'tpope/vim-surround'
 
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'rafamadriz/friendly-snippets'
 
 Plug 'vim-test/vim-test'
 call plug#end()
