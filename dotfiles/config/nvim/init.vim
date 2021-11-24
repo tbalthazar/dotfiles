@@ -35,3 +35,6 @@ if executable("rg")
 endif
 
 map <leader>* :grep <cword> *<CR><CR>:copen<CR>
+
+" vim test
+let test#strategy = "neovim"
