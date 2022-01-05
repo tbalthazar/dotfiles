@@ -7,7 +7,7 @@ lua require("plugins/nvim-telescope")
 lua require("plugins/nvim-treesitter")
 
 " the position before the cursor marks the end of the selection
-" set selection=exclusive
+set selection=exclusive
 
 " window
 set number
