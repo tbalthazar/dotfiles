@@ -60,6 +60,16 @@ function goimports(timeout_ms)
   vim.lsp.buf.formatting_sync()
 end
 
+-- tweak how diagnostic are displayed, see here:
+-- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization
+vim.diagnostic.config({
+    -- virtual text is what gets displayed inline in the editor and often trucated
+    virtual_text = false,
+    float = { border = "single" },
+})
+vim.o.updatetime = 250
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = { "gopls", "solargraph" }
