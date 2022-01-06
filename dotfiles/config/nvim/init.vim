@@ -21,6 +21,7 @@ set tabstop=2 shiftwidth=2 expandtab
 syntax on
 colorscheme onedark
 
+let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [{'path': '~/Nextcloud/Notes',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
@@ -53,3 +54,7 @@ imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab
 smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
 imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+
+" to detect current file type: `:echo &filetype`
+let g:vsnip_filetypes = {}
+let g:vsnip_filetypes.vimwiki = ['markdown']
