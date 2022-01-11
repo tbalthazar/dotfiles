@@ -13,6 +13,8 @@ export GOPRIVATE="github.com/heroku/*,git.soma.salesforce.com/*"
 export GOPATH=$HOME/Code/go
 export PATH=$PATH:$GOPATH/bin
 
+export EDITOR=nvim
+
 # check for compinit cache regenerating once a day
 autoload -Uz compinit
 for dump in $HOME/.zcompdump(N.mh+24); do
