@@ -36,8 +36,17 @@ endif
 
 map <leader>* :grep <cword> *<CR><CR>:copen<CR>
 
+" a custom test strategy found in:
+" https://github.com/vim-test/vim-test/issues/448
+function! CustomStrategy(cmd)
+  execute 'bel 10 new'
+  call termopen(a:cmd)
+  wincmd p " switch back to last window
+endfunction
+
+let test#custom_strategies = {'custom': function('CustomStrategy')}
 " vim test
-let test#strategy = "neovim"
+let test#strategy = "custom"
 
 " vim-vsnip
 " Expand
