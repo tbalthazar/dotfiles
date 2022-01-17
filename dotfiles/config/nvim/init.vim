@@ -18,6 +18,17 @@ set completeopt=menuone,noselect
 " spaces not tabs 🤓
 set tabstop=2 shiftwidth=2 expandtab
 
+" customize onedark theme
+if (has("autocmd"))
+  augroup colorextend
+    autocmd!
+    " current split color
+    autocmd ColorScheme * call onedark#extend_highlight("StatusLine", { "bg": { "cterm": "240" }, "fg": { "cterm": "250" } })
+    " not-current split color
+    autocmd ColorScheme * call onedark#extend_highlight("StatusLineNC", { "bg": { "cterm": "237" }, "fg": { "cterm": "243" } })
+  augroup END
+endif
+
 syntax on
 colorscheme onedark
 
