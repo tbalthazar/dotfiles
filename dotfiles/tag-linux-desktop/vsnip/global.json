@@ -3,5 +3,10 @@
     "prefix": "date",
     "body": ["${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}"],
     "description": "Basic date"
+  },
+  "entry": {
+    "prefix": "entry",
+    "body": ["## ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}"],
+    "description": "H2 and basic date"
   }
 }

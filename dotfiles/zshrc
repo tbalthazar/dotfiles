@@ -6,7 +6,7 @@ source $HOME/.zsh/prompt
 source $HOME/.zsh/bindings
 source $HOME/.zsh/aliases
 
-export PATH=$PATH:$HOME/.bin:$HOME/.bin-dl
+export PATH=$PATH:$HOME/.bin:$HOME/.bin-dl:$HOME/.local/bin
 
 # env for go
 export GOPRIVATE="github.com/heroku/*,git.soma.salesforce.com/*"
