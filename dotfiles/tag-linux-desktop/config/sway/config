@@ -1,0 +1,172 @@
+### Variables
+
+set $mod Mod4
+
+set $left  h
+set $down  j
+set $up    k
+set $right l
+
+set $term foot
+set $menu dmenu_path | dmenu | xargs swaymsg exec --
+
+set $wp1  ampersand
+set $wp2  eacute
+set $wp3  quotedbl 
+set $wp4  apostrophe
+set $wp5  parenleft
+set $wp6  section
+set $wp7  egrave
+set $wp8  exclam
+set $wp9  ccedilla
+set $wp10 agrave
+
+### Input (man sway-input)
+
+input type:keyboard {
+  xkb_layout "be"
+  xkb_options caps:escape
+}
+
+input type:touchpad {
+  tap enabled
+}
+
+### Output
+
+# https://github.com/swaywm/sway/wiki#Multihead
+# swaymsg -t get_outputs
+output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output LVDS-1 pos 0 1080 res 1366x768
+output HDMI-A-1 pos 0 0 res 1920x1080
+output HDMI-A-1 scale 1
+
+### Idle
+
+exec swayidle -w \
+  timeout 300 'swaylock -f -c 000000' \
+  timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+  before-sleep 'swaylock -f -c 000000'
+
+### Shortcuts
+
+# Workspaces
+bindsym $mod+$wp1  workspace 1
+bindsym $mod+$wp2  workspace 2
+bindsym $mod+$wp3  workspace 3
+bindsym $mod+$wp4  workspace 4
+bindsym $mod+$wp5  workspace 5
+bindsym $mod+$wp6  workspace 6
+bindsym $mod+$wp7  workspace 7
+bindsym $mod+$wp8  workspace 8
+bindsym $mod+$wp9  workspace 9
+bindsym $mod+$wp10 workspace 10
+
+# Move containers
+bindsym $mod+Shift+$wp1  move container to workspace number 1
+bindsym $mod+Shift+$wp2  move container to workspace number 2
+bindsym $mod+Shift+$wp3  move container to workspace number 3
+bindsym $mod+Shift+$wp4  move container to workspace number 4
+bindsym $mod+Shift+$wp5  move container to workspace number 5
+bindsym $mod+Shift+$wp6  move container to workspace number 6
+bindsym $mod+Shift+$wp7  move container to workspace number 7
+bindsym $mod+Shift+$wp8  move container to workspace number 8
+bindsym $mod+Shift+$wp9  move container to workspace number 9
+bindsym $mod+Shift+$wp10 move container to workspace number 10
+
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+# Or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+# Ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+# Switch layouts
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Fullscreen
+bindsym $mod+f fullscreen
+
+# Floating
+bindsym $mod+Shift+space floating toggle
+
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# Resize
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Terminal
+bindsym $mod+Return exec $term
+# Launcher
+bindsym $mod+d exec $menu
+# Kill focused window
+bindsym $mod+Shift+q kill
+# Drag and drop windows 
+floating_modifier $mod normal
+# Reload config
+bindsym $mod+Shift+c reload
+# Exit
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+### Special Keys
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86Search exec $menu
+
+# Bar
+bar {
+   position top
+   #status_command while date +'%a, %b %d. %H:%M'; do sleep 1; done
+   status_command ~/.bin/swaybar_custom
+}
+#bar swaybar_command waybar
