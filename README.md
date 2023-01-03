@@ -33,3 +33,9 @@ Add an existing dotfiles that's not yet managed by rcm:
 ```
 $ mkrc -t linux-desktop ~/.config/vlc/vlcrc
 ```
+
+## Neovim
+
+Main config is `~/.config/nvim/init.lua`, and is an unmodified version of [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim).
+Custom config is done in `~/.config/nvim/after/plugin/custom.lua`.
+Additional plugins are configured in `~/.config/nvim/lua/custom/plugins.lua`.
