@@ -1,8 +1,0 @@
-#!/bin/bash
-
-volume=`~/.bin/volume audio`
-if [[ $volume == "MUTE" ]]; then
-  echo ""
-else
-  echo " $volume"
-fi
