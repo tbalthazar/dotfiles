@@ -1,6 +1,6 @@
 # Dotfiles
 
-Dotfiles are managed by rcm and computer setup are manged by Ansible.
+Dotfiles are managed by rcm and computer setup is manged by Ansible.
 
 ## Setup a new Ubuntu laptop
 
@@ -20,7 +20,6 @@ $ ANSIBLE_ROLES_PATH=/tmp/ansible-roles ansible-playbook /tmp/dotfiles/laptop.ym
 $ ANSIBLE_ROLES_PATH=/tmp/ansible-roles ansible-playbook /tmp/dotfiles/laptop.yml -u tb -K
 ```
 
-
 ## Manage dotfiles
 
 Update and install dotfiles managed by rcm:
@@ -33,11 +32,4 @@ Add an existing dotfiles that's not yet managed by rcm:
 
 ```
 $ mkrc -t linux-desktop ~/.config/vlc/vlcrc
-```
-
-## Old Setup
-
-```
-$ git clone https://github.com/tbalthazar/dotfiles ~/.dotfiles
-$ ~/.dotfiles/bin/init-linux.sh
 ```
