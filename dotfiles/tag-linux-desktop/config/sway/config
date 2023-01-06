@@ -37,9 +37,17 @@ input type:touchpad {
 # https://github.com/swaywm/sway/wiki#Multihead
 # swaymsg -t get_outputs
 output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output LVDS-1 pos 0 1080 res 1366x768
-output HDMI-A-1 pos 0 0 res 1920x1080
-output HDMI-A-1 scale 1
+
+# thinwhitebook
+# output LVDS-1 pos 0 1080 res 1366x768
+# output HDMI-A-1 pos 0 0 res 1920x1080
+# output HDMI-A-1 scale 1
+
+# t440s
+output eDP-1 pos 0 1080 res 1920x1080
+output DP-1 pos 1920 0 res 3840x2160
+output DP-1 scale 2
+
 
 ### Idle
 
