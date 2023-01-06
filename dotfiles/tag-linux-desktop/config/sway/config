@@ -8,7 +8,7 @@ set $up    k
 set $right l
 
 set $term alacritty
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $menu dmenu_path | dmenu -fn "monospace-14" | xargs swaymsg exec --
 
 set $wp1  ampersand
 set $wp2  eacute
@@ -162,6 +162,11 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86Search exec $menu
+
+# Appearance
+font monospace 13
+gaps inner 6
+default_border pixel 2
 
 # Bar
 bar {
