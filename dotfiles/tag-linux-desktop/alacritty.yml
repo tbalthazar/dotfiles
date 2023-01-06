@@ -5,6 +5,11 @@ cursor:
   style:
     shape: Beam
 
+window:
+  padding:
+    x: 5
+    y: 5
+
 # Base16 Eighties 256 - alacritty color config
 # Chris Kempson (http://chriskempson.com)
 colors:
