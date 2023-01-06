@@ -8,7 +8,7 @@ set $up    k
 set $right l
 
 set $term alacritty
-set $menu dmenu_path | dmenu -fn "monospace-14" | xargs swaymsg exec --
+set $menu bemenu-run --fn "monospace 14" -p "Run: " | xargs swaymsg exec --
 
 set $wp1  ampersand
 set $wp2  eacute

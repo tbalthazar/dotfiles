@@ -1,5 +1,5 @@
 #!/bin/bash
 
-network_name=$(nmcli -g SSID d w l | dmenu -fn "monospace-14" -i -p "Wifi: ")
+network_name=$(nmcli -g SSID d w l | bemenu --fn "monospace 14" -i -p "Wifi: ")
 
 nmcli d w c $network_name
