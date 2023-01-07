@@ -5,6 +5,10 @@ do
   brightness_percent="$(brightnessctl -m | cut -d',' -f4)"
 
   volume="$(pamixer --get-volume-human)"
+  vol=" $volume"
+  if [ $volume = "muted" ]; then
+    vol=""
+  fi
 
   volume_mic="$(volume mic)"
   mic=" $volume_mic"
@@ -25,9 +29,9 @@ do
   time="$(TZ=Europe/Brussels date +'%a, %b %d. %H:%M')"
   network="$(nmcli -g name con show --active)"
 
-  printf "  %s |  %s | %s | %s %s%%/%s%% |  %s | %s" \
+  printf " %s | %s | %s | %s %s%%/%s%% |  %s | %s" \
 	  "$brightness_percent" \
-	  "$volume" \
+	  "$vol" \
 	  "$mic" \
 	  "$battery_icon" \
 	  "$battery0_percent" \
