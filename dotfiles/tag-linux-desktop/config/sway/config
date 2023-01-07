@@ -179,7 +179,5 @@ default_border pixel 2
 # Bar
 bar {
    position top
-   #status_command while date +'%a, %b %d. %H:%M'; do sleep 1; done
    status_command ~/.bin/swaybar_custom
 }
-#bar swaybar_command waybar
