@@ -4,21 +4,34 @@ while true
 do
   brightness_percent="$(brightnessctl -m | cut -d',' -f4)"
 
-  volume_percent="$(pacmd list-sinks|grep -A 15 '* index'| awk '/volume: front/{ print $5 }' | sed 's/[%|,]//g')"
-  volume_muted="$(pacmd list-sinks|grep -A 15 '* index'|awk '/muted:/{ print $2 }')"
+  volume="$(pamixer --get-volume-human)"
 
-  battery_path="$(upower -e | grep 'BAT')"
-  battery_percent="$(upower -i $battery_path | grep percentage | grep -o '[0-9]*')"
-  battery_state="$(upower -i $battery_path | grep state | cut -d ':' -f2 | xargs)"
+  volume_mic="$(volume mic)"
+  mic=" $volume_mic"
+  if [ $volume_mic = "muted" ]; then
+    mic=""
+  fi
+
+  battery0_path="$(upower -e | grep 'BAT0')"
+  battery0_percent="$(upower -i $battery0_path | grep percentage | grep -o '[0-9]*')"
+  battery1_path="$(upower -e | grep 'BAT1')"
+  battery1_percent="$(upower -i $battery1_path | grep percentage | grep -o '[0-9]*')"
+  battery_state="$(upower -i $battery1_path | grep state | cut -d ':' -f2 | xargs)"
+  battery_icon=""
+  if [ $battery_state = "discharging" ]; then
+    battery_icon=""
+  fi
 
   time="$(TZ=Europe/Brussels date +'%a, %b %d. %H:%M')"
   network="$(nmcli -g name con show --active)"
 
-  printf "  %s |  %s%% |  %s%% (%s) |  %s | %s" \
+  printf "  %s |  %s | %s | %s %s%%/%s%% |  %s | %s" \
 	  "$brightness_percent" \
-	  "$volume_percent" \
-	  "$battery_percent" \
-	  "$battery_state" \
+	  "$volume" \
+	  "$mic" \
+	  "$battery_icon" \
+	  "$battery0_percent" \
+	  "$battery1_percent" \
 	  "$network" \
 	  "$time"
   sleep 10

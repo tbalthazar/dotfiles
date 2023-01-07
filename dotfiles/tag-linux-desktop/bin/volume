@@ -1,20 +1,11 @@
 #!/bin/bash
 
-format() {
-  perl_filter='if (/.*\[(\d+%)\] (\[(-?\d+.\d+dB)\] )?\[(on|off)\]/)'
-  perl_filter+='{CORE::say $4 eq "off" ? "MUTE" : "'
-  # If dB was selected, print that instead
-  perl_filter+=$([[ $STEP = *dB ]] && echo '$3' || echo '$1')
-  perl_filter+='"; exit}'
-  perl -ne "$perl_filter"
-}
-
 get_audio_volume() {
-  amixer get Master | format
+  pamixer --get-volume
 }
 
 set_audio_volume() {
-  amixer -q sset Master $1
+  pactl set-sink-volume @DEFAULT_SINK@ $1
 }
 
 increase_audio_volume() {
@@ -34,11 +25,11 @@ notify_audio_volume() {
 }
 
 get_mic_volume() {
-  amixer get Capture | format
+  pamixer --get-volume-human --source 49
 }
 
 set_mic_volume() {
-  amixer -q sset Capture $1
+  pamixer --set-volume $1 --source 49
 }
 
 toggle_mic_volume() {
