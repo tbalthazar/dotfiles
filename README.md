@@ -22,13 +22,13 @@ $ ANSIBLE_ROLES_PATH=/tmp/ansible-roles ansible-playbook /tmp/dotfiles/laptop.ym
 
 ## Manage dotfiles
 
-Update and install dotfiles managed by rcm:
+Update and install dotfiles managed by rcm (from dotfiles to home):
 
 ```
 $ rcup -v
 ```
 
-Add an existing dotfiles that's not yet managed by rcm:
+Add an existing dotfiles that's not yet managed by rcm (from home to dotfiles):
 
 ```
 $ mkrc -t linux-desktop ~/.config/vlc/vlcrc
