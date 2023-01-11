@@ -55,3 +55,10 @@ require('telescope').setup {
     },
   },
 }
+
+local opts = { noremap = false, silent = true }
+vim.keymap.set("n", "<leader>t", "<cmd>TestNearest<CR>", opts)
+vim.keymap.set("n", "<leader>T", "<cmd>TestFile<CR>", opts)
+vim.keymap.set("n", "<leader>a", "<cmd>TestSuite<CR>", opts)
+vim.keymap.set("n", "<leader>l", "<cmd>TestLast<CR>", opts)
+vim.keymap.set("n", "<leader>g", "<cmd>TestVisit<CR>", opts)
