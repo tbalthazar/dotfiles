@@ -329,6 +329,57 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
+
+  -- ------------------------------------
+  -- Start custom config
+  -- Format on save
+  local function go_imports(wait_ms)
+    local params = vim.lsp.util.make_range_params()
+    params.context = { only = { "source.organizeImports" } }
+    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
+    for _, res in pairs(result or {}) do
+      for _, r in pairs(res.result or {}) do
+        if r.edit then
+          vim.lsp.util.apply_workspace_edit(r.edit, "utf-16")
+        else
+          vim.lsp.buf.execute_command(r.command)
+        end
+      end
+    end
+
+    vim.lsp.buf.format()
+  end
+
+  local function format_code()
+    local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
+
+    if filetype == "go" then
+      go_imports(2000)
+    else
+      vim.lsp.buf.format()
+    end
+  end
+
+  local formatting_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+  vim.api.nvim_clear_autocmds { group = formatting_augroup, buffer = bufnr }
+  vim.api.nvim_create_autocmd(
+    "BufWritePre",
+    {
+      group = formatting_augroup,
+      buffer = bufnr,
+      callback = function()
+        format_code()
+      end,
+    }
+  )
+
+  -- Override default maps
+  -- remap <C-k> to TmuxNavigateUp
+  nmap('<C-k>', "<cmd>TmuxNavigateUp<CR>", '')
+  -- use <C-s> for signature_help instead
+  nmap('<C-s>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  -- End custom config
+  -- ------------------------------------
 end
 
 -- Enable the following language servers
@@ -426,4 +477,3 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-
