@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+share_name=$(nasshare)
+
+sudo mount \
+  -t cifs \
+  -o username=tb,credentials=/home/tb/.smbclient.conf,uid=tb,gid=tb,vers=3.1.1 \
+  //192.168.0.4/$share_name ~/mnt/nas/$share_name

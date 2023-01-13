@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+share_names=$(smbclient -A .smbclient.conf -L 192.168.0.4 2>/dev/null | grep -i disk | awk '{print $1}')
+share_name=$(echo "$share_names" | bemenu --fn "monospace 14" -i -p "Shares: ")
+echo -n "$share_name"

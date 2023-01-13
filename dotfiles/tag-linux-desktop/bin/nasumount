@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+share_name=$(nasshare)
+
+sudo umount ~/mnt/nas/$share_name
