@@ -73,3 +73,9 @@ require('lualine').setup {
     },
   },
 }
+
+-- <C-k> is mapped in the default config, to run vim.lsp.buf.signature_help.
+-- unmap it and remap it to TmuxNavigateUp
+vim.keymap.del('n', '<C-k>')
+vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", opts)
+vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, opts)
