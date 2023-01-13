@@ -72,6 +72,14 @@ require('lualine').setup {
       }
     },
   },
+  inactive_sections = {
+    lualine_c = {
+      {
+        'filename',
+        path = 1
+      }
+    },
+  },
 }
 
 -- <C-k> is mapped in the default config, to run vim.lsp.buf.signature_help.
