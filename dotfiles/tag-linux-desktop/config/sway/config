@@ -49,6 +49,9 @@ output DP-1 pos 1920 0 res 3840x2160
 output DP-1 scale 2
 bindsym $mod+Shift+s output eDP-1 toggle
 
+### Startup programs
+
+exec nextcloud
 
 ### Idle
 
