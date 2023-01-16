@@ -67,3 +67,5 @@ require("nvim-tree").setup({
     },
   },
 })
+
+vim.keymap.set("n", "<leader>fe", "<cmd>NvimTreeToggle<CR>", opts)
