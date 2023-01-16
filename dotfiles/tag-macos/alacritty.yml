@@ -4,6 +4,11 @@ alt_send_esc: false
 
 font:
   size: 14.0
+  # family: SF Mono Regular
+  #family: Operator Mono Book
+  normal:
+    # family: Operator Mono
+    family: SF Mono
 
 cursor:
   style:
