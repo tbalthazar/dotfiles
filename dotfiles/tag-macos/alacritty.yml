@@ -4,10 +4,7 @@ alt_send_esc: false
 
 font:
   size: 14.0
-  # family: SF Mono Regular
-  #family: Operator Mono Book
   normal:
-    # family: Operator Mono
     family: SF Mono
 
 cursor:
@@ -15,6 +12,10 @@ cursor:
     shape: Beam
 
 window:
+  dimensions:
+    columns: 130
+    lines: 35
+
   padding:
     x: 5
     y: 5
