@@ -50,3 +50,20 @@ require('lualine').setup {
     },
   },
 }
+
+require("nvim-tree").setup({
+  renderer = {
+    indent_markers = {
+      enable = true,
+    },
+    icons = {
+      git_placement = "signcolumn",
+      show = {
+        file = false,
+        folder = false,
+        folder_arrow = false,
+        git = true,
+      },
+    },
+  },
+})
