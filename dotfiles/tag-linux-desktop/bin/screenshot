@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+modes="window\nregion\nscreen"
+mode=$(echo -e "$modes" | bemenu --fn "monospace 14" -i -p "Screenshot mode: ")
+destination=~/Downloads/screenshots
+mkdir -p $destination
+name="$(date +"%Y-%m-%d-%H-%M-%S").png"
+destination="$destination/$name"
+
+if [[ $mode == "window" ]]; then
+  grim \
+    -g "$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)" \
+    $destination
+elif [[ $mode == "region" ]]; then
+  grim \
+    -g "$(slurp)" \
+    $destination
+else
+  grim \
+    -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') \
+    $destination
+fi
