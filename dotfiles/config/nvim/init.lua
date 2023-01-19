@@ -355,6 +355,8 @@ local on_attach = function(_, bufnr)
 
     if filetype == "go" then
       go_imports(2000)
+    elseif filetype == "ruby" then
+      -- don't format for now
     else
       vim.lsp.buf.format()
     end
