@@ -64,6 +64,9 @@ require("nvim-tree").setup({
         folder_arrow = false,
         git = true,
       },
+      glyphs = {
+        symlink = "",
+      },
     },
   },
 })
