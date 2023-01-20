@@ -6,6 +6,9 @@ cursor:
     shape: Beam
 
 window:
+  dimensions:
+    columns: 120
+    lines: 25
   padding:
     x: 5
     y: 5
