@@ -72,3 +72,4 @@ require("nvim-tree").setup({
 })
 
 vim.keymap.set("n", "<leader>fe", "<cmd>NvimTreeToggle<CR>", opts)
+vim.o.grepprg = "rg --vimgrep --no-heading -g '!vendor/**' -g '!*/vendor/**'"
