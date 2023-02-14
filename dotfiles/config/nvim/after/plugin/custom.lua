@@ -14,6 +14,11 @@ vim.keymap.set('n', '<leader><space>', function()
     sort_lastused = true,
   })
 end, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader>sq', function()
+  require('telescope.builtin').quickfix({
+    show_line = false,
+  })
+end, { desc = '[S]earch [Q]uickfix' })
 
 require('telescope').setup {
   defaults = {
