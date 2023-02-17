@@ -7,6 +7,8 @@
 -- end
 
 -- My Custom Config
+-- TODO: check this format on save article:
+-- https://www.jvt.me/posts/2022/03/01/neovim-format-on-save/
 
 vim.keymap.set('n', '<leader><space>', function()
   require('telescope.builtin').buffers({
