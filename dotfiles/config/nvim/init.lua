@@ -543,3 +543,17 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+-- Start Custom Config
+vim.keymap.set('n', '<leader><space>', function()
+  require('telescope.builtin').buffers({
+    -- Sorts current and last buffer to the top and selects the lastused
+    sort_lastused = true,
+  })
+end, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader>sq', function()
+  require('telescope.builtin').quickfix({
+    show_line = false,
+  })
+end, { desc = '[S]earch [Q]uickfix' })
+vim.keymap.set('n', '<leader>fe', '<cmd>NvimTreeToggle<CR>', opts)
