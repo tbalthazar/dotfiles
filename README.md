@@ -1,24 +1,31 @@
 # Dotfiles
 
-Dotfiles are managed by rcm and computer setup is manged by Ansible.
+Dotfiles are managed by [rcm](https://github.com/thoughtbot/rcm) and computer setup is setup using a couple of basic bash scripts.
 
-## Setup a new Ubuntu laptop
+## Setup a new Debian 12 (Bookworm) laptop
 
-Perform a minimal Ubuntu install, then run this:
+Perform standard Debian install with Gnome and system utilities, then run this:
 
+```bash
+$ su
+# apt-get update && apt-get install git && \
+  git clone https://github.com/tbalthazar/dotfiles /tmp && \
+  cd /tmp/dotfiles &&
+  ./bin/setup-as-root.sh
+# reboot now
 ```
-$ sudo apt-get update && \
-  sudo apt-get upgrade && \
-  sudo apt-get dist-upgrade && \
-  sudo apt-get autoremove && \
-  sudo apt-get install ansible git
-$ cd /tmp && \
-  git clone https://github.com/tbalthazar/ansible-roles && \
-  git clone https://github.com/tbalthazar/dotfiles
-$ ANSIBLE_ROLES_PATH=/tmp/ansible-roles ansible-playbook /tmp/dotfiles/laptop.yml -u tb -K
-# logout/back in after zsh has been installed
-$ ANSIBLE_ROLES_PATH=/tmp/ansible-roles ansible-playbook /tmp/dotfiles/laptop.yml -u tb -K
+
+then run, as `tb`:
+
+```bash
+$ cd ~ && \
+  git clone https://github.com/tbalthazar/dotfiles ~/.dotfiles && \
+  .dotfiles/bin/setup-as-tb.sh
 ```
+
+Setup some global shortcuts:
+- `ctrl+shift+space`: `1password --quick-access`
+- `shift+super+q`: Windows > Close window
 
 ## Manage dotfiles
 
