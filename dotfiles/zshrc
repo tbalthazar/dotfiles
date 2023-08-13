@@ -49,7 +49,9 @@ if which terraform &> /dev/null; then
 fi
 
 # rust
+if [ -f $HOME/.cargo/env ]; then
 . "$HOME/.cargo/env"
+fi
 
 # heroku stuff
 cloud() {
