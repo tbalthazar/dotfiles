@@ -15,6 +15,9 @@ cd $bindl
 sha256sum -c nvim.appimage.sha256sum
 rm $bindl/nvim.appimage.sha256sum
 chmod +x nvim.appimage
+ln -s nvim.appimage nvim
+ln -s nvim.appimage vim
+ln -s nvim.appimage vi
 cd ~
 
 echo "[+] Installing dotfiles..."
@@ -33,3 +36,5 @@ done
 echo "[+] Installing fzf..."
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --completion --key-bindings --no-update-rc
+
+echo "[+] Done."
