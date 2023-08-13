@@ -6,6 +6,7 @@ if [ "$EUID" -ne 0 ]
 fi
 
 username=tb
+debian_codename=bookworm
 
 echo "[+] Adding $username to sudo group..."
 /usr/sbin/usermod -aG sudo $username
@@ -67,10 +68,8 @@ curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
   gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
 apt-get update && apt-get install -y 1password
 
-    6  sudo vi /etc/apt/sources.list.d/virtualbox.list
-deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian bookworm contrib
-
 echo "[+] Installing Virtualbox..."
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian $debian_codename contrib" > /etc/apt/sources.list.d/virtualbox.list
 wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | \
   gpg --dearmor --yes --output /usr/share/keyrings/oracle-virtualbox-2016.gpg
 apt-get update && apt-get install -y virtualbox-7.0
