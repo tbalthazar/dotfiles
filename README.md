@@ -43,6 +43,5 @@ $ mkrc -t linux-desktop ~/.config/vlc/vlcrc
 
 ## Neovim
 
-Main config is `~/.config/nvim/init.lua`, and is an unmodified version of [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim).
-Custom config is done in `~/.config/nvim/after/plugin/custom.lua`.
-Additional plugins are configured in `~/.config/nvim/lua/custom/plugins.lua`.
+Main config is `~/.config/nvim/init.lua`, and is a slightly modified version of [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim/commit/98ad2ee32adea1a02b06a4b45c16fb6f11d836b9).
+Additional plugins are configured in `~/.config/nvim/lua/custom/plugins/init.lua`.
