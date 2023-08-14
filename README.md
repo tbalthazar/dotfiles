@@ -8,7 +8,7 @@ Perform standard Debian install with Gnome and system utilities, then run this:
 
 ```bash
 $ su
-# apt-get update && apt-get install git && \
+# apt-get update && apt-get install -y git && \
   git clone https://github.com/tbalthazar/dotfiles /tmp/dotfiles && \
   cd /tmp/dotfiles &&
   ./bin/setup-as-root.sh
