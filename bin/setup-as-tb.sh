@@ -23,10 +23,10 @@ cd ~
 echo "[+] Installing dotfiles..."
 git clone https://github.com/tbalthazar/dotfiles ~/.dotfiles
 rcup -v -d ~/.dotfiles/dotfiles -t linux-desktop
-source ~/.zshrc
 
 echo "[+] Installing asdf..."
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
+. "$HOME/.asdf/asdf.sh"
 for plugin in golang ruby kubectl terraform; do
   echo "[+] Installing $plugin with asdf..."
   asdf plugin add $plugin

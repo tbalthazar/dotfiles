@@ -18,9 +18,8 @@ $ su
 then run, as `tb`:
 
 ```bash
-$ cd ~ && \
-  git clone https://github.com/tbalthazar/dotfiles ~/.dotfiles && \
-  .dotfiles/bin/setup-as-tb.sh
+$ git clone https://github.com/tbalthazar/dotfiles /tmp/dotfiles && \
+  /tmp/dotfiles/bin/setup-as-tb.sh
 ```
 
 Setup some global shortcuts:
