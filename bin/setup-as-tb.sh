@@ -32,9 +32,9 @@ cd squashfs-root
 # replace Exec=AppRun --no-sandbox %U by the full path of the downloaded appimage
 sed -i 's/^Exec=.*/Exec=\/home\/tb\/.bin-dl\/obsidian.appimage --no-sandbox %U/' obsidian.desktop
 mkdir -p ~/.local/share/applications
-mkdir -p ~/local/share/icons/hicolor/512x512/apps
+mkdir -p ~/.local/share/icons/hicolor/512x512/apps
 cp obsidian.desktop ~/.local/share/applications
-cp obsidian.png ~/local/share/icons/hicolor/512x512/apps
+cp obsidian.png ~/.local/share/icons/hicolor/512x512/apps
 update-desktop-database ~/.local/share/applications -v
 rm -rf ./squashfs-root
 cd ~
