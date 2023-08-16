@@ -8,6 +8,9 @@ fi
 username=tb
 debian_codename=bookworm
 
+echo "[+] Updating packages..."
+apt-get update && apt-get dist-upgrade -y && apt-get autoremove -y
+
 echo "[+] Adding $username to sudo group..."
 /usr/sbin/usermod -aG sudo $username
 
@@ -55,6 +58,23 @@ apt-get install -y \
 	libdb-dev \
 	uuid-dev
 
+echo "[+] Installing Docker..."
+for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do
+  apt-get remove -y $pkg
+done
+apt-get install -y ca-certificates curl gnupg
+install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+chmod a+r /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  $debian_codename stable" | \
+  tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt-get update
+apt-get install -i docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+/usr/sbin/groupadd docker 
+/usr/sbin/usermod -aG docker $username
+
 echo "[+] Installing 1Password..."
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
   gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
@@ -72,6 +92,6 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] 
 wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | \
   gpg --dearmor --yes --output /usr/share/keyrings/oracle-virtualbox-2016.gpg
 apt-get update && apt-get install -y virtualbox-7.0
-/usr/sbin/usermod -aG vboxusers  $username
+/usr/sbin/usermod -aG vboxusers $username
 
 echo "[+] Setup done, please reboot."
