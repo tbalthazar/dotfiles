@@ -11,5 +11,5 @@ vms=($(find $source -maxdepth 1 -not -type d))
 echo "[+] Importing VMs from $source:"
 for ((i = 0; i < ${#vms[@]}; i++)); do
   echo "  importing ${vms[$i]} ..."
-  VBoxManage import "$source/${vms[$i]}" --options=keepallmacs,importtovdi
+  VBoxManage import "${vms[$i]}" --options=keepallmacs,importtovdi
 done
