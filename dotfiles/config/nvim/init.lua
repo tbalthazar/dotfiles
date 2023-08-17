@@ -557,3 +557,13 @@ vim.keymap.set('n', '<leader>sq', function()
   })
 end, { desc = '[S]earch [Q]uickfix' })
 vim.keymap.set('n', '<leader>fe', '<cmd>NvimTreeToggle<CR>', opts)
+
+-- tweak how diagnostic are displayed, see here:
+-- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization
+vim.diagnostic.config({
+  -- virtual text is what gets displayed inline in the editor and often trucated
+  virtual_text = false,
+  float = { border = "single" },
+})
+vim.o.updatetime = 250
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
