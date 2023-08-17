@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+  echo "Please specify destination folder."
+  exit 1
+fi
+
+dest=$1
+readarray -t vms < <(VBoxManage list vms | sed "s/ {.*}//g" | tr -d '"')
+readarray -t running_vms < <(VBoxManage list runningvms | sed "s/ {.*}//g" | tr -d '"')
+
+echo "[+] Gonna export the following VMs to $dest:"
+for ((i = 0; i < ${#vms[@]}; i++)); do
+  echo "  - ${vms[$i]}"
+done
+
+echo "[+] Stopping running VMs..."
+for ((i = 0; i < ${#running_vms[@]}; i++)); do
+  echo "  stopping ${running_vms[$i]} ..."
+  VBoxManage controlvm "${running_vms[$i]}" shutdown
+done
+
+echo "[+] Waiting for VMs to shut down..."
+sleep 10
+
+echo "[+] Exporting VMs to $dest:"
+for ((i = 0; i < ${#vms[@]}; i++)); do
+  echo "  exporting ${vms[$i]} ..."
+  filename=$(echo "${vms[$i]}" | sed "s/ /-/g")
+  VBoxManage export "${vms[$i]}" --ovf20 -o "$dest/$filename.ova"
+done

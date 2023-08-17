@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+  echo "Please specify source folder."
+  exit 1
+fi
+
+source=$1
+vms=($(find $source -maxdepth 1 -not -type d))
+
+echo "[+] Importing VMs from $source:"
+for ((i = 0; i < ${#vms[@]}; i++)); do
+  echo "  importing ${vms[$i]} ..."
+  VBoxManage import "$source/${vms[$i]}" --options=keepallmacs,importtovdi
+done
