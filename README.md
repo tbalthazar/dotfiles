@@ -22,9 +22,16 @@ $ git clone https://github.com/tbalthazar/dotfiles /tmp/dotfiles && \
   /tmp/dotfiles/bin/setup-as-tb.sh
 ```
 
-Setup some global shortcuts:
+## Post-install tweaks
+
+### Shortcusts
+
 - `ctrl+shift+space`: `1password --quick-access`
 - `shift+super+q`: Windows > Close window
+
+### VirtualBox
+
+- File > Preferences > Input > Virtual Machine > Host Key Combination: `left ctrl + left alt`
 
 ## Manage dotfiles
 
