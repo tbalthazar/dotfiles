@@ -29,3 +29,6 @@ for ((i = 0; i < ${#vms[@]}; i++)); do
   filename=$(echo "${vms[$i]}" | sed "s/ /-/g")
   VBoxManage export "${vms[$i]}" --ovf20 -o "$dest/$filename.ova"
 done
+
+echo "[+] Exporting Nat Networks to $dest."
+VBoxManage natnetwork list > $dest/nat-networks.txt
