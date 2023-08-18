@@ -32,3 +32,8 @@ done
 
 echo "[+] Exporting Nat Networks to $dest."
 VBoxManage natnetwork list > $dest/nat-networks.txt
+
+echo "[+] Copying shared folders to $dest."
+tar cvzf "$dest/virtualbox-shared-folders.tar.gz" "/home/tb/VirtualBox Shared Folders"
+
+echo "[+] Done."
