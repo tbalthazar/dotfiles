@@ -6,7 +6,7 @@ if [ -z "$1" ]; then
 fi
 
 source=$1
-vms=($(find $source -maxdepth 1 -not -type d))
+vms=($(find $source -maxdepth 1 -not -type d | grep "\.ova$"))
 
 echo "[+] Importing VMs from $source:"
 for ((i = 0; i < ${#vms[@]}; i++)); do
