@@ -556,6 +556,7 @@ vim.keymap.set('n', '<leader>sq', function()
     show_line = false,
   })
 end, { desc = '[S]earch [Q]uickfix' })
+vim.keymap.set('n', '<leader>ss', require('telescope.builtin').lsp_document_symbols, { desc = '[S]earch [S]ymbols' })
 vim.keymap.set('n', '<leader>fe', '<cmd>NvimTreeToggle<CR>', opts)
 
 -- tweak how diagnostic are displayed, see here:
