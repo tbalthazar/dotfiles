@@ -556,6 +556,7 @@ vim.keymap.set('n', '<leader>sq', function()
     show_line = false,
   })
 end, { desc = '[S]earch [Q]uickfix' })
+vim.keymap.set('n', '<leader>ss', require('telescope.builtin').lsp_document_symbols, { desc = '[S]earch [S]ymbols' })
 vim.keymap.set('n', '<leader>fe', '<cmd>NvimTreeToggle<CR>', opts)
 
 -- tweak how diagnostic are displayed, see here:
@@ -567,3 +568,11 @@ vim.diagnostic.config({
 })
 vim.o.updatetime = 250
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
+-- setup goimports on save
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.go',
+  callback = function()
+    vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
+  end
+})
