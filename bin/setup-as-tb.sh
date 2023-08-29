@@ -5,39 +5,61 @@ if [ "$EUID" -eq 0 ]
   exit
 fi
 
-bindl=~/.bin-dl
-obsidian_version=1.3.7
+# bindl=~/.bin-dl
+# obsidian_version=1.3.7
 
-echo "[+] Installing neovim..."
-mkdir -p $bindl
-wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage -O $bindl/nvim.appimage
-wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage.sha256sum -O $bindl/nvim.appimage.sha256sum
-cd $bindl
-sha256sum -c nvim.appimage.sha256sum
-rm $bindl/nvim.appimage.sha256sum
-chmod +x nvim.appimage
-ln -s nvim.appimage nvim
-ln -s nvim.appimage vim
-ln -s nvim.appimage vi
-cd ~
+flatpak_apps=(
+  org.mozilla.firefox
+  io.neovim.nvim
+  com.nextcloud.desktopclient.nextcloud
+  md.obsidian.Obsidian
+  com.discordapp.Discord
+  com.spotify.Client
+  com.transmissionbt.Transmission
+  com.protonvpn.www
+  com.google.Chrome
+  org.videolan.VLC
+  com.visualstudio.code
+  net.ankiweb.Anki
+)
 
-echo "[+] Installing Obsidian..."
-mkdir -p $bindl
-wget https://github.com/obsidianmd/obsidian-releases/releases/download/v$obsidian_version/Obsidian-$obsidian_version.AppImage \
-  -O $bindl/obsidian.appimage
-cd $bindl
-chmod +x obsidian.appimage
-./obsidian.appimage --appimage-extract
-cd squashfs-root
-# replace Exec=AppRun --no-sandbox %U by the full path of the downloaded appimage
-sed -i 's/^Exec=.*/Exec=\/home\/tb\/.bin-dl\/obsidian.appimage --no-sandbox %U/' obsidian.desktop
-mkdir -p ~/.local/share/applications
-mkdir -p ~/.local/share/icons/hicolor/512x512/apps
-cp obsidian.desktop ~/.local/share/applications
-cp obsidian.png ~/.local/share/icons/hicolor/512x512/apps
-update-desktop-database ~/.local/share/applications -v
-rm -rf ./squashfs-root
-cd ~
+echo "[+] Installing some apps via Flatpak..."
+for app in "${apps[@]}"; do
+  echo "  [+] Installing $app with Flatpak..."
+  flatpak install -y flathub "$app"
+done
+
+
+# echo "[+] Installing neovim..."
+# mkdir -p $bindl
+# wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage -O $bindl/nvim.appimage
+# wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage.sha256sum -O $bindl/nvim.appimage.sha256sum
+# cd $bindl
+# sha256sum -c nvim.appimage.sha256sum
+# rm $bindl/nvim.appimage.sha256sum
+# chmod +x nvim.appimage
+# ln -s nvim.appimage nvim
+# ln -s nvim.appimage vim
+# ln -s nvim.appimage vi
+# cd ~
+
+# echo "[+] Installing Obsidian..."
+# mkdir -p $bindl
+# wget https://github.com/obsidianmd/obsidian-releases/releases/download/v$obsidian_version/Obsidian-$obsidian_version.AppImage \
+#   -O $bindl/obsidian.appimage
+# cd $bindl
+# chmod +x obsidian.appimage
+# ./obsidian.appimage --appimage-extract
+# cd squashfs-root
+# # replace Exec=AppRun --no-sandbox %U by the full path of the downloaded appimage
+# sed -i 's/^Exec=.*/Exec=\/home\/tb\/.bin-dl\/obsidian.appimage --no-sandbox %U/' obsidian.desktop
+# mkdir -p ~/.local/share/applications
+# mkdir -p ~/.local/share/icons/hicolor/512x512/apps
+# cp obsidian.desktop ~/.local/share/applications
+# cp obsidian.png ~/.local/share/icons/hicolor/512x512/apps
+# update-desktop-database ~/.local/share/applications -v
+# rm -rf ./squashfs-root
+# cd ~
 
 echo "[+] Installing dotfiles..."
 git clone https://github.com/tbalthazar/dotfiles ~/.dotfiles

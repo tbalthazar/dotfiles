@@ -31,12 +31,10 @@ apt-get install -y \
       git \
       hplip \
       htop \
-      nextcloud-desktop \
       nnn \
       rcm \
       ripgrep \
       tmux \
-      vlc \
       zsh
 
 echo "[+] Installing dev dependencies..."
@@ -57,6 +55,12 @@ apt-get install -y \
 	libgdbm-dev \
 	libdb-dev \
 	uuid-dev
+
+echo "[+] Installing flatpak..."
+apt-get install -y \
+      flatpak \
+      gnome-software-plugin-flatpak \
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 echo "[+] Installing Docker..."
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do
