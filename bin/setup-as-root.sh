@@ -37,6 +37,7 @@ apt-get install -y \
       git \
       hplip \
       htop \
+      nextcloud-desktop \
       nnn \
       rcm \
       ripgrep \

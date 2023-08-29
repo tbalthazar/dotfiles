@@ -7,7 +7,6 @@ fi
 
 flatpak_apps=(
   org.mozilla.firefox
-  com.nextcloud.desktopclient.nextcloud
   md.obsidian.Obsidian
   com.discordapp.Discord
   com.spotify.Client
