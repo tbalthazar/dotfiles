@@ -17,10 +17,15 @@ echo "[+] Adding $username to sudo group..."
 echo "[+] Setting zsh as default shell..."
 /usr/sbin/usermod -s /usr/bin/zsh $username
 
+# fonts packages are used for XWindow (Wayland is used), and seem to cause font
+# issues in Flatpak Firefox
 echo "[+] Removing some packages..."
 apt-get purge -y \
   evolution \
-  transmission-gtk
+  transmission-gtk \
+  xfonts-base \
+  xfonts-100dpi \
+  xfonts-75dpi
 
 echo "[+] Installing additional packages..."
 apt-get install -y \
