@@ -19,7 +19,8 @@ echo "[+] Setting zsh as default shell..."
 
 echo "[+] Removing some packages..."
 apt-get purge -y \
-  evolution
+  evolution \
+  transmission-gtk
 
 echo "[+] Installing additional packages..."
 apt-get install -y \
