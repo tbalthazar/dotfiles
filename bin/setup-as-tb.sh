@@ -24,7 +24,7 @@ flatpak_apps=(
 )
 
 echo "[+] Installing some apps via Flatpak..."
-for app in "${apps[@]}"; do
+for app in "${flatpak_apps[@]}"; do
   echo "  [+] Installing $app with Flatpak..."
   flatpak install -y flathub "$app"
 done
