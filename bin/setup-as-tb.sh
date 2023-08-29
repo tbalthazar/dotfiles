@@ -10,7 +10,6 @@ fi
 
 flatpak_apps=(
   org.mozilla.firefox
-  io.neovim.nvim
   com.nextcloud.desktopclient.nextcloud
   md.obsidian.Obsidian
   com.discordapp.Discord
@@ -30,18 +29,18 @@ for app in "${flatpak_apps[@]}"; do
 done
 
 
-# echo "[+] Installing neovim..."
-# mkdir -p $bindl
-# wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage -O $bindl/nvim.appimage
-# wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage.sha256sum -O $bindl/nvim.appimage.sha256sum
-# cd $bindl
-# sha256sum -c nvim.appimage.sha256sum
-# rm $bindl/nvim.appimage.sha256sum
-# chmod +x nvim.appimage
-# ln -s nvim.appimage nvim
-# ln -s nvim.appimage vim
-# ln -s nvim.appimage vi
-# cd ~
+echo "[+] Installing neovim..."
+mkdir -p $bindl
+wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage -O $bindl/nvim.appimage
+wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage.sha256sum -O $bindl/nvim.appimage.sha256sum
+cd $bindl
+sha256sum -c nvim.appimage.sha256sum
+rm $bindl/nvim.appimage.sha256sum
+chmod +x nvim.appimage
+ln -s nvim.appimage nvim
+ln -s nvim.appimage vim
+ln -s nvim.appimage vi
+cd ~
 
 # echo "[+] Installing Obsidian..."
 # mkdir -p $bindl
