@@ -40,7 +40,7 @@ cd ~
 
 echo "[+] Installing dotfiles..."
 git clone https://github.com/tbalthazar/dotfiles ~/.dotfiles
-rcup -v -d ~/.dotfiles/dotfiles -t linux-desktop
+rcup -v -f -d ~/.dotfiles/dotfiles -t linux-desktop
 
 echo "[+] Installing asdf..."
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
