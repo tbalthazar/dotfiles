@@ -5,6 +5,8 @@ if [ "$EUID" -eq 0 ]
   exit
 fi
 
+bindl=~/.bin-dl
+
 flatpak_apps=(
   org.mozilla.firefox
   md.obsidian.Obsidian
