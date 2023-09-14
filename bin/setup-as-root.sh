@@ -17,9 +17,15 @@ echo "[+] Adding $username to sudo group..."
 echo "[+] Setting zsh as default shell..."
 /usr/sbin/usermod -s /usr/bin/zsh $username
 
+# fonts packages are used for XWindow (Wayland is used), and seem to cause font
+# issues in Flatpak Firefox
 echo "[+] Removing some packages..."
 apt-get purge -y \
-  evolution
+  evolution \
+  transmission-gtk \
+  xfonts-base \
+  xfonts-100dpi \
+  xfonts-75dpi
 
 echo "[+] Installing additional packages..."
 apt-get install -y \
@@ -36,7 +42,6 @@ apt-get install -y \
       rcm \
       ripgrep \
       tmux \
-      vlc \
       zsh
 
 echo "[+] Installing dev dependencies..."
@@ -57,6 +62,16 @@ apt-get install -y \
 	libgdbm-dev \
 	libdb-dev \
 	uuid-dev
+
+echo "[+] Installing NordVPN..."
+curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh | sh -s -- -n
+/usr/sbin/usermod -aG nordvpn $username
+
+echo "[+] Installing flatpak..."
+apt-get install -y \
+      flatpak \
+      gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 echo "[+] Installing Docker..."
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do
