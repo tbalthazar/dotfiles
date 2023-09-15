@@ -6,10 +6,10 @@ if [ "$EUID" -eq 0 ]
 fi
 
 bindl=~/.bin-dl
+obsidian_version=1.4.13
 
 flatpak_apps=(
   org.mozilla.firefox
-  md.obsidian.Obsidian
   com.discordapp.Discord
   com.spotify.Client
   com.transmissionbt.Transmission
@@ -26,7 +26,6 @@ for app in "${flatpak_apps[@]}"; do
   flatpak install -y flathub "$app"
 done
 
-
 echo "[+] Installing neovim..."
 mkdir -p $bindl
 wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage -O $bindl/nvim.appimage
@@ -38,6 +37,24 @@ chmod +x nvim.appimage
 ln -s nvim.appimage nvim
 ln -s nvim.appimage vim
 ln -s nvim.appimage vi
+cd ~
+
+echo "[+] Installing Obsidian..."
+mkdir -p $bindl
+wget https://github.com/obsidianmd/obsidian-releases/releases/download/v$obsidian_version/Obsidian-$obsidian_version.AppImage \
+  -O $bindl/obsidian.appimage
+cd $bindl
+chmod +x obsidian.appimage
+./obsidian.appimage --appimage-extract
+cd squashfs-root
+# replace Exec=AppRun --no-sandbox %U by the full path of the downloaded appimage
+sed -i 's/^Exec=.*/Exec=\/home\/tb\/.bin-dl\/obsidian.appimage --no-sandbox %U/' obsidian.desktop
+mkdir -p ~/.local/share/applications
+mkdir -p ~/.local/share/icons/hicolor/512x512/apps
+cp obsidian.desktop ~/.local/share/applications
+cp obsidian.png ~/.local/share/icons/hicolor/512x512/apps
+update-desktop-database ~/.local/share/applications -v
+rm -rf ./squashfs-root
 cd ~
 
 echo "[+] Installing dotfiles..."
