@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+pkill VBoxClient
+sleep 1
+
+/usr/bin/VBoxClient --clipboard
+/usr/bin/VBoxClient --seamless
+/usr/bin/VBoxClient --draganddrop
+/usr/bin/VBoxClient --vmsvga
