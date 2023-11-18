@@ -42,6 +42,7 @@ apt-get install -y \
       rcm \
       ripgrep \
       tmux \
+      wl-clipboard \
       zsh
 
 echo "[+] Installing dev dependencies..."
