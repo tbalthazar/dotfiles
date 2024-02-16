@@ -9,6 +9,7 @@ bindl=~/.bin-dl
 obsidian_version=1.5.3
 
 flatpak_apps=(
+  com.slack.Slack
   com.discordapp.Discord
   com.spotify.Client
   com.transmissionbt.Transmission
