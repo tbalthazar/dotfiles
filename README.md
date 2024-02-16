@@ -24,9 +24,8 @@ $ git clone https://github.com/tbalthazar/dotfiles /tmp/dotfiles && \
 
 ## Post-install tweaks
 
-### Shortcusts
+### Shortcuts
 
-- `ctrl+shift+space`: `1password --quick-access`
 - `shift+super+q`: Windows > Close window
 
 ### VirtualBox
