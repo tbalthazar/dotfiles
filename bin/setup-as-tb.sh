@@ -9,14 +9,14 @@ bindl=~/.bin-dl
 obsidian_version=1.5.3
 
 flatpak_apps=(
-  com.slack.Slack
   com.discordapp.Discord
+  com.google.Chrome
+  com.slack.Slack
   com.spotify.Client
   com.transmissionbt.Transmission
-  com.google.Chrome
-  org.videolan.VLC
   com.visualstudio.code
   net.ankiweb.Anki
+  org.videolan.VLC
 )
 
 echo "[+] Installing some apps via Flatpak..."
