@@ -6,7 +6,7 @@ if [ "$EUID" -eq 0 ]
 fi
 
 bindl=~/.bin-dl
-obsidian_version=1.4.13
+obsidian_version=1.5.3
 
 flatpak_apps=(
   com.discordapp.Discord
