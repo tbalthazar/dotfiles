@@ -58,10 +58,6 @@ apt-get install -y \
 	libdb-dev \
 	uuid-dev
 
-echo "[+] Installing NordVPN..."
-curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh | sh -s -- -n
-/usr/sbin/usermod -aG nordvpn $username
-
 echo "[+] Installing flatpak..."
 apt-get install -y \
       flatpak \
