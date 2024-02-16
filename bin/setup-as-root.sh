@@ -87,6 +87,7 @@ wget \
   https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_${protonvpn_version}_all.deb \
   -O /tmp/protonvpn-stable-release_${protonvpn_version}_all.deb
 echo "c68a0b8dad58ab75080eed7cb989e5634fc88fca051703139c025352a6ee19ad  /tmp/protonvpn-stable-release_${protonvpn_version}_all.deb" | sha256sum --check -
+export PATH=$PATH:/usr/sbin
 dpkg -i /tmp/protonvpn-stable-release_${protonvpn_version}_all.deb
 apt-get update
 apt-get install -y proton-vpn-gnome-desktop
