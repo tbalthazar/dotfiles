@@ -12,7 +12,6 @@ flatpak_apps=(
   com.discordapp.Discord
   com.spotify.Client
   com.transmissionbt.Transmission
-  com.protonvpn.www
   com.google.Chrome
   org.videolan.VLC
   com.visualstudio.code
