@@ -7,6 +7,7 @@ fi
 
 username=tb
 debian_codename=bookworm
+protonvpn_version='1.0.3-2'
 
 echo "[+] Updating packages..."
 apt-get update && apt-get dist-upgrade -y && apt-get autoremove -y
@@ -83,11 +84,12 @@ apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin do
 
 echo "[+] Installing ProtonVPN..."
 wget \
-  https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.3-2_all.deb \
-  -O /tmp/protonvpn-stable-release_1.0.3-2_all.deb
-echo "c68a0b8dad58ab75080eed7cb989e5634fc88fca051703139c025352a6ee19ad  /tmp/protonvpn-stable-release_1.0.3-2_all.deb" | sha256sum --check -
+  https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_${protonvpn_version}_all.deb \
+  -O /tmp/protonvpn-stable-release_${protonvpn_version}_all.deb
+echo "c68a0b8dad58ab75080eed7cb989e5634fc88fca051703139c025352a6ee19ad  /tmp/protonvpn-stable-release_${protonvpn_version}_all.deb" | sha256sum --check -
+dpkg -i /tmp/protonvpn-stable-release_${protonvpn_version}_all.deb
 apt-get update
-apt-get install proton-vpn-gnome-desktop
+apt-get install -y proton-vpn-gnome-desktop
 
 echo "[+] Installing Virtualbox..."
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian $debian_codename contrib" > /etc/apt/sources.list.d/virtualbox.list
