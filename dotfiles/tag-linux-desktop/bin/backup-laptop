@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# exit if already running
+lockfile=/tmp/backup-laptop.lock
+if [[ -f "$lockfile" ]]; then
+    echo "Backup already running."
+    exit 1
+fi
+
+# create a lockfile
+trap "rm -f -- '$lockfile'" EXIT
+echo $$ > "$lockfile"
+
+
+rclone=$(which rclone)
+
+# --links: Translate symlinks to/from regular files with a '.rclonelink' extension. It copies symbolic links as symbolic links instead of copying the files that the symbolic links point to
+
+$rclone sync -vv \
+    --links \
+    --progress \
+    --delete-excluded \
+    --log-file /tmp/rclone.log \
+    --exclude-from /home/tb/.config/rclone/tb-laptop-rclone-exclude-list \
+    /home/tb \
+    tb-laptop-rclone-crypt-2023-11:
