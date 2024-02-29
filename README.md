@@ -60,5 +60,13 @@ $ mkrc -t linux-desktop ~/.config/vlc/vlcrc
 
 ## Neovim
 
-Main config is `~/.config/nvim/init.lua`, and is a slightly modified version of [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim/commit/98ad2ee32adea1a02b06a4b45c16fb6f11d836b9).
+Main config is `~/.config/nvim/init.lua`, and is a slightly modified version of [kickstart.nvim (at this specific commit)](https://github.com/nvim-lua/kickstart.nvim/commit/465d6f25c23dc6be27746b758253168adf9cb5bb).
 Additional plugins are configured in `~/.config/nvim/lua/custom/plugins/init.lua`.
+
+Autoformat is managed by `stevearc/conform.nvim`. Current autoformatters can be seen with `:ConformInfo`.
+
+Plugins are managed by Lazy, see `:Lazy`.
+
+Mason is a package manager to install LSPs, Linters, ...: `:Mason`
+
+Syntax Highlighting is done with TreeSitter: `:TSInstallInfo`
