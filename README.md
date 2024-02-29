@@ -4,25 +4,37 @@ Dotfiles are managed by [rcm](https://github.com/thoughtbot/rcm) and computer se
 
 ## Setup a new Debian 12 (Bookworm) laptop
 
-Perform standard Debian install with Gnome and system utilities, then run this:
+Perform standard Debian install with Gnome and system utilities.
 
+Switch to root:
 ```bash
-$ su
-# apt-get update && apt-get install -y git && \
-  git clone https://github.com/tbalthazar/dotfiles /tmp/dotfiles && \
-  cd /tmp/dotfiles &&
-  ./bin/setup-as-root.sh
-# reboot now
+su
 ```
 
-then run, as `tb`:
-
+Install all the things:
 ```bash
-$ git clone https://github.com/tbalthazar/dotfiles /tmp/dotfiles && \
+apt-get update && apt-get install -y git && \
+  git clone https://github.com/tbalthazar/dotfiles /tmp/dotfiles && \
+  cd /tmp/dotfiles && \
+  ./bin/setup-as-root.sh
+```
+
+Reboot:
+```bash
+reboot now
+```
+
+Then run, as `tb`:
+```bash
+git clone https://github.com/tbalthazar/dotfiles /tmp/dotfiles && \
   /tmp/dotfiles/bin/setup-as-tb.sh
 ```
 
 ## Post-install tweaks
+
+### Backup
+
+- add this backup task using `crontab -e`: `30 9,12,19 * * * /home/tb/.bin/backup-laptop`
 
 ### Shortcuts
 
