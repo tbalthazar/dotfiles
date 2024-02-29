@@ -8,6 +8,7 @@ fi
 bindl=~/.bin-dl
 obsidian_version='1.5.8'
 asdf_version='v0.14.0'
+rclone_version='1.65.2'
 
 flatpak_apps=(
   com.discordapp.Discord
@@ -54,6 +55,19 @@ cp obsidian.desktop ~/.local/share/applications
 cp obsidian.png ~/.local/share/icons/hicolor/512x512/apps
 update-desktop-database ~/.local/share/applications -v
 rm -rf ./squashfs-root
+cd ~
+
+echo "[+] Installing rclone..."
+mkdir -p $bindl
+rclone_tmp_dir=$(mktemp -d)
+wget \
+  https://github.com/rclone/rclone/releases/download/v$rclone_version/rclone-v$rclone_version-linux-amd64.zip \
+  -O $rclone_tmp_dir/rclone-v$rclone_version-linux-amd64.zip
+cd $rclone_tmp_dir
+unzip rclone-v$rclone_version-linux-amd64.zip
+cp rclone-v$rclone_version-linux-amd64/rclone $bindl/
+chmod +x $bindl/rclone
+rm -rf $rclone_tmp_dir
 cd ~
 
 echo "[+] Installing dotfiles..."
