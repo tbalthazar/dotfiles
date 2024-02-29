@@ -6,4 +6,28 @@ return {
   {
     'christoomey/vim-tmux-navigator',
   },
+  {
+    'nvim-tree/nvim-tree.lua',
+    config = function()
+      require('nvim-tree').setup {
+        renderer = {
+          indent_markers = {
+            enable = true,
+          },
+          icons = {
+            git_placement = 'signcolumn',
+            show = {
+              file = false,
+              folder = false,
+              folder_arrow = false,
+              git = true,
+            },
+            glyphs = {
+              symlink = '',
+            },
+          },
+        },
+      }
+    end,
+  },
 }
