@@ -14,7 +14,6 @@ flatpak_apps=(
   com.slack.Slack
   com.spotify.Client
   com.transmissionbt.Transmission
-  com.visualstudio.code
   net.ankiweb.Anki
   org.videolan.VLC
 )
