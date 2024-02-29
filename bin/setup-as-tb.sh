@@ -6,7 +6,8 @@ if [ "$EUID" -eq 0 ]
 fi
 
 bindl=~/.bin-dl
-obsidian_version=1.5.3
+obsidian_version='1.5.8'
+asdf_version='v0.14.0'
 
 flatpak_apps=(
   com.discordapp.Discord
@@ -60,9 +61,9 @@ git clone https://github.com/tbalthazar/dotfiles ~/.dotfiles
 rcup -v -f -d ~/.dotfiles/dotfiles -t linux-desktop
 
 echo "[+] Installing asdf..."
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch $asdf_version
 . "$HOME/.asdf/asdf.sh"
-for plugin in golang ruby kubectl terraform; do
+for plugin in golang ruby kubectl terraform packer; do
   echo "[+] Installing $plugin with asdf..."
   asdf plugin add $plugin
   asdf install $plugin latest
