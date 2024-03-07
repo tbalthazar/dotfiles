@@ -43,6 +43,7 @@ git clone https://github.com/tbalthazar/dotfiles /tmp/dotfiles && \
 ### VirtualBox
 
 - File > Preferences > Input > Virtual Machine > Host Key Combination: `left ctrl + left alt`
+- File > Preferences > Input > Extended Features > Auto Capture Keyboard: unckecked
 
 ## Manage dotfiles
 
