@@ -28,6 +28,9 @@ alias dc='docker-compose'
 alias mp='multipass'
 alias mk='microk8s kubectl'
 alias notes='tmux rename-window notes && cd ~/Nextcloud/Notes && nvim index.md'
+tping() {
+  /usr/bin/ping $1 | while read pong; do echo "$(date): $pong"; done
+}
 dsize() {
   du -hx -d 1 -t 1G $1 | sort -hr
 }
