@@ -28,6 +28,9 @@ alias dc='docker-compose'
 alias mp='multipass'
 alias mk='microk8s kubectl'
 alias notes='tmux rename-window notes && cd ~/Nextcloud/Notes && nvim index.md'
+dhcprenew() {
+  sudo dhclient -r $1; sudo dhclient $1
+}
 tping() {
   /usr/bin/ping $1 | while read pong; do echo "$(date): $pong"; done
 }
