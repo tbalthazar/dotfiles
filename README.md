@@ -4,7 +4,7 @@ Dotfiles are managed by [rcm](https://github.com/thoughtbot/rcm) and computer se
 
 ## Setup a new Debian 12 (Bookworm) laptop
 
-Perform standard Debian install with Gnome and system utilities.
+Perform standard Debian install with Gnome and system utilities. 
 
 Switch to root:
 ```bash
