@@ -19,6 +19,7 @@
 /.local/share/heroku/**
 /.local/share/tracker/**
 /.local/share/Trash/**
+/.local/share/nvim/**
 /.local/state/nvim/**
 /.mozilla/**
 /.npm/**
