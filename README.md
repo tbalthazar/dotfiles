@@ -39,6 +39,8 @@ git clone https://github.com/tbalthazar/dotfiles /tmp/dotfiles && \
 ### Shortcuts
 
 - `shift+super+q`: Windows > Close window
+- `super+<tab>`: Navigation > Switch applications
+- `alt+<tab>`: Navigation > Switch windows
 
 ### VirtualBox
 
