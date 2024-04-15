@@ -15,6 +15,7 @@
 /.fzf/**
 /.kube/cache/**
 /.kube-ps1/**
+/.local/pipx/**
 /.local/share/containers/**
 /.local/share/heroku/**
 /.local/share/tracker/**
