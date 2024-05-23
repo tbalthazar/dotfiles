@@ -16,8 +16,8 @@ if [[ $UID -eq 0 ]]; then
   local user_symbol='#'
 else
   local user_host=$(print -P '%n@%m')
-  if [ "$user_host" = "tbalthazar@tbalthazar-ltm8" ]; then
-    local user_host="uncle marc's"
+  if [ "$user_host" = "tb@W50020335L" ]; then
+    local user_host="mloz"
   fi
   local user_symbol='$'
 fi
