@@ -74,3 +74,7 @@ Plugins are managed by Lazy, see `:Lazy`.
 Mason is a package manager to install LSPs, Linters, ...: `:Mason`
 
 Syntax Highlighting is done with TreeSitter: `:TSInstallInfo`
+
+## WSL / Windows Terminal
+
+- Windows Terminal > Settings > Actions: delete the `ctrl+v` shortcut (as it interferes with vim)
