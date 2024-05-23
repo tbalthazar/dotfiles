@@ -52,5 +52,23 @@ function tf_prompt_info() {
 }
 local tf_status='$(tf_prompt_info)'
 
-PROMPT="╭─%F{yellow}${user_host}%f %F{green}${current_dir}%f%F{blue}${git_status}%f${kube_status}${tf_status}
+# python
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+virtualenv_prompt() {
+    # If not in a virtualenv, print nothing
+    [[ "$VIRTUAL_ENV" == "" ]] && return
+
+    # Distinguish between the shell where the virtualenv was activated
+    # and its children
+    local venv_name="${VIRTUAL_ENV##*/}"
+    if typeset -f deactivate >/dev/null; then
+        echo "[${venv_name}] "
+    else
+        echo "<${venv_name}> "
+    fi
+}
+local venv_status='$(virtualenv_prompt)'
+
+
+PROMPT="╭─%F{yellow}${user_host}%f %F{green}${current_dir}%f%F{blue}${git_status}%f${kube_status}${tf_status}${venv_status}
 ╰─%B${user_symbol}%b "
