@@ -6,7 +6,7 @@ if [ "$EUID" -eq 0 ]
 fi
 
 bindl=~/.bin-dl
-obsidian_version='1.5.8'
+obsidian_version='1.6.3'
 asdf_version='v0.14.0'
 rclone_version='1.65.2'
 
