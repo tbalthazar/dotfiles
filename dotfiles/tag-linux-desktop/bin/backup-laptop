@@ -12,7 +12,8 @@ trap "rm -f -- '$lockfile'" EXIT
 echo $$ > "$lockfile"
 
 
-rclone=$(which rclone)
+# rclone=$(which rclone)
+rclone="/home/tb/.bin-dl/rclone"
 
 # --links: Translate symlinks to/from regular files with a '.rclonelink' extension. It copies symbolic links as symbolic links instead of copying the files that the symbolic links point to
 
