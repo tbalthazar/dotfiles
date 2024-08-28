@@ -27,4 +27,5 @@
 [user]
   name = Thomas Balthazar
   email = thomas@balthazar.info
-
+[init]
+  defaultBranch = main
