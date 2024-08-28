@@ -34,7 +34,7 @@ git clone https://github.com/tbalthazar/dotfiles /tmp/dotfiles && \
 
 ### Backup
 
-- add this backup task using `crontab -e`: `30 9,12,19 * * * /home/tb/.bin/backup-laptop`
+- add this backup task using `crontab -e`: `30 9,12,19 * * * /home/tb/.bin/backup-laptop > /tmp/backup-cron.log 2>&1`
 
 ### Shortcuts
 
