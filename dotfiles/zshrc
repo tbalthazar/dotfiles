@@ -60,6 +60,13 @@ if [ -d "$java_dir" ]; then
   export PATH=$JAVA_HOME/bin:$PATH
 fi
 
+# maven
+maven_dir=/usr/share/maven
+if [ -d "$java_dir" ]; then
+  export MAVEN_HOME=$java_dir
+  export PATH=$MAVEN_HOME/bin:$PATH
+fi
+
 # pipx: add first in the path to use pipx version of system-wide binaries
 export PATH="$HOME/.local/bin:$PATH"
 
