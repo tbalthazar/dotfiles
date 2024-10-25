@@ -4,7 +4,7 @@
   ci = commit
   co = checkout
   cp = commit -p
-  cm = "!git checkout master && git pull && git branch"
+  cm = "!git checkout main && git pull && git branch"
   di = diff
   ds = diff --staged
   dt = difftool
