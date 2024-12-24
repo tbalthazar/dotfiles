@@ -4,15 +4,21 @@ dest=/tmp/ProtonPass.deb
 deb_url=https://proton.me/download/PassDesktop/linux/x64/ProtonPass.deb
 shas_url=https://proton.me/download/PassDesktop/linux/x64/version.json
 
+say() {
+  echo -e "--> $1\n"
+}
+
 # delete deb file if already downloaded
 if [ -e "$dest" ]; then
   rm "$dest"
 fi
 
 # download deb file
+say "Downloading .deb file..."
 wget -q $deb_url -O $dest
 
 # get sha from version file
+say "Verifying its signature..."
 sha=$(wget -q -O - "$shas_url" | jq -r '.Releases[0].File[0].Sha512CheckSum')
 
 # verify sha
@@ -20,11 +26,11 @@ echo "$sha $dest" | sha512sum --check - > /dev/null 2>&1
 
 # install
 if [ $? -eq 0 ]; then
-  echo "Checksum is valid, installing..."
+  say "Checksum is valid, installing..."
   sudo dpkg -i $dest
-  echo "Proton Pass Installed, killing old process..."
+  say "Proton Pass Installed, killing old process..."
   pkill "Proton Pass"
-  echo "All good now!"
+  say "All good now!"
 else
-  echo "Checksum is invalid!"
+  say "Checksum is invalid!"
 fi
