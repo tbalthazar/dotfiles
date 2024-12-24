@@ -20,8 +20,11 @@ echo "$sha $dest" | sha512sum --check - > /dev/null 2>&1
 
 # install
 if [ $? -eq 0 ]; then
-  echo "Checksum is valid."
+  echo "Checksum is valid, installing..."
   sudo dpkg -i $dest
+  echo "Proton Pass Installed, killing old process..."
+  pkill "Proton Pass"
+  echo "All good now!"
 else
   echo "Checksum is invalid!"
 fi
