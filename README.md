@@ -50,6 +50,7 @@ git clone https://github.com/tbalthazar/dotfiles /tmp/dotfiles && \
 ### Extensions
 
 - [Gnome App Indicator](https://extensions.gnome.org/extension/615/appindicator-support/)
+- [Tactile](https://gitlab.com/lundal/tactile)
 
 ## Manage dotfiles
 
