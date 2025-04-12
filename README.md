@@ -47,6 +47,10 @@ git clone https://github.com/tbalthazar/dotfiles /tmp/dotfiles && \
 - File > Preferences > Input > Virtual Machine > Host Key Combination: `left ctrl + left alt`
 - File > Preferences > Input > Extended Features > Auto Capture Keyboard: unckecked
 
+### Extensions
+
+- [Gnome App Indicator](https://extensions.gnome.org/extension/615/appindicator-support/)
+
 ## Manage dotfiles
 
 Update and install dotfiles managed by rcm (from dotfiles to home):
