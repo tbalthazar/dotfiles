@@ -1,0 +1,38 @@
+---
+# Install neovim
+
+- name: Check installed version of neovim
+  ansible.builtin.shell:
+    cmd: "/opt/nvim/nvim-linux-x86_64/bin/nvim --version | grep NVIM | cut -d ' ' -f 2"
+  register: neovim_installed_version
+  failed_when: false
+  changed_when: false
+
+- name: Download neovim
+  ansible.builtin.get_url:
+    url: "https://github.com/neovim/neovim/releases/download/{{ neovim_version }}/nvim-linux-x86_64.tar.gz"
+    dest: "/tmp/nvim-linux-x86_64.tar.gz"
+    checksum: "sha256:https://github.com/neovim/neovim/releases/download/{{ neovim_version }}/shasum.txt"
+    force: true
+    mode: 0644
+  when: neovim_installed_version.stdout is not defined or not neovim_installed_version.stdout is search(neovim_version)
+
+- name: Remove old neovim version
+  ansible.builtin.file:
+    path: /opt/nvim
+    state: absent
+  when: neovim_installed_version.stdout is not defined or not neovim_installed_version.stdout is search(neovim_version)
+
+- name: Create destinatin dir
+  ansible.builtin.file:
+    path: /opt/nvim
+    state: directory
+  when: neovim_installed_version.stdout is not defined or not neovim_installed_version.stdout is search(neovim_version)
+
+- name: Install neovim
+  unarchive:
+    src: "/tmp/nvim-linux-x86_64.tar.gz"
+    remote_src: yes
+    dest: "/opt/nvim"
+  check_mode: false
+  when: neovim_installed_version.stdout is not defined or not neovim_installed_version.stdout is search(neovim_version)

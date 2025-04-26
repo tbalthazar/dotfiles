@@ -23,6 +23,7 @@
     repo: "{{ dotfiles_repo }}"
     dest: "$HOME/.dotfiles"
     version: "{{ dotfiles_branch }}"
+    force: true
   register: clone_dotfiles
 
 - name: Install dotfiles

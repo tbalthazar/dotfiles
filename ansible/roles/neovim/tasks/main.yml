@@ -1,0 +1,4 @@
+---
+# Install neovim and friends
+- import_tasks: neovim.yml
+- import_tasks: nerd_fonts.yml

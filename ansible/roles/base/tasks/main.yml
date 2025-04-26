@@ -15,9 +15,13 @@
     - ansible
     - build-essential
     - curl
+    - fd-find
+    - fzf
     - git
     - htop
     - nnn
+    - ripgrep
+    - unzip
     - zsh
     state: present
     autoremove: true

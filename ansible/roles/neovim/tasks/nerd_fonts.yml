@@ -1,0 +1,49 @@
+---
+# Install a nerd font
+
+- name: Ensure the fonts directory exists
+  become: false
+  ansible.builtin.file:
+    path: "~/.local/share/fonts"
+    state: directory
+
+- name: Create a tmp directory
+  become: false
+  ansible.builtin.file:
+    path: "/tmp/{{ neovim_font_name }}"
+    state: directory
+
+- name: Download Fira Mono nerd font
+  become: false
+  ansible.builtin.get_url:
+    url: "https://github.com/ryanoasis/nerd-fonts/releases/download/{{ neovim_font_version }}/{{ neovim_font_name }}.zip"
+    dest: "/tmp/{{ neovim_font_name }}/{{ neovim_font_name }}.zip"
+    checksum: "sha256:https://github.com/ryanoasis/nerd-fonts/releases/download/{{ neovim_font_version }}/SHA-256.txt"
+
+- name: Unzip font
+  become: false
+  ansible.builtin.unarchive:
+    src: "/tmp/{{ neovim_font_name }}/{{ neovim_font_name }}.zip"
+    dest: "/tmp/{{ neovim_font_name }}"
+
+- name: Copy fonts to the fonts directory
+  become: false
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "~/.local/share/fonts/"
+    mode: '0644'
+    remote_src: true
+  with_fileglob:
+    - "/tmp/{{ neovim_font_name }}/*.otf"
+
+- name: Clean up tmp directory
+  become: false
+  ansible.builtin.file:
+    path: "/tmp/{{ neovim_font_name }}"
+    state: absent
+
+- name: Rebuild font cache
+  become: false
+  command: fc-cache
+
+

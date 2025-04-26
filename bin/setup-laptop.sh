@@ -40,11 +40,11 @@ echo -e "[-] Starting setup ...\n"
 run_with_messages "Asking for sudo password" \
   "sudo -v"
 
-run_with_messages "Updating packages" \
-  "sudo apt update && sudo apt dist-upgrade -y && sudo apt autoremove -y"
-
-run_with_messages "Installing required packages" \
-  "sudo apt install -y ansible git"
+# run_with_messages "Updating packages" \
+#   "sudo apt update && sudo apt dist-upgrade -y && sudo apt autoremove -y"
+#
+# run_with_messages "Installing required packages" \
+#   "sudo apt install -y ansible git"
 
 # TODO: change repo dest? what about chown tb:tb?
 repo_dest="/tmp/dotfiles"
