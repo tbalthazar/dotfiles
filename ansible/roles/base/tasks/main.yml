@@ -1,0 +1,57 @@
+---
+# Install base packages
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true 
+    upgrade: safe
+    autoremove: true
+    cache_valid_time: 3600
+
+- name: Install base packages
+  ansible.builtin.apt:
+    name:
+    - alacritty
+    - ansible
+    - build-essential
+    - curl
+    - git
+    - htop
+    - nnn
+    - zsh
+    state: present
+    autoremove: true
+    purge: true
+
+- name: Remove some default packages
+  ansible.builtin.apt:
+    name:
+    - evolution
+    - transmission-gtk
+    state: absent
+    autoremove: true
+    purge: true
+
+- name: Make sure we have a 'sudo' group
+  ansible.builtin.group:
+    name: sudo
+    state: present
+
+- name: Add the users to the 'sudo' group
+  ansible.builtin.user:
+    name: "{{ user }}"
+    groups: sudo
+    append: yes
+
+- name: Get zsh path
+  ansible.builtin.command: which zsh 
+  register: zsh_path
+  when: not ansible_user_shell is search("zsh")
+  changed_when: false
+
+- name: Switch to zsh
+  ansible.builtin.user:
+    name: "{{ user }}"
+    shell: "{{ zsh_path.stdout }}"
+  when: not ansible_user_shell is search("zsh")
+

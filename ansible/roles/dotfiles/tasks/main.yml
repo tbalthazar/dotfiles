@@ -1,0 +1,32 @@
+---
+# Install dotfiles
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true 
+    upgrade: safe
+    autoremove: true
+    cache_valid_time: 3600
+
+- name: Install required packages
+  ansible.builtin.apt:
+    name:
+    - git
+    - rcm
+    state: present
+    autoremove: true
+    purge: true
+
+- name: Clone dotfiles
+  become: false
+  ansible.builtin.git:
+    repo: "{{ dotfiles_repo }}"
+    dest: "$HOME/.dotfiles"
+    version: "{{ dotfiles_branch }}"
+  register: clone_dotfiles
+
+- name: Install dotfiles
+  become: false
+  ansible.builtin.command:
+    cmd: "rcup -v -d $HOME/.dotfiles/dotfiles -t {{ dotfiles_tag }}"
+  when: clone_dotfiles.changed

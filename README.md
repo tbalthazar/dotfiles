@@ -1,5 +1,15 @@
 # Dotfiles
 
+## Setup
+
+```bash
+wget -qO- https://code.h.tb.io/tb/dotfiles/raw/branch/tb/2025/bin/setup-laptop.sh | bash
+
+wget -qO /tmp/setup-laptop.sh https://code.h.tb.io/tb/dotfiles/raw/branch/tb/2025/bin/setup-laptop.sh && chmod +x /tmp/setup-laptop.sh && /tmp/setup-laptop.sh
+```
+
+-----------------------------------
+
 Dotfiles are managed by [rcm](https://github.com/thoughtbot/rcm) and computer setup is setup using a couple of basic bash scripts.
 
 ## Setup a new Debian 12 (Bookworm) laptop
