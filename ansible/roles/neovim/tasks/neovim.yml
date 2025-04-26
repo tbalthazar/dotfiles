@@ -23,7 +23,7 @@
     state: absent
   when: neovim_installed_version.stdout is not defined or not neovim_installed_version.stdout is search(neovim_version)
 
-- name: Create destinatin dir
+- name: Create destination dir
   ansible.builtin.file:
     path: /opt/nvim
     state: directory

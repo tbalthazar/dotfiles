@@ -1,0 +1,41 @@
+---
+# Install Zellij
+
+- name: Check installed version of Zellij
+  become: false
+  ansible.builtin.shell:
+    cmd: "$HOME/.bin-dl/zellij --version | cut -d ' ' -f 2"
+  register: zellij_installed_version
+  failed_when: false
+  changed_when: false
+
+- name: Download Zellij
+  become: false
+  ansible.builtin.get_url:
+    url: "https://github.com/zellij-org/zellij/releases/download/v{{ zellij_version }}/zellij-x86_64-unknown-linux-musl.tar.gz"
+    dest: "/tmp/zellij-x86_64-unknown-linux-musl.tar.gz"
+    checksum: "sha256:https://github.com/zellij-org/zellij/releases/download/v{{ zellij_version }}/zellij-x86_64-unknown-linux-musl.sha256sum"
+    force: true
+    mode: 0644
+  when: zellij_installed_version.stdout is not defined or not zellij_installed_version.stdout is search(zellij_version)
+
+- name: Remove old neovim version
+  become: false
+  ansible.builtin.file:
+    path: "$HOME/.bin-dl/zellij"
+    state: absent
+  when: zellij_installed_version.stdout is not defined or not zellij_installed_version.stdout is search(zellij_version)
+
+- name: Create destination dir
+  ansible.builtin.file:
+    path: "$HOME/.bin-dl"
+    state: directory
+  when: zellij_installed_version.stdout is not defined or not zellij_installed_version.stdout is search(zellij_version)
+
+- name: Install Zellij
+  unarchive:
+    src: "/tmp/zellij-x86_64-unknown-linux-musl.tar.gz"
+    remote_src: yes
+    dest: "$HOME/.bin-dl/"
+  check_mode: false
+  when: zellij_installed_version.stdout is not defined or not zellij_installed_version.stdout is search(zellij_version)
