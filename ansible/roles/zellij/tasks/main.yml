@@ -14,12 +14,42 @@
   ansible.builtin.get_url:
     url: "https://github.com/zellij-org/zellij/releases/download/v{{ zellij_version }}/zellij-x86_64-unknown-linux-musl.tar.gz"
     dest: "/tmp/zellij-x86_64-unknown-linux-musl.tar.gz"
-    checksum: "sha256:https://github.com/zellij-org/zellij/releases/download/v{{ zellij_version }}/zellij-x86_64-unknown-linux-musl.sha256sum"
     force: true
     mode: 0644
   when: zellij_installed_version.stdout is not defined or not zellij_installed_version.stdout is search(zellij_version)
 
-- name: Remove old neovim version
+- name: Decompress Zellij
+  become: false
+  unarchive:
+    src: "/tmp/zellij-x86_64-unknown-linux-musl.tar.gz"
+    remote_src: yes
+    dest: "/tmp"
+  check_mode: false
+  when: zellij_installed_version.stdout is not defined or not zellij_installed_version.stdout is search(zellij_version)
+
+- name: Download Zellij Signature
+  become: false
+  ansible.builtin.get_url:
+    url: "https://github.com/zellij-org/zellij/releases/download/v{{ zellij_version }}/zellij-x86_64-unknown-linux-musl.sha256sum"
+    dest: "/tmp/zellij-x86_64-unknown-linux-musl.sha256sum"
+    force: true
+    mode: 0644
+  when: zellij_installed_version.stdout is not defined or not zellij_installed_version.stdout is search(zellij_version)
+
+- name: Verify file checksum
+  become: false
+  command: sha256sum --check /tmp/zellij-x86_64-unknown-linux-musl.sha256sum
+  args:
+    chdir: /tmp
+  register: checksum_result
+  failed_when: "'FAILED' in checksum_result.stdout"
+  when: zellij_installed_version.stdout is not defined or not zellij_installed_version.stdout is search(zellij_version)
+
+# - name: Show checksum verification result
+#   debug:
+#     var: checksum_result.stdout
+
+- name: Remove old Zellij version
   become: false
   ansible.builtin.file:
     path: "$HOME/.bin-dl/zellij"
@@ -27,15 +57,24 @@
   when: zellij_installed_version.stdout is not defined or not zellij_installed_version.stdout is search(zellij_version)
 
 - name: Create destination dir
+  become: false
   ansible.builtin.file:
     path: "$HOME/.bin-dl"
     state: directory
   when: zellij_installed_version.stdout is not defined or not zellij_installed_version.stdout is search(zellij_version)
 
-- name: Install Zellij
-  unarchive:
-    src: "/tmp/zellij-x86_64-unknown-linux-musl.tar.gz"
+- name: Copy file to new location
+  become: false
+  ansible.builtin.copy:
+    src: "/tmp/zellij"
+    dest: "$HOME/.bin-dl/zellij"
     remote_src: yes
-    dest: "$HOME/.bin-dl/"
-  check_mode: false
+    mode: "0754"
+  when: zellij_installed_version.stdout is not defined or not zellij_installed_version.stdout is search(zellij_version)
+
+- name: Remove the old file
+  become: false
+  ansible.builtin.file:
+    path: "/tmp/zellij"
+    state: absent
   when: zellij_installed_version.stdout is not defined or not zellij_installed_version.stdout is search(zellij_version)
