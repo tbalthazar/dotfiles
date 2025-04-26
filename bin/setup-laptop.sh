@@ -40,11 +40,11 @@ echo -e "[-] Starting setup ...\n"
 run_with_messages "Asking for sudo password" \
   "sudo -v"
 
-# run_with_messages "Updating packages" \
-#   "sudo apt update && sudo apt dist-upgrade -y && sudo apt autoremove -y"
-#
-# run_with_messages "Installing required packages" \
-#   "sudo apt install -y ansible git"
+run_with_messages "Updating packages" \
+  "sudo apt update && sudo apt dist-upgrade -y && sudo apt autoremove -y"
+
+run_with_messages "Installing required packages" \
+  "sudo apt install -y ansible git"
 
 # TODO: change repo dest? what about chown tb:tb?
 repo_dest="/tmp/dotfiles"
@@ -56,8 +56,4 @@ run_with_messages "Run first Ansible playbook" \
   "cd $repo_dest/ansible && ANSIBLE_ROLES_PATH=./roles ansible-playbook playbooks/laptop.yml --ask-become-pass"
 
 echo -e "[+] Setup done.\n"
-
-
-# tb@debian13alpha1:/tmp/dotfiles/ansible$ export ANSIBLE_ROLES_PATH=/tmp/dotfiles/ansible/roles
-# tb@debian13alpha1:/tmp/dotfiles/ansible$ ansible-playbook playbooks/laptop.yml
 
