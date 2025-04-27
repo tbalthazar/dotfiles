@@ -29,5 +29,5 @@
 - name: Install dotfiles
   become: false
   ansible.builtin.command:
-    cmd: "rcup -v -d $HOME/.dotfiles/dotfiles -t {{ dotfiles_tag }}"
+    cmd: "rcup -f -v -d $HOME/.dotfiles/dotfiles -t {{ dotfiles_tag }}"
   when: clone_dotfiles.changed
