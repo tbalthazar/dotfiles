@@ -1,0 +1,51 @@
+---
+# Install mise
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true 
+    upgrade: safe
+    autoremove: true
+    cache_valid_time: 3600
+
+- name: Install required packages
+  ansible.builtin.apt:
+    name:
+      - gpg
+      - sudo
+      - wget
+      - curl
+    state: present
+    autoremove: true
+    purge: true
+
+- name: Ensure /etc/apt/keyrings directory exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+- name: Download and install Mise GPG key
+  ansible.builtin.shell: |
+    wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | tee /etc/apt/keyrings/mise-archive-keyring.gpg > /dev/null
+  args:
+    creates: /etc/apt/keyrings/mise-archive-keyring.gpg
+
+- name: Add Mise APT repository
+  ansible.builtin.copy:
+    dest: /etc/apt/sources.list.d/mise.list
+    content: |
+      deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg arch=amd64] https://mise.jdx.dev/deb stable main
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Update APT package cache
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Install Mise
+  ansible.builtin.apt:
+    name: mise
+    state: present
+
