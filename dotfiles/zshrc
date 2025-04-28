@@ -25,15 +25,14 @@ for dump in $HOME/.zcompdump(N.mh+24); do
 done
 compinit -C
 
+# mise
+if which mise &> /dev/null; then
+  eval "$(mise activate zsh)"
+fi
+
 # fzf
 if which fzf &> /dev/null; then
   source <(fzf --zsh)
-fi
-
-# asdf
-if [ -f $HOME/.asdf/asdf.sh ]; then
-  . $HOME/.asdf/asdf.sh
-  fpath=(${ASDF_DIR}/completions $fpath)
 fi
 
 # kubectl
