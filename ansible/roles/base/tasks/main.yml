@@ -23,6 +23,7 @@
     - npm
     - ripgrep
     - unzip
+    - wl-clipboard
     - zsh
     state: present
     autoremove: true
