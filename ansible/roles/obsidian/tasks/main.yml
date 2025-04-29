@@ -1,0 +1,23 @@
+---
+# Install Obsidian
+
+- name: Define download URL and local .deb path
+  ansible.builtin.set_fact:
+    obsidian_deb_url: "https://github.com/obsidianmd/obsidian-releases/releases/download/v{{ obsidian_version }}/obsidian_{{ obsidian_version }}_amd64.deb"
+    obsidian_deb_file: "/tmp/obsidian_{{ obsidian_version }}_amd64.deb"
+
+- name: Download Obsidian .deb file
+  ansible.builtin.get_url:
+    url: "{{ obsidian_deb_url }}"
+    dest: "{{ obsidian_deb_file }}"
+    mode: '0644'
+
+- name: Install Obsidian
+  ansible.builtin.apt:
+    deb: "{{ obsidian_deb_file }}"
+  become: true
+
+- name: Delete the downloaded .deb file
+  ansible.builtin.file:
+    path: "{{ obsidian_deb_file }}"
+    state: absent

@@ -7,8 +7,9 @@
     # TODO: revert to default branch
     dotfiles_branch: "tb/2025"
   roles:
-  - base
-  - dotfiles
-  - neovim
-  - zellij
-  - mise
+  # - base
+  # - dotfiles
+  # - neovim
+  # - zellij
+  # - mise
+  - obsidian
