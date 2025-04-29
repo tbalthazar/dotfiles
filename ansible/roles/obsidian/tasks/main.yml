@@ -1,6 +1,26 @@
 ---
 # Install Obsidian
 
+- name: Check if Obsidian is already installed
+  ansible.builtin.stat:
+    path: /opt/Obsidian/installed-version.txt
+  register: obsidian_installed_file
+
+- name: Read installed version
+  ansible.builtin.slurp:
+    path: /opt/Obsidian/installed-version.txt
+  register: obsidian_version_file
+  when: obsidian_installed_file.stat.exists
+
+- name: Set installed version fact
+  ansible.builtin.set_fact:
+    obsidian_installed_version: "{{ obsidian_version_file.content | b64decode | trim }}"
+  when: obsidian_installed_file.stat.exists
+
+- name: Determine if Obsidian needs install
+  ansible.builtin.set_fact:
+    obsidian_needs_install: "{{ obsidian_installed_version is not defined or obsidian_installed_version != obsidian_version }}"
+
 - name: Define download URL and local .deb path
   ansible.builtin.set_fact:
     obsidian_deb_url: "https://github.com/obsidianmd/obsidian-releases/releases/download/v{{ obsidian_version }}/obsidian_{{ obsidian_version }}_amd64.deb"
@@ -11,13 +31,33 @@
     url: "{{ obsidian_deb_url }}"
     dest: "{{ obsidian_deb_file }}"
     mode: '0644'
+  when: obsidian_needs_install
 
 - name: Install Obsidian
   ansible.builtin.apt:
     deb: "{{ obsidian_deb_file }}"
-  become: true
+  register: obsidian_install
+  when: obsidian_needs_install
+
+- name: Ensure /opt/Obsidian directory exists
+  ansible.builtin.file:
+    path: /opt/Obsidian
+    state: directory
+    mode: '0755'
+  when: obsidian_needs_install
+
+- name: Write installed version to file
+  ansible.builtin.copy:
+    content: "{{ obsidian_version }}\n"
+    dest: /opt/Obsidian/installed-version.txt
+    owner: root
+    group: root
+    mode: '0644'
+  when: obsidian_needs_install
 
 - name: Delete the downloaded .deb file
   ansible.builtin.file:
     path: "{{ obsidian_deb_file }}"
     state: absent
+  when: obsidian_needs_install
+
