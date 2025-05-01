@@ -7,18 +7,18 @@
     # TODO: revert to default branch
     dotfiles_branch: "tb/2025"
   roles:
-  # - base
-  # - dotfiles
-  # - neovim
-  # - zellij
-  # - mise
-  # - obsidian
+  - base
+  - dotfiles
   - gnome-tweaks
-  # - proton-vpn
-  # - firefox
-  # - signal
-  # - flatpak
-  # - vscode
-  # - proton-pass
-  # - filen
+  - neovim
+  - zellij
+  - mise
+  - flatpak
+  - firefox
+  - obsidian
+  - vscode
+  - filen
+  - signal
+  - proton-pass
+  - proton-vpn
   # - virtualbox

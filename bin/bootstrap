@@ -8,9 +8,7 @@ if [ "$EUID" -eq 0 ]; then
 fi
 
 timestamp=$(date +"%Y-%m-%d-%H-%M-%S")
-logfile="/tmp/setup-laptop-$timestamp.log"
-# TODO remove this line
-logfile="/tmp/setup-laptop.log"
+logfile="/tmp/bootstrap-laptop-$timestamp.log"
 
 run_with_messages() {
   echo -e "[-] $1 ..."
