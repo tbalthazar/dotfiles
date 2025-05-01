@@ -42,3 +42,4 @@
     state: present
     autoremove: true
     purge: true
+    update_cache: true
