@@ -18,4 +18,5 @@
   # - firefox
   # - signal
   # - flatpak
-  - vscode
+  # - vscode
+  - proton-pass

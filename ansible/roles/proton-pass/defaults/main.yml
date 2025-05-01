@@ -1,0 +1,4 @@
+---
+proton_pass_deb_url: "https://proton.me/download/PassDesktop/linux/x64/ProtonPass.deb"
+proton_pass_shas_url: "https://proton.me/download/PassDesktop/linux/x64/version.json"
+proton_pass_deb_path: "/tmp/ProtonPass.deb"

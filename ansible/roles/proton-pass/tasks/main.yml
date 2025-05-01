@@ -1,0 +1,51 @@
+---
+# - name: Ensure required tools are installed (wget, jq, sha512sum)
+#   ansible.builtin.apt:
+#     name:
+#       - wget
+#       - jq
+#       - coreutils
+#     state: present
+#     update_cache: true
+
+- name: Download Proton Pass .deb file
+  ansible.builtin.get_url:
+    url: "{{ proton_pass_deb_url }}"
+    dest: "{{ proton_pass_deb_path }}"
+    mode: '0644'
+
+- name: Fetch remote checksum from version.json
+  ansible.builtin.uri:
+    url: "{{ proton_pass_shas_url }}"
+    return_content: yes
+  register: version_json
+
+- name: Extract SHA512 checksum from version.json
+  ansible.builtin.set_fact:
+    proton_pass_expected_sha512: "{{ version_json.content | from_json | json_query('Releases[0].File[0].Sha512CheckSum') }}"
+
+- name: Calculate actual SHA512 checksum of downloaded file
+  ansible.builtin.command: sha512sum {{ proton_pass_deb_path }}
+  register: actual_sha_output
+  changed_when: false
+
+- name: Fail if checksum does not match
+  ansible.builtin.fail:
+    msg: "Checksum mismatch! File may be corrupted or tampered with."
+  when: actual_sha_output.stdout.split()[0] != proton_pass_expected_sha512
+
+- name: Install Proton Pass
+  ansible.builtin.apt:
+    deb: "{{ proton_pass_deb_path }}"
+    state: present
+
+- name: Kill any running Proton Pass process
+  ansible.builtin.shell: pkill "Proton Pass"
+  ignore_errors: yes
+  changed_when: false
+
+- name: Remove Proton Pass .deb file
+  ansible.builtin.file:
+    path: "{{ proton_pass_deb_path }}"
+    state: absent
+
