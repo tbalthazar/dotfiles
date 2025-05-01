@@ -3,6 +3,7 @@
 - name: Install required packages
   ansible.builtin.apt:
     name:
+      - dconf-cli
       - gnome-shell-extension-appindicator
       - gnome-shell-extension-manager
       - pipx
@@ -31,3 +32,13 @@
     creates: "~/.local/share/gnome-shell/extensions/{{ item }}"
     executable: /bin/bash
   loop: "{{ gnome_extension_ids }}"
+
+- name: Load tactile config into GNOME dconf
+  become: false
+  ansible.builtin.shell: |
+    dconf load /org/gnome/shell/extensions/tactile/ < {{ tactile_config_path }}
+  args:
+    executable: /bin/bash
+  vars:
+    tactile_config_path: "{{ role_path }}/files/tactile.conf"
+
