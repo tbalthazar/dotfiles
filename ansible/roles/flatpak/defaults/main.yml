@@ -1,0 +1,14 @@
+apt_packages_to_remove:
+  - vlc
+  - transmission
+  - transmission-gtk
+flatpak_packages:
+  # - com.discordapp.Discord
+  - com.google.Chrome
+  # - com.slack.Slack
+  - com.spotify.Client
+  - com.transmissionbt.Transmission
+  - net.ankiweb.Anki
+  - org.videolan.VLC
+flatpak_flathub_url: "https://flathub.org/repo/flathub.flatpakrepo"
+flatpak_flathub_name: "flathub"

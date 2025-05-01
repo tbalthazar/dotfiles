@@ -5,6 +5,7 @@
   ansible.builtin.apt:
     name: firefox-esr
     state: absent
+    purge: yes
 
 - name: Ensure APT keyring directory exists
   ansible.builtin.file:

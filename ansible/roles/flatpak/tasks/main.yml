@@ -1,0 +1,28 @@
+---
+- name: Purge unwanted APT packages and their config files
+  ansible.builtin.apt:
+    name: "{{ apt_packages_to_remove }}"
+    state: absent
+    purge: yes
+  when: apt_packages_to_remove | length > 0
+
+- name: Ensure flatpak is installed
+  ansible.builtin.apt:
+    name: flatpak
+    state: present
+    update_cache: true
+
+- name: Add Flathub remote if not exists
+  ansible.builtin.command: >
+    flatpak remote-add --if-not-exists {{ flatpak_flathub_name }} {{ flatpak_flathub_url }}
+  args:
+    creates: "/var/lib/flatpak/{{ flatpak_flathub_name }}-configured"  # crude but ensures idempotence
+
+- name: Install Flatpak applications from Flathub
+  become: false
+  ansible.builtin.command: >
+    flatpak install -y --noninteractive {{ flatpak_flathub_name }} {{ item }}
+  loop: "{{ flatpak_packages }}"
+  register: flatpak_install_results
+  changed_when: "'Already installed' not in flatpak_install_results.stdout"
+

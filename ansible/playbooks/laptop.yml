@@ -16,4 +16,5 @@
   # - gnome-tweaks
   # - proton-vpn
   # - firefox
-  - signal
+  # - signal
+  - flatpak
