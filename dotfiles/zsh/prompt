@@ -29,7 +29,8 @@ local git_status='$(parse_git_branch)'
 # k8s
 local kube_status=''
 local kube_ps1_src=$HOME/.kube-ps1/kube-ps1.sh
-if [ -f $kube_ps1_src ]; then
+
+if [ -f "$kube_ps1_src" ] && which kubectl &> /dev/null; then
   KUBE_PS1_PREFIX=" ["
   KUBE_PS1_SUFFIX="]"
   KUBE_PS1_SYMBOL_PADDING=false
