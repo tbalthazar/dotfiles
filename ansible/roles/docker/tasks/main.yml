@@ -1,0 +1,69 @@
+---
+# Install Docker
+
+- name: Get system architecture using dpkg
+  ansible.builtin.command: dpkg --print-architecture
+  register: dpkg_arch_result
+  changed_when: false
+
+- name: Set docker_architecture fact
+  set_fact:
+    docker_architecture: "{{ dpkg_arch_result.stdout }}"
+
+- name: Remove conflicting Docker-related packages
+  ansible.builtin.apt:
+    name: "{{ docker_packages_to_remove }}"
+    state: absent
+    purge: true
+
+- name: Install required dependencies
+  ansible.builtin.apt:
+    name: "{{ docker_packages_to_install }}"
+    state: present
+    update_cache: true
+
+- name: Ensure APT keyrings directory exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+- name: Download Docker GPG key and dearmor
+  ansible.builtin.get_url:
+    url: "{{ docker_apt_key_url }}"
+    dest: /tmp/docker.gpg
+    mode: '0644'
+
+- name: Convert Docker GPG key to keyring format
+  ansible.builtin.command: gpg --dearmor -o {{ docker_apt_key_path }} /tmp/docker.gpg
+  args:
+    creates: "{{ docker_apt_key_path }}"
+
+- name: Set permissions on Docker keyring
+  ansible.builtin.file:
+    path: "{{ docker_apt_key_path }}"
+    mode: '0644'
+
+- name: Add Docker APT repository
+  ansible.builtin.apt_repository:
+    repo: "{{ docker_apt_repo_template }}"
+    filename: docker
+    state: present
+
+- name: Install Docker components
+  ansible.builtin.apt:
+    name: "{{ docker_components_to_install }}"
+    state: present
+    update_cache: true
+
+- name: Ensure docker group exists
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: Add user to docker group
+  ansible.builtin.user:
+    name: "{{ user }}"
+    groups: docker
+    append: true
+
