@@ -3,3 +3,4 @@
 
 - import_tasks: extensions.yml
 - import_tasks: shortcuts.yml
+- import_tasks: windows.yml

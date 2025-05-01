@@ -1,0 +1,7 @@
+- name: Tweak Windows
+  ansible.builtin.shell: |
+    gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
+  args:
+    executable: /bin/bash
+  become: false
+
