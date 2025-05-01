@@ -1,0 +1,58 @@
+---
+# Install latest Firefox
+
+- name: Remove firefox-esr if installed
+  ansible.builtin.apt:
+    name: firefox-esr
+    state: absent
+
+- name: Ensure APT keyring directory exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+- name: Install wget if not present
+  ansible.builtin.apt:
+    name: wget
+    state: present
+    update_cache: true
+
+- name: Download Mozilla APT key
+  ansible.builtin.get_url:
+    url: https://packages.mozilla.org/apt/repo-signing-key.gpg
+    dest: /etc/apt/keyrings/packages.mozilla.org.asc
+    mode: '0644'
+
+- name: Verify Mozilla signing key fingerprint
+  become: false
+  ansible.builtin.shell: |
+    gpg -n -q --import --import-options import-show /etc/apt/keyrings/packages.mozilla.org.asc | \
+    awk '/pub/{getline; gsub(/^ +| +$/,""); if($0 == "{{ firefox_apt_key_fingerprint }}") print "OK"; else print "FAIL: " $0}'
+  register: key_check
+  changed_when: false
+  failed_when: "'OK' not in key_check.stdout"
+
+- name: Add Mozilla APT repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main"
+    filename: mozilla
+    state: present
+
+- name: Set APT pinning preferences for Mozilla
+  ansible.builtin.copy:
+    dest: /etc/apt/preferences.d/mozilla
+    content: |
+      Package: *
+      Pin: origin packages.mozilla.org
+      Pin-Priority: 1000
+    mode: '0644'
+
+- name: Update APT cache
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install Firefox
+  ansible.builtin.apt:
+    name: firefox
+    state: present
