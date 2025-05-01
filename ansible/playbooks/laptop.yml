@@ -19,4 +19,5 @@
   # - signal
   # - flatpak
   # - vscode
-  - proton-pass
+  # - proton-pass
+  - filen

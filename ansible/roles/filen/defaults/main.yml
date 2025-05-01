@@ -1,0 +1,7 @@
+---
+filen_version: "v3.0.47"
+filen_base_url: "https://github.com/FilenCloudDienste/filen-desktop/releases/download"
+filen_deb_url: "{{ filen_base_url }}/{{ filen_version }}/Filen_linux_amd64.deb"
+filen_checksum_url: "{{ filen_base_url }}/{{ filen_version }}/Filen_linux_amd64.deb.sha256.txt"
+filen_deb_path: "/tmp/Filen_linux_amd64.deb"
+
