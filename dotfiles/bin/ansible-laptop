@@ -1,4 +1,20 @@
 #!/usr/bin/env bash
 
-cd ~/.dotfiles/ansible
-ANSIBLE_ROLES_PATH=./roles ansible-playbook playbooks/laptop.yml --ask-become-pass
+cd ~/.dotfiles/ansible || exit 1
+
+# Determine which playbook to use based on argument
+mode=${1:-update}
+case "$mode" in
+full)
+  playbook="laptop.yml"
+  ;;
+update)
+  playbook="laptop-update.yml"
+  ;;
+*)
+  echo "Usage: $0 [full|update]"
+  exit 1
+  ;;
+esac
+
+ANSIBLE_ROLES_PATH=./roles ansible-playbook playbooks/$playbook --ask-become-pass
