@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+cd ~/.dotfiles/ansible
+ANSIBLE_ROLES_PATH=./roles ansible-playbook playbooks/laptop.yml --ask-become-pass

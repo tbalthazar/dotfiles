@@ -13,7 +13,7 @@
   # - zellij
   # - mise
   # - obsidian
-  # - gnome-tweaks
+  - gnome-tweaks
   # - proton-vpn
   # - firefox
   # - signal
@@ -21,4 +21,4 @@
   # - vscode
   # - proton-pass
   # - filen
-  - virtualbox
+  # - virtualbox

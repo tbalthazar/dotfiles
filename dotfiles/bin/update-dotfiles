@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+echo "[+] Updating dotfiles..."
+cd ~/.dotfiles
+git pull
+rcup -v -f -d ~/.dotfiles/dotfiles -t linux-desktop

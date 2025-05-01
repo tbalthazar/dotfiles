@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-set -e  # Exit on any error
+set -e # Exit on any error
 
-if [ "$EUID" -eq 0 ]
-  then echo "Don't run this script as root."
+if [ "$EUID" -eq 0 ]; then
+  echo "Don't run this script as root."
   exit
 fi
 
@@ -14,27 +14,27 @@ logfile="/tmp/setup-laptop.log"
 
 run_with_messages() {
   echo -e "[-] $1 ..."
-  bash -c "{ $2; }" >> $logfile 2>&1
+  bash -c "{ $2; }" >>$logfile 2>&1
   echo -e "[+] done.\n"
 }
 
 # Step 1: Are we already in sudo group?
 echo -e "[-] Checking $(whoami) is in the sudo group ..."
 if groups | grep -qw sudo; then
-    echo -e "[+] Already in sudo group, done.\n"
+  echo -e "[+] User is in sudo group, done.\n"
 else
-    echo "[-] Not in sudo group, attempting to add ..."
-    su -c "/usr/sbin/usermod -aG sudo $(whoami)"
-    echo "[-] User added to sudo group ..."
-    echo "[-] Restarting shell with new groups ..."
-    exec newgrp sudo <<EONG
+  echo "[-] Not in sudo group, attempting to add ..."
+  su -c "/usr/sbin/usermod -aG sudo $(whoami)"
+  echo "[-] User added to sudo group ..."
+  echo "[-] Restarting shell with new groups ..."
+  exec newgrp sudo <<EONG
 $(realpath "$0")
 EONG
-    # 'exec' replaces the current shell, newgrp applies new groups, re-run the script
-    echo -e "[+] Added in sudo group, done.\n"
+  # 'exec' replaces the current shell, newgrp applies new groups, re-run the script
+  echo -e "[+] Added in sudo group, done.\n"
 fi
 
-echo -e "--- Starting setup at $timestamp ---\n\n" > $logfile
+echo -e "--- Starting setup at $timestamp ---\n\n" >$logfile
 echo -e "[-] Starting setup ...\n"
 
 run_with_messages "Asking for sudo password" \
@@ -50,10 +50,8 @@ run_with_messages "Installing required packages" \
 repo_dest="/tmp/dotfiles"
 run_with_messages "Cloning repo" \
   "rm -rf $repo_dest && git clone https://code.h.tb.io/tb/dotfiles $repo_dest && cd $repo_dest && git checkout tb/2025"
-  # "rm -rf $repo_dest && git clone https://code.h.tb.io/tb/dotfiles $repo_dest && cd $repo_dest && git checkout tb/2025 && chown -R tb:tb /tmp/dotfiles"
 
 run_with_messages "Run first Ansible playbook" \
   "cd $repo_dest/ansible && ANSIBLE_ROLES_PATH=./roles ansible-playbook playbooks/laptop.yml --ask-become-pass"
 
 echo -e "[+] Setup done.\n"
-
