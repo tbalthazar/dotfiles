@@ -10,6 +10,14 @@ Run this script the first time, then reboot. It should only be run once.
 wget -qO /tmp/bootstrap https://code.h.tb.io/tb/dotfiles/raw/branch/tb/2025/bin/bootstrap && chmod +x /tmp/bootstrap && /tmp/bootstrap
 ```
 
+## Setup a new Ubuntu 24.04 under WSL
+
+Run this script the first time, then reboot. It should only be run once.
+
+```bash
+wget -qO /tmp/bootstrap https://code.h.tb.io/tb/dotfiles/raw/branch/tb/2025/bin/bootstrap && chmod +x /tmp/bootstrap && /tmp/bootstrap wsl
+```
+
 ## Update dotfiles
 
 To update dotfiles (e.g: when a new dotfile is added in `.dotfiles`), run:
@@ -20,10 +28,10 @@ update-dotfiles
 
 ## Update laptop with Ansible playbook
 
-Run:
+Run (it defaults to "update"):
 
 ```bash
-ansible-laptop
+ansible-laptop full|update|wsl
 ```
 
 

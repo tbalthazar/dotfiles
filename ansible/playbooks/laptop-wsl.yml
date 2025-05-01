@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  gather_facts: true
+  become: true
+  vars:
+    user: tb
+    # TODO: revert to default branch
+    dotfiles_branch: "tb/2025"
+  roles:
+  - base
+  - dotfiles
+  - neovim
+  - zellij
+  - mise

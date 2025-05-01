@@ -11,8 +11,10 @@ full)
 update)
   playbook="laptop-update.yml"
   ;;
+wsl)
+  playbook="laptop-wsl.yml"
 *)
-  echo "Usage: $0 [full|update]"
+  echo "Usage: $0 [full|update|wsl]"
   exit 1
   ;;
 esac
