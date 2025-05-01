@@ -1,0 +1,5 @@
+---
+signal_repo_url: "https://updates.signal.org/desktop/apt"
+signal_key_url: "{{ signal_repo_url }}/keys.asc"
+signal_key_path: "/usr/share/keyrings/signal-desktop-keyring.gpg"
+signal_repo: "deb [arch=amd64 signed-by={{ signal_key_path }}] {{ signal_repo_url }} xenial main"

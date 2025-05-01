@@ -1,0 +1,35 @@
+---
+- name: Ensure wget is installed
+  ansible.builtin.apt:
+    name: wget
+    state: present
+    update_cache: true
+
+- name: Download and convert Signal GPG key
+  ansible.builtin.shell: |
+    wget -qO- {{ signal_key_url }} | gpg --dearmor > /tmp/signal-desktop-keyring.gpg
+  args:
+    creates: /tmp/signal-desktop-keyring.gpg
+
+- name: Install Signal GPG key
+  ansible.builtin.copy:
+    src: /tmp/signal-desktop-keyring.gpg
+    dest: "{{ signal_key_path }}"
+    remote_src: yes
+    mode: '0644'
+
+- name: Add Signal APT repository
+  ansible.builtin.apt_repository:
+    repo: "{{ signal_repo }}"
+    filename: signal-xenial
+    state: present
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install Signal Desktop
+  ansible.builtin.apt:
+    name: signal-desktop
+    state: present
+

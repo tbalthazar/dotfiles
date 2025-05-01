@@ -15,4 +15,5 @@
   # - obsidian
   # - gnome-tweaks
   # - proton-vpn
-  - firefox
+  # - firefox
+  - signal
