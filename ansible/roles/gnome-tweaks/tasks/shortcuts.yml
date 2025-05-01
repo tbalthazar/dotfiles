@@ -1,0 +1,12 @@
+- name: Tweak shortcuts
+  ansible.builtin.shell: |
+    # Close Window
+    gsettings set org.gnome.desktop.wm.keybindings close "['<Shift><Super>q']"
+    # Switch applications
+    gsettings set org.gnome.desktop.wm.keybindings switch-applications "['<Super>Tab']"
+    # Switch windows
+    gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab']"
+  args:
+    executable: /bin/bash
+  become: false
+

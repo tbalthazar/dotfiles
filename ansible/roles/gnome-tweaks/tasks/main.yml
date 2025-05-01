@@ -1,35 +1,5 @@
 ---
+# Tweak Gnome
 
-- name: Install required packages
-  ansible.builtin.apt:
-    name:
-      - gnome-shell-extension-appindicator
-      - gnome-shell-extension-manager
-      - pipx
-    state: present
-    update_cache: yes
-
-
-- name: Ensure pipx is initialized for the user
-  become: false
-  ansible.builtin.shell: |
-    pipx ensurepath
-  args:
-    executable: /bin/bash
-
-- name: Install gnome-extensions-cli via pipx
-  ansible.builtin.shell: |
-    pipx install gnome-extensions-cli --system-site-packages --force
-  args:
-    executable: /bin/bash
-  become: false
-
-- name: Install GNOME extensions with gext
-  become: false
-  ansible.builtin.shell: |
-    ~/.local/bin/gext install {{ item }}
-  args:
-    creates: "~/.local/share/gnome-shell/extensions/{{ item }}"
-    executable: /bin/bash
-  loop: "{{ gnome_extension_ids }}"
-
+- import_tasks: extensions.yml
+- import_tasks: shortcuts.yml
