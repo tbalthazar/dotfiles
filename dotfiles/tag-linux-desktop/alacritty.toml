@@ -1,0 +1,66 @@
+[cursor.style]
+shape = "Beam"
+
+[font]
+size = 14.0
+
+[window.dimensions]
+columns = 120
+lines = 25
+
+[window.padding]
+x = 5
+y = 5
+
+[[colors.indexed_colors]]
+color = "0xf99157"
+index = 16
+
+[[colors.indexed_colors]]
+color = "0xd27b53"
+index = 17
+
+[[colors.indexed_colors]]
+color = "0x393939"
+index = 18
+
+[[colors.indexed_colors]]
+color = "0x515151"
+index = 19
+
+[[colors.indexed_colors]]
+color = "0xa09f93"
+index = 20
+
+[[colors.indexed_colors]]
+color = "0xe8e6df"
+index = 21
+
+[colors.bright]
+black = "0x747369"
+blue = "0x6699cc"
+cyan = "0x66cccc"
+green = "0x99cc99"
+magenta = "0xcc99cc"
+red = "0xf2777a"
+white = "0xf2f0ec"
+yellow = "0xffcc66"
+
+[colors.cursor]
+cursor = "0xd3d0c8"
+text = "0x2d2d2d"
+
+[colors.normal]
+black = "0x2d2d2d"
+blue = "0x6699cc"
+cyan = "0x66cccc"
+green = "0x99cc99"
+magenta = "0xcc99cc"
+red = "0xf2777a"
+white = "0xd3d0c8"
+yellow = "0xffcc66"
+
+[colors.primary]
+background = "0x2d2d2d"
+foreground = "0xd3d0c8"
+
