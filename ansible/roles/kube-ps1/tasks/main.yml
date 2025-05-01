@@ -1,0 +1,31 @@
+- name: Ensure git is installed
+  apt:
+    name: git
+    state: present
+    update_cache: true
+
+- name: Check if kube-ps1 directory exists
+  become: false
+  stat:
+    path: "$HOME/.kube-ps1"
+  register: kube_ps1_dir
+
+- name: Get current git version of kube-ps1
+  become: false
+  command: git describe --tags
+  args:
+    chdir: "$HOME/.kube-ps1"
+  register: kube_ps1_current_version
+  when: kube_ps1_dir.stat.exists
+  changed_when: false
+  failed_when: false
+
+- name: Clone or update kube-ps1 if not at desired version
+  become: false
+  git:
+    repo: "{{ kube_ps1_repo }}"
+    dest: "$HOME/.kube-ps1"
+    version: "{{ kube_ps1_version }}"
+    force: true
+  when: not kube_ps1_dir.stat.exists or kube_ps1_current_version.stdout != kube_ps1_version
+

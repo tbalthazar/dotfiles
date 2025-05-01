@@ -1,0 +1,3 @@
+---
+kube_ps1_repo: https://github.com/jonmosco/kube-ps1.git
+kube_ps1_version: v0.9.0
