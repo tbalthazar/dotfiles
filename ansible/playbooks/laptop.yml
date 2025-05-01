@@ -17,4 +17,5 @@
   # - proton-vpn
   # - firefox
   # - signal
-  - flatpak
+  # - flatpak
+  - vscode

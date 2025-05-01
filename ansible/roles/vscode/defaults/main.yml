@@ -1,0 +1,4 @@
+---
+vscode_deb_url: "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+vscode_deb_path: "/tmp/vscode_latest_amd64.deb"
+vscode_package_name: "code"  # or "code-insiders"

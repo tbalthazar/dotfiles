@@ -1,0 +1,31 @@
+---
+- name: Ensure required packages are installed
+  ansible.builtin.apt:
+    name: apt-transport-https
+    state: present
+    update_cache: true
+
+- name: Set debconf selection to auto-add Microsoft repo
+  ansible.builtin.shell: |
+    echo "code code/add-microsoft-repo boolean true" | debconf-set-selections
+
+- name: Download the latest VS Code .deb package
+  ansible.builtin.get_url:
+    url: "{{ vscode_deb_url }}"
+    dest: "{{ vscode_deb_path }}"
+    mode: '0644'
+
+- name: Install VS Code .deb package
+  ansible.builtin.apt:
+    deb: "{{ vscode_deb_path }}"
+    state: present
+
+- name: Run apt update
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Ensure VS Code is installed via apt
+  ansible.builtin.apt:
+    name: "{{ vscode_package_name }}"
+    state: present
+
