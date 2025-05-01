@@ -1,0 +1,71 @@
+---
+- name: Ensure dependencies are installed
+  ansible.builtin.apt:
+    name: wget
+    state: present
+    update_cache: true
+
+- name: Add Oracle VirtualBox GPG key
+  ansible.builtin.shell: |
+    wget -O- {{ virtualbox_key_url }} | gpg --dearmor --yes --output {{ virtualbox_key_path }}
+  args:
+    creates: "{{ virtualbox_key_path }}"
+
+- name: Get Oracle VirtualBox key fingerprint
+  ansible.builtin.command: >
+    gpg --show-keys --with-fingerprint --with-colons {{ virtualbox_key_path }}
+  register: virtualbox_key_output
+  changed_when: false
+
+- name: Extract actual fingerprint
+  ansible.builtin.set_fact:
+    virtualbox_actual_fingerprint: >-
+      {{
+        virtualbox_key_output.stdout_lines
+        | select('match', '^fpr')
+        | map('split', ':')
+        | map('reject', 'equalto', '')
+        | map('last')
+        | first
+        | upper
+      }}
+
+- name: Fail if key fingerprint does not match
+  ansible.builtin.fail:
+    msg: |
+      GPG fingerprint mismatch!
+      Expected: {{ virtualbox_expected_fingerprint }}
+      Actual:   {{ virtualbox_actual_fingerprint }}
+  when: virtualbox_actual_fingerprint != virtualbox_expected_fingerprint
+
+- name: Add VirtualBox APT repository
+  ansible.builtin.copy:
+    dest: "/etc/apt/sources.list.d/virtualbox.list"
+    content: "{{ virtualbox_repo }}\n"
+    mode: '0644'
+
+- name: Update APT cache
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install VirtualBox
+  ansible.builtin.apt:
+    name: "virtualbox-{{ virtualbox_version }}"
+    state: present
+
+- name: Add user to vboxusers group
+  ansible.builtin.user:
+    name: "{{ user }}"
+    groups: vboxusers
+    append: yes
+
+# This gets saved into ~/.config/VirtualBox/VirtualBox.xml
+- name: Configure Shortcuts
+  become: false
+  ansible.builtin.shell: |
+    # File > Preferences > Input > Virtual Machine > Host Key Combination: left-ctrl + left-alt
+    VBoxManage setextradata global GUI/Input/HostKeyCombination "65507,65513"
+    # File > Preferences > Input > Extended Features > Auto Capture Keyboard: unckecked
+    VBoxManage setextradata global GUI/Input/AutoCapture "false"
+  args:
+    executable: /bin/bash
