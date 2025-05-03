@@ -7,7 +7,7 @@
 
 - name: Add Oracle VirtualBox GPG key
   ansible.builtin.shell: |
-    wget -O- {{ virtualbox_key_url }} | gpg --dearmor --yes --output {{ virtualbox_key_path }}
+    wget -qO- {{ virtualbox_key_url }} | gpg --dearmor --yes --output {{ virtualbox_key_path }}
   args:
     creates: "{{ virtualbox_key_path }}"
 
