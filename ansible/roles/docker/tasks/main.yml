@@ -31,18 +31,18 @@
 - name: Download Docker GPG key and dearmor
   ansible.builtin.get_url:
     url: "{{ docker_apt_key_url }}"
-    dest: /tmp/docker.gpg
+    dest: "{{ docker_apt_key_path }}"
     mode: '0644'
 
-- name: Convert Docker GPG key to keyring format
-  ansible.builtin.command: gpg --dearmor -o {{ docker_apt_key_path }} /tmp/docker.gpg
-  args:
-    creates: "{{ docker_apt_key_path }}"
-
-- name: Set permissions on Docker keyring
-  ansible.builtin.file:
-    path: "{{ docker_apt_key_path }}"
-    mode: '0644'
+# - name: Convert Docker GPG key to keyring format
+#   ansible.builtin.command: gpg --dearmor -o {{ docker_apt_key_path }} /tmp/docker.gpg
+#   args:
+#     creates: "{{ docker_apt_key_path }}"
+#
+# - name: Set permissions on Docker keyring
+#   ansible.builtin.file:
+#     path: "{{ docker_apt_key_path }}"
+#     mode: '0644'
 
 - name: Add Docker APT repository
   ansible.builtin.apt_repository:
