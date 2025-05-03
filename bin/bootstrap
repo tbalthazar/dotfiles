@@ -3,16 +3,17 @@
 set -e # Exit on any error
 
 # Determine which playbook to use based on argument
-repo_url="https://code.h.tb.io/tb/dotfiles"
 # branch="main"
 branch="tb/2025"
 platform=${1:-debian}
 case "$platform" in
 debian)
   playbook="laptop.yml"
+  repo_url="https://code.h.tb.io/tb/dotfiles"
   ;;
 wsl)
   playbook="laptop-wsl.yml"
+  repo_url="https://github.com/tbalthazar/dotfiles"
   ;;
 *)
   echo "Usage: $0 [debian|wsl]"
