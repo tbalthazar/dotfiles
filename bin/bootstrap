@@ -13,6 +13,7 @@ debian)
   ;;
 wsl)
   playbook="laptop-wsl.yml"
+  ;;
 *)
   echo "Usage: $0 [debian|wsl]"
   exit 1
