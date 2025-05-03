@@ -27,7 +27,7 @@
 - name: Install GNOME extensions with gext
   become: false
   ansible.builtin.shell: |
-    ~/.local/bin/gext install --filesystem {{ item }}
+    ~/.local/bin/gext --filesystem install {{ item }}
   args:
     creates: "~/.local/share/gnome-shell/extensions/{{ item }}"
     executable: /bin/bash
