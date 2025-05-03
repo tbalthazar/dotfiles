@@ -16,7 +16,6 @@
     - build-essential
     - curl
     - fd-find
-    - fzf
     - git
     - htop
     - nnn

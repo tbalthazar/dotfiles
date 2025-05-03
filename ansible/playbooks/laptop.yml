@@ -8,6 +8,7 @@
     dotfiles_branch: "tb/2025"
   roles:
   - base
+  - fzf
   - dotfiles
   - gnome-tweaks
   - neovim

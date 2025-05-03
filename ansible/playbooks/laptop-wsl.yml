@@ -9,6 +9,7 @@
     dotfiles_repo: "https://github.com/tbalthazar/dotfiles"
   roles:
   - base
+  - fzf
   - dotfiles
   - neovim
   - zellij
