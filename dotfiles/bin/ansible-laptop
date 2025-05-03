@@ -13,6 +13,7 @@ update)
   ;;
 wsl)
   playbook="laptop-wsl.yml"
+  ;;
 *)
   echo "Usage: $0 [full|update|wsl]"
   exit 1
