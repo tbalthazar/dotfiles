@@ -1,0 +1,52 @@
+---
+# Install python-related tools
+
+- name: Check if mise is installed
+  ansible.builtin.stat:
+    path: "/usr/bin/mise"
+  register: mise_stat
+
+- name: Fail if mise is not installed
+  ansible.builtin.fail:
+    msg: "'mise' must be installed before running this role. See: https://mise.jdx.dev"
+  when: not mise_stat.stat.exists
+
+- name: Install latest Python with mise
+  become: false
+  ansible.builtin.shell: |
+    # source ~/.bashrc
+    mise install python@{{ python_version }}
+    mise global python@{{ python_version }}
+  args:
+    executable: /bin/bash
+    creates: "{{ ansible_env.HOME }}/.mise/installs/python"
+  when: mise_stat.stat.exists
+
+- name: Ensure pipx is installed
+  ansible.builtin.apt:
+    name:
+      - pipx
+    state: present
+    update_cache: yes
+  when: mise_stat.stat.exists
+
+- name: Install pyright with pipx
+  become: false
+  ansible.builtin.shell: |
+    source ~/.bashrc
+    pipx install pyright
+  args:
+    executable: /bin/bash
+    creates: "{{ ansible_env.HOME }}/.local/bin/pyright"
+  when: mise_stat.stat.exists
+
+- name: Install ruff with pipx
+  become: false
+  ansible.builtin.shell: |
+    source ~/.bashrc
+    pipx install ruff
+  args:
+    executable: /bin/bash
+    creates: "{{ ansible_env.HOME }}/.local/bin/ruff"
+  when: mise_stat.stat.exists
+

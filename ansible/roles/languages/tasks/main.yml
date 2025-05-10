@@ -1,0 +1,4 @@
+---
+# Install default languages and tools
+
+- import_tasks: python.yml
