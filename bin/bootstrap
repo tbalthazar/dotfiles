@@ -2,36 +2,28 @@
 
 set -e # Exit on any error
 
-# Determine which playbook to use based on argument
-# branch="main"
-branch="tb/2025"
-platform=${1:-debian}
-case "$platform" in
-debian)
-  playbook="laptop.yml"
-  repo_url="https://code.h.tb.io/tb/dotfiles"
-  ;;
-wsl)
-  playbook="laptop-wsl.yml"
-  repo_url="https://github.com/tbalthazar/dotfiles"
-  ;;
-*)
-  echo "Usage: $0 [debian|wsl]"
-  exit 1
-  ;;
-esac
-
 if [ "$EUID" -eq 0 ]; then
   echo "Don't run this script as root."
-  exit
+  exit 1
 fi
 
+# --- Get playbook name from argument ---
+playbook_base="$1"
+if [ -z "$playbook_base" ]; then
+  echo "Usage: $0 <playbook-name-without-extension>"
+  exit 1
+fi
+playbook="playbooks/${playbook_base}.yml"
+
+# --- Settings ---
+branch="tb/2025"
+repo_url="https://code.h.tb.io/tb/dotfiles"
 timestamp=$(date +"%Y-%m-%d-%H-%M-%S")
 logfile="/tmp/bootstrap-laptop-$timestamp.log"
 
 run_with_messages() {
   echo -e "[-] $1 ..."
-  bash -c "{ $2; }" >>$logfile 2>&1
+  bash -c "{ $2; }" >>"$logfile" 2>&1
   echo -e "[+] done.\n"
 }
 
@@ -45,13 +37,12 @@ else
   echo "[-] User added to sudo group ..."
   echo "[-] Restarting shell with new groups ..."
   exec newgrp sudo <<EONG
-$(realpath "$0")
+$(realpath "$0") $playbook_base
 EONG
-  # 'exec' replaces the current shell, newgrp applies new groups, re-run the script
   echo -e "[+] Added in sudo group, done.\n"
 fi
 
-echo -e "--- Starting setup at $timestamp ---\n\n" >$logfile
+echo -e "--- Starting setup at $timestamp ---\n\n" >"$logfile"
 echo -e "[-] Starting setup ...\n"
 
 run_with_messages "Asking for sudo password" \
@@ -67,7 +58,13 @@ repo_dest="/tmp/dotfiles"
 run_with_messages "Cloning repo" \
   "rm -rf $repo_dest && git clone $repo_url $repo_dest && cd $repo_dest && git checkout $branch"
 
-run_with_messages "Run first Ansible playbook" \
-  "cd $repo_dest/ansible && ANSIBLE_ROLES_PATH=./roles ansible-playbook playbooks/$playbook --ask-become-pass"
+# --- Check playbook exists ---
+if [ ! -f "$repo_dest/ansible/$playbook" ]; then
+  echo "[-] ERROR: Playbook '$playbook' not found in repo."
+  exit 1
+fi
+
+run_with_messages "Run Ansible playbook $playbook_base" \
+  "cd $repo_dest/ansible && ANSIBLE_ROLES_PATH=./roles ansible-playbook $playbook --ask-become-pass"
 
 echo -e "[+] Setup done.\n"

@@ -1,23 +1,26 @@
 #!/usr/bin/env bash
 
+set -e # Exit on any error
+
+if [ "$EUID" -eq 0 ]; then
+  echo "Don't run this script as root."
+  exit 1
+fi
+
 cd ~/.dotfiles/ansible || exit 1
 
-# Determine which playbook to use based on argument
-mode=${1:-update}
-case "$mode" in
-full)
-  playbook="laptop.yml"
-  ;;
-update)
-  playbook="laptop-update.yml"
-  ;;
-wsl)
-  playbook="laptop-wsl.yml"
-  ;;
-*)
-  echo "Usage: $0 [full|update|wsl]"
+# --- Get playbook name from argument ---
+playbook_base="$1"
+if [ -z "$playbook_base" ]; then
+  echo "Usage: $0 <playbook-name-without-extension>"
   exit 1
-  ;;
-esac
+fi
+playbook="playbooks/${playbook_base}.yml"
 
-ANSIBLE_ROLES_PATH=./roles ansible-playbook playbooks/$playbook --ask-become-pass
+# --- Check playbook exists ---
+if [ ! -f "$playbook" ]; then
+  echo "[-] ERROR: Playbook '$playbook' not found in repo."
+  exit 1
+fi
+
+ANSIBLE_ROLES_PATH=./roles ansible-playbook $playbook --ask-become-pass

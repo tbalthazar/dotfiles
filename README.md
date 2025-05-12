@@ -7,7 +7,7 @@ Dotfiles are managed by [rcm](https://github.com/thoughtbot/rcm) and computer se
 Run this script the first time, then reboot. It should only be run once.
 
 ```bash
-wget -qO /tmp/bootstrap https://code.h.tb.io/tb/dotfiles/raw/branch/tb/2025/bin/bootstrap && chmod +x /tmp/bootstrap && /tmp/bootstrap
+wget -qO /tmp/bootstrap https://code.h.tb.io/tb/dotfiles/raw/branch/tb/2025/bin/bootstrap && chmod +x /tmp/bootstrap && /tmp/bootstrap full
 ```
 
 ## Setup a new Ubuntu 24.04 under WSL
@@ -26,12 +26,12 @@ To update dotfiles (e.g: when a new dotfile is added in `.dotfiles`), run:
 update-dotfiles
 ```
 
-## Update laptop with Ansible playbook
+## Apply Ansile playbooks without the bootsrap phase
 
-Run (it defaults to "update"):
+Run:
 
 ```bash
-ansible-laptop full|update|wsl
+ansible-laptop full
 ```
 
 
