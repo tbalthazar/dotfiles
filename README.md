@@ -34,6 +34,10 @@ Run:
 ansible-laptop full
 ```
 
+## Other documentation
+
+- [Neovim](docs/neovim.md)
+
 
 -----------------------------------
 
