@@ -6,6 +6,7 @@ Neovim 0.11 was [recently released](https://gpanders.com/blog/whats-new-in-neovi
 ## Functionalities
 Typical functionalities I want from my Neovim setup are:
 - **LSP support**: I want a language server that understands my code to propose me suggestions, methods signatures, auto-completion, ...
+- **Syntax highlighting**: I want a parser that understand the language and highlight the syntax accordingly
 - **Autocompletion**: I want the UI to automatically propose me suggestions and I want a few keyboard shortcuts to navigate/accept them
 - **Formatting**: I want my code to be automatically formatted when I save a file (e.g: gofmt/goimports for Go, ruff for Python, ...)
 - **Fuzzy-finder UI**: I want to be able to quickly search for a file to open it, grep for a string in my project, navigate through LSP symbols with a few keystrockes
@@ -13,6 +14,7 @@ Typical functionalities I want from my Neovim setup are:
 ### How it's typically implemented
 - LSP and Formatting require third-party tools that understand the code, such as gopls, goimports, pyright, ruff. [mason.vim](https://github.com/mason-org/mason.nvim) is commonly used to download those tools directly from a dedicated UI in Neovim. [mason-lsp.nvim](https://github.com/mason-org/mason-lspconfig.nvim) is used to bridge the gap between the tools installation and the LSP server configuration
 - LSP support itself is built in Neovim. [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) is commonly use to integrate/configure those tools for Neovim. Default configuration for various languages [can be found here](https://github.com/neovim/nvim-lspconfig/tree/master/lsp).
+- Syntax highlighting is handled by [nvim-treesitter](https://github.com/nvim-treesitter).
 - Autoformatting is handled by [conform.nvim](https://github.com/stevearc/conform.nvim)
 - Autocompletion is handled by [blink.cmp](https://github.com/Saghen/blink.cmp) (Neovim has basic autocompletion support but blink.cmp has a better implementation, with fuzzy matches and more)
 - Fuzzy-finder UI is often added by [fzf-lua](https://github.com/ibhagwan/fzf-lua) or [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim).
@@ -21,6 +23,7 @@ Typical functionalities I want from my Neovim setup are:
 - Third party tools (language servers, linters, ...) are installed system-wide, outside of the context of Neovim, making it easier (for me) to reason about, understand and debug
 - Neovim plugins are managed by [lazy.nvim](https://github.com/folke/lazy.nvim)
 - LSP configuration: since I only use a bunch of languages, I decided to cherry-pick them directly [from the nvim-lspconfig](https://github.com/neovim/nvim-lspconfig/tree/master/lsp) plugin, so I don't have to install the plugin itself and rely on it not breaking my setup during the next update
+- Syntax highlighting is handled by [nvim-treesitter](https://github.com/nvim-treesitter).
 - [blink.cmp](https://github.com/Saghen/blink.cmp) is used for autocompletion, [conform.nvim](https://github.com/stevearc/conform.nvim) for autoformatting, [fzf-lua](https://github.com/ibhagwan/fzf-lua) gives me a fuzzy-finder UI and [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) is used as a file system tree explorer.
 ## Config
 ### Structure
@@ -81,3 +84,15 @@ formatters_by_ft = {
 #### Add a new Neovim plugin
 - Add its config in `lua/plugins`
 - Verify it's correctly installed in Neovim: `:Lazy`
+#### Interact with Treesitter
+- Install a language parser: `:TSInstall <language_to_install>`
+- Update a language parser: `:TSUpdate {language}` or `:TSUpdate all` or just `:TSUpdate`
+- Interact with modules:
+```
+:TSBufEnable {module} " enable module on current buffer
+:TSBufDisable {module} " disable module on current buffer
+:TSEnable {module} [{ft}] " enable module on every buffer. If filetype is specified, enable only for this filetype.
+:TSDisable {module} [{ft}] " disable module on every buffer. If filetype is specified, disable only for this filetype.
+:TSModuleInfo [{module}] " list information about modules state for each filetype
+```
+- List of commands: [`:h nvim-treesitter-commands`](https://github.com/nvim-treesitter/nvim-treesitter/blob/master/doc/nvim-treesitter.txt)
