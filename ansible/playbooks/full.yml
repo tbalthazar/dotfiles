@@ -4,8 +4,7 @@
   become: true
   vars:
     user: tb
-    # TODO: revert to default branch
-    dotfiles_branch: "tb/2025"
+    # dotfiles_branch: "tb/2025"
   roles:
   - base
   - fzf

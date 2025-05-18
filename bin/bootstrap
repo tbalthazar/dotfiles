@@ -16,7 +16,7 @@ fi
 playbook="playbooks/${playbook_base}.yml"
 
 # --- Settings ---
-branch="tb/2025"
+branch="main"
 repo_url="https://code.h.tb.io/tb/dotfiles"
 timestamp=$(date +"%Y-%m-%d-%H-%M-%S")
 logfile="/tmp/bootstrap-laptop-$timestamp.log"

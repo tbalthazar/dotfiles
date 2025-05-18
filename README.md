@@ -7,7 +7,7 @@ Dotfiles are managed by [rcm](https://github.com/thoughtbot/rcm) and computer se
 Run this script the first time, then reboot. It should only be run once.
 
 ```bash
-wget -qO /tmp/bootstrap https://code.h.tb.io/tb/dotfiles/raw/branch/tb/2025/bin/bootstrap && chmod +x /tmp/bootstrap && /tmp/bootstrap full
+wget -qO /tmp/bootstrap https://code.h.tb.io/tb/dotfiles/raw/branch/main/bin/bootstrap && chmod +x /tmp/bootstrap && /tmp/bootstrap full
 ```
 
 ## Setup a new Ubuntu 24.04 under WSL
@@ -15,7 +15,7 @@ wget -qO /tmp/bootstrap https://code.h.tb.io/tb/dotfiles/raw/branch/tb/2025/bin/
 Run this script the first time, then reboot. It should only be run once.
 
 ```bash
-wget -qO /tmp/bootstrap https://code.h.tb.io/tb/dotfiles/raw/branch/tb/2025/bin/bootstrap && chmod +x /tmp/bootstrap && /tmp/bootstrap wsl
+wget -qO /tmp/bootstrap https://code.h.tb.io/tb/dotfiles/raw/branch/main/bin/bootstrap && chmod +x /tmp/bootstrap && /tmp/bootstrap wsl
 ```
 
 ## Update dotfiles
