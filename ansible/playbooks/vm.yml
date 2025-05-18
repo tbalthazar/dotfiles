@@ -1,0 +1,27 @@
+---
+- hosts: localhost
+  gather_facts: true
+  become: true
+  vars:
+    user: tb
+    # dotfiles_branch: "tb/2025"
+  roles:
+  - base
+  - fzf
+  - dotfiles
+  - gnome-tweaks
+  - neovim
+  - zellij
+  - mise
+  - languages
+  - flatpak
+  - firefox
+  - obsidian
+  - vscode
+  - docker
+  - kube-ps1
+  - filen
+  - signal
+  - proton-pass
+  - proton-vpn
+  # - virtualbox
