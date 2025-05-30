@@ -34,16 +34,6 @@
     dest: "{{ docker_apt_key_path }}"
     mode: '0644'
 
-# - name: Convert Docker GPG key to keyring format
-#   ansible.builtin.command: gpg --dearmor -o {{ docker_apt_key_path }} /tmp/docker.gpg
-#   args:
-#     creates: "{{ docker_apt_key_path }}"
-#
-# - name: Set permissions on Docker keyring
-#   ansible.builtin.file:
-#     path: "{{ docker_apt_key_path }}"
-#     mode: '0644'
-
 - name: Add Docker APT repository
   ansible.builtin.apt_repository:
     repo: "{{ docker_apt_repo_template }}"
