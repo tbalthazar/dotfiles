@@ -82,3 +82,25 @@
     shell: "{{ zsh_path.stdout }}"
   when: not ansible_user_shell is search("zsh")
 
+- name: Ensure /etc/samba/smb.conf has the correct content
+  ansible.builtin.copy:
+    dest: /etc/samba/smb.conf
+    content: |
+      [global]
+      client min protocol = SMB2
+      client max protocol = SMB3
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Disable SMBv1 for libsmbclient
+  ansible.builtin.copy:
+    dest: /etc/samba/smb.conf
+    content: |
+      [global]
+      client min protocol = SMB2
+      client max protocol = SMB3
+    owner: root
+    group: root
+    mode: '0644'
+
