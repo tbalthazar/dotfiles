@@ -6,6 +6,8 @@
     gsettings set org.gnome.desktop.wm.keybindings switch-applications "['<Super>Tab']"
     # Switch windows
     gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab']"
+    # Take a screenshot
+    gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Shift><Super>s']"
   args:
     executable: /bin/bash
   become: false
