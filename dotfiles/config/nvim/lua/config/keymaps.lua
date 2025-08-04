@@ -51,7 +51,7 @@ vim.keymap.set("n", "<leader>sd", function()
 	require("fzf-lua").diagnostics_document()
 end, { desc = "FZF: Document Diagnostics" })
 -- Search Workspace Diagnostics
-vim.keymap.set("n", "<leader>sd", function()
+vim.keymap.set("n", "<leader>sD", function()
 	require("fzf-lua").diagnostics_workspace()
 end, { desc = "FZF: Workspace Diagnostics" })
 -- Search Help
@@ -86,3 +86,8 @@ end, { desc = "Goto Type Definition" })
 vim.keymap.set("n", "ss", function()
 	require("fzf-lua").lsp_document_symbols()
 end, { desc = "FZF: symbols" })
+
+-- LSP: hover diagnostic
+vim.keymap.set('n', '<leader>d', function()
+  vim.diagnostic.open_float(nil, { focus = false })
+end, { desc = 'Show diagnostics in a floating window' })
