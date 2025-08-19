@@ -82,6 +82,14 @@
     shell: "{{ zsh_path.stdout }}"
   when: not ansible_user_shell is search("zsh")
 
+- name: Ensure /etc/samba directory exists
+  ansible.builtin.file:
+    path: /etc/samba
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
 - name: Ensure /etc/samba/smb.conf has the correct content
   ansible.builtin.copy:
     dest: /etc/samba/smb.conf
