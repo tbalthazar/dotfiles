@@ -1,6 +1,10 @@
 ---
 # Install Zellij
 
+- name: Set asset name
+  set_fact:
+    asset_name: "zellij-x86_64-unknown-linux-musl.tar.gz"
+
 - name: Check installed version of Zellij
   become: false
   ansible.builtin.shell:
@@ -9,11 +13,31 @@
   failed_when: false
   changed_when: false
 
+- name: Get GitHub release info
+  ansible.builtin.uri:
+    url: "https://api.github.com/repos/zellij-org/zellij/releases/tags/{{ neovim_version }}"
+    headers:
+      Accept: "application/vnd.github+json"
+    return_content: yes
+  register: release_info
+
+- name: Find asset with matching name
+  set_fact:
+    matched_asset: "{{ item }}"
+  loop: "{{ release_info.json.assets }}"
+  when: item.name == asset_name
+
+- name: Fail if asset not found
+  ansible.builtin.fail:
+    msg: "Asset '{{ asset_name }}' not found in GitHub release"
+  when: matched_asset is not defined
+
 - name: Download Zellij
   become: false
   ansible.builtin.get_url:
-    url: "https://github.com/zellij-org/zellij/releases/download/v{{ zellij_version }}/zellij-x86_64-unknown-linux-musl.tar.gz"
-    dest: "/tmp/zellij-x86_64-unknown-linux-musl.tar.gz"
+    url: "{{ matched_asset.browser_download_url }}"
+    dest: "/tmp/{{ matched_asset.name }}"
+    checksum: "{{ matched_asset.digest }}"
     force: true
     mode: 0644
   when: zellij_installed_version.stdout is not defined or not zellij_installed_version.stdout is search(zellij_version)
@@ -26,28 +50,6 @@
     dest: "/tmp"
   check_mode: false
   when: zellij_installed_version.stdout is not defined or not zellij_installed_version.stdout is search(zellij_version)
-
-- name: Download Zellij Signature
-  become: false
-  ansible.builtin.get_url:
-    url: "https://github.com/zellij-org/zellij/releases/download/v{{ zellij_version }}/zellij-x86_64-unknown-linux-musl.sha256sum"
-    dest: "/tmp/zellij-x86_64-unknown-linux-musl.sha256sum"
-    force: true
-    mode: 0644
-  when: zellij_installed_version.stdout is not defined or not zellij_installed_version.stdout is search(zellij_version)
-
-- name: Verify file checksum
-  become: false
-  command: sha256sum --check /tmp/zellij-x86_64-unknown-linux-musl.sha256sum
-  args:
-    chdir: /tmp
-  register: checksum_result
-  failed_when: "'FAILED' in checksum_result.stdout"
-  when: zellij_installed_version.stdout is not defined or not zellij_installed_version.stdout is search(zellij_version)
-
-# - name: Show checksum verification result
-#   debug:
-#     var: checksum_result.stdout
 
 - name: Remove old Zellij version
   become: false
