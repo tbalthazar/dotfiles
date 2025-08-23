@@ -1,7 +1,8 @@
 ---
 # Install neovim
 
-- vars:
+- name: Set asset name
+  set_fact:
     asset_name: "nvim-linux-x86_64.tar.gz"
 
 - name: Check installed version of neovim
