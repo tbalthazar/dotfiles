@@ -8,11 +8,33 @@
   failed_when: false
   changed_when: false
 
+- vars:
+    asset_name: "nvim-linux-x86_64.tar.gz"
+
+- name: Get GitHub release info
+  ansible.builtin.uri:
+    url: "https://api.github.com/repos/neovim/neovim/releases/tags/{{ neovim_version }}"
+    headers:
+      Accept: "application/vnd.github+json"
+    return_content: yes
+  register: release_info
+
+- name: Find asset with matching name
+  set_fact:
+    matched_asset: "{{ item }}"
+  loop: "{{ release_info.json.assets }}"
+  when: item.name == asset_name
+
+- name: Fail if asset not found
+  ansible.builtin.fail:
+    msg: "Asset '{{ asset_name }}' not found in GitHub release"
+  when: matched_asset is not defined
+
 - name: Download neovim
   ansible.builtin.get_url:
-    url: "https://github.com/neovim/neovim/releases/download/{{ neovim_version }}/nvim-linux-x86_64.tar.gz"
-    dest: "/tmp/nvim-linux-x86_64.tar.gz"
-    checksum: "sha256:https://github.com/neovim/neovim/releases/download/{{ neovim_version }}/shasum.txt"
+    url: "{{ matched_asset.browser_download_url }}"
+    dest: "/tmp/{{ matched_asset.name }}"
+    checksum: "{{ matched_asset.digest }}"
     force: true
     mode: 0644
   when: neovim_installed_version.stdout is not defined or not neovim_installed_version.stdout is search(neovim_version)
@@ -31,7 +53,7 @@
 
 - name: Install neovim
   unarchive:
-    src: "/tmp/nvim-linux-x86_64.tar.gz"
+    src: "/tmp/{{ asset_name }}"
     remote_src: yes
     dest: "/opt/nvim"
   check_mode: false
