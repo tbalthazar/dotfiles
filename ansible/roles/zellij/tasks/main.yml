@@ -15,7 +15,7 @@
 
 - name: Get GitHub release info
   ansible.builtin.uri:
-    url: "https://api.github.com/repos/zellij-org/zellij/releases/tags/{{ neovim_version }}"
+    url: "https://api.github.com/repos/zellij-org/zellij/releases/tags/{{ zellij_version }}"
     headers:
       Accept: "application/vnd.github+json"
     return_content: yes
