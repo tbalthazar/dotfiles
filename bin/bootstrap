@@ -15,9 +15,14 @@ if [ -z "$playbook_base" ]; then
 fi
 playbook="playbooks/${playbook_base}.yml"
 
+# --- Allow to specify custom repo URL
+repo_url=${2:-"https://code.h.tb.io/tb/dotfiles"}
+
+echo "repo_url: $repo_url"
+exit 0
+
 # --- Settings ---
 branch="main"
-repo_url="https://code.h.tb.io/tb/dotfiles"
 timestamp=$(date +"%Y-%m-%d-%H-%M-%S")
 logfile="/tmp/bootstrap-laptop-$timestamp.log"
 
