@@ -39,7 +39,7 @@ else
   echo "[-] User added to sudo group ..."
   echo "[-] Restarting shell with new groups ..."
   exec newgrp sudo <<EONG
-$(realpath "$0") $playbook_base
+$(realpath "$0") $playbook_base $repo_url
 EONG
   echo -e "[+] Added in sudo group, done.\n"
 fi
