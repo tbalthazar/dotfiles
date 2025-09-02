@@ -4,7 +4,7 @@
   become: true
   vars:
     user: tb
-    # dotfiles_branch: "tb/2025"
+    dotfiles_repo: "https://github.com/tbalthazar/dotfiles"
   roles:
   - base
   - fzf
