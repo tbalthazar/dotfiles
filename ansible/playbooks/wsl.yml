@@ -2,10 +2,15 @@
 - hosts: localhost
   gather_facts: true
   become: true
-  vars_files:
-  - role_sets.yml
   vars:
     user: tb
     # dotfiles_branch: "tb/2025"
     dotfiles_repo: "https://github.com/tbalthazar/dotfiles"
-  roles: "{{ role_sets.wsl }}"
+  roles:
+  - base
+  - fzf
+  - dotfiles
+  - neovim
+  - zellij
+  - mise
+  - languages
