@@ -10,7 +10,7 @@ fi
 # --- Get playbook name from argument ---
 playbook_base="$1"
 if [ -z "$playbook_base" ]; then
-  echo "Usage: $0 <playbook-name-without-extension>"
+  echo "Usage: $0 <playbook-name-without-extension> [repo-url]"
   exit 1
 fi
 playbook="playbooks/${playbook_base}.yml"

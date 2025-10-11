@@ -15,7 +15,7 @@ wget -qO /tmp/bootstrap https://code.h.tb.io/tb/dotfiles/raw/branch/main/bin/boo
 Run this script the first time, then reboot. It should only be run once.
 
 ```bash
-wget -qO /tmp/bootstrap https://code.h.tb.io/tb/dotfiles/raw/branch/main/bin/bootstrap && chmod +x /tmp/bootstrap && /tmp/bootstrap wsl
+wget -qO /tmp/bootstrap https://raw.githubusercontent.com/tbalthazar/dotfiles/refs/heads/main/bin/bootstrap && chmod +x /tmp/bootstrap && /tmp/bootstrap wsl
 ```
 
 ## Update dotfiles
