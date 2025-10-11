@@ -24,9 +24,19 @@ timestamp=$(date +"%Y-%m-%d-%H-%M-%S")
 logfile="/tmp/bootstrap-laptop-$timestamp.log"
 
 run_with_messages() {
-  echo -e "[-] $1 ..."
-  bash -c "{ $2; }" >>"$logfile" 2>&1
-  echo -e "[+] done.\n"
+  local message=$1
+  shift || {
+    echo "[-] ERROR: run_with_messages requires a command to execute."
+    exit 1
+  }
+
+  echo -e "[-] ${message} ..."
+  if "$@" >>"$logfile" 2>&1; then
+    echo -e "[+] done.\n"
+  else
+    echo -e "[!] Failed, see $logfile for details."
+    exit 1
+  fi
 }
 
 # Step 1: Are we already in sudo group?
@@ -48,17 +58,17 @@ echo -e "--- Starting setup at $timestamp ---\n\n" >"$logfile"
 echo -e "[-] Starting setup ...\n"
 
 run_with_messages "Asking for sudo password" \
-  "sudo -v"
+  sudo -v
 
 run_with_messages "Updating packages" \
-  "sudo apt update && sudo apt dist-upgrade -y && sudo apt autoremove -y"
+  bash -lc "sudo apt update && sudo apt dist-upgrade -y && sudo apt autoremove -y"
 
 run_with_messages "Installing required packages" \
-  "sudo apt install -y ansible git"
+  sudo apt install -y ansible git
 
 repo_dest="/tmp/dotfiles"
 run_with_messages "Cloning repo" \
-  "rm -rf $repo_dest && git clone $repo_url $repo_dest && cd $repo_dest && git checkout $branch"
+  bash -lc "rm -rf \"$repo_dest\" && git clone \"$repo_url\" \"$repo_dest\" && cd \"$repo_dest\" && git checkout \"$branch\""
 
 # --- Check playbook exists ---
 if [ ! -f "$repo_dest/ansible/$playbook" ]; then
@@ -67,6 +77,6 @@ if [ ! -f "$repo_dest/ansible/$playbook" ]; then
 fi
 
 run_with_messages "Run Ansible playbook $playbook_base" \
-  "cd $repo_dest/ansible && ANSIBLE_ROLES_PATH=./roles ansible-playbook $playbook --ask-become-pass"
+  bash -lc "cd \"$repo_dest/ansible\" && ANSIBLE_ROLES_PATH=./roles ansible-playbook \"$playbook\" --ask-become-pass"
 
 echo -e "[+] Setup done.\n"
