@@ -2,26 +2,9 @@
 - hosts: localhost
   gather_facts: true
   become: true
+  vars_files:
+  - role_sets.yml
   vars:
     user: tb
     dotfiles_repo: "https://github.com/tbalthazar/dotfiles"
-  roles:
-  - base
-  - fzf
-  - dotfiles
-  - gnome-tweaks
-  - neovim
-  - zellij
-  - mise
-  - languages
-  - flatpak
-  - firefox
-  - obsidian
-  - vscode
-  - docker
-  - kube-ps1
-  - filen
-  - signal
-  - proton-pass
-  - proton-vpn
-  # - virtualbox
+  roles: "{{ role_sets.vm }}"

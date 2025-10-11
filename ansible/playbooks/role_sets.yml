@@ -1,0 +1,40 @@
+---
+workstation_roles: &workstation_roles
+- base
+- fzf
+- dotfiles
+- gnome-tweaks
+- neovim
+- zellij
+- mise
+- languages
+- flatpak
+- firefox
+- obsidian
+- vscode
+- docker
+- kube-ps1
+- filen
+- signal
+- proton-pass
+- proton-vpn
+
+role_sets:
+  vm: *workstation_roles
+  full: "{{ workstation_roles + ['virtualbox'] }}"
+  update:
+  - fzf
+  - neovim
+  - zellij
+  - obsidian
+  - kube-ps1
+  - filen
+  - proton-pass
+  wsl:
+  - base
+  - fzf
+  - dotfiles
+  - neovim
+  - zellij
+  - mise
+  - languages
