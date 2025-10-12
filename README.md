@@ -7,7 +7,7 @@ Dotfiles are managed by [rcm](https://github.com/thoughtbot/rcm) and computer se
 Run this script the first time, then reboot. It should only be run once.
 
 ```bash
-curl -fsSL https://code.h.tb.io/tb/dotfiles/raw/branch/main/bin/bootstrap | bash -s -- full
+wget -qO- https://code.h.tb.io/tb/dotfiles/raw/branch/main/bin/bootstrap | bash -s -- full
 ```
 
 ## Setup a new Debian 13 (Trixie) VM
@@ -15,7 +15,7 @@ curl -fsSL https://code.h.tb.io/tb/dotfiles/raw/branch/main/bin/bootstrap | bash
 Run this script the first time, then reboot. It should only be run once.
 
 ```bash
-curl -fsSL https://code.h.tb.io/tb/dotfiles/raw/branch/main/bin/bootstrap | bash -s -- vm
+wget -qO- https://code.h.tb.io/tb/dotfiles/raw/branch/main/bin/bootstrap | bash -s -- vm
 ```
 
 ## Setup a new Ubuntu 24.04 under WSL
@@ -23,7 +23,7 @@ curl -fsSL https://code.h.tb.io/tb/dotfiles/raw/branch/main/bin/bootstrap | bash
 Run this script the first time, then reboot. It should only be run once.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/tbalthazar/dotfiles/refs/heads/main/bin/bootstrap | bash -s -- wsl
+wget -qO- https://raw.githubusercontent.com/tbalthazar/dotfiles/refs/heads/main/bin/bootstrap | bash -s -- wsl
 ```
 
 ## Update dotfiles
