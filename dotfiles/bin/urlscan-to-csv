@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# Convert urlscan.io JSON (from Search API) piped via stdin into a CSV of .page fields.
+# Expect https://github.com/urlscan/urlscan-cli to be available on the PATH and
+# expect URLSCAN_API_KEY to be set.
+# Usage:
+#   urlscan search "hash:<hash>" | urlscan-to-csv
+
+# Exit on error, unset variable, or failed pipe
+set -euo pipefail
+
+# Determine output filename
+timestamp=$(date +"%Y-%m-%d--%H-%M-%S")
+output_file="${1:-urlscan-${timestamp}.csv}"
+
+# Generate CSV
+jq -r '
+  # header line
+  ["country","redirected","ip","apexDomainAgeDays","mimeType","title","url",
+   "tlsValidDays","tlsAgeDays","ptr","domainAgeDays","tlsValidFrom","domain",
+   "apexDomain","asnname","asn","tlsIssuer","status"],
+  # each result row
+  (.results[] | [
+    .page.country,
+    .page.redirected,
+    .page.ip,
+    .page.apexDomainAgeDays,
+    .page.mimeType,
+    .page.title,
+    .page.url,
+    .page.tlsValidDays,
+    .page.tlsAgeDays,
+    .page.ptr,
+    .page.domainAgeDays,
+    .page.tlsValidFrom,
+    .page.domain,
+    .page.apexDomain,
+    .page.asnname,
+    .page.asn,
+    .page.tlsIssuer,
+    .page.status
+  ])
+  | @csv
+' > "$output_file"
+
+echo "✅ CSV file written to: $output_file"
