@@ -91,3 +91,8 @@ end, { desc = "FZF: symbols" })
 vim.keymap.set('n', '<leader>d', function()
   vim.diagnostic.open_float(nil, { focus = false })
 end, { desc = 'Show diagnostics in a floating window' })
+
+-- LSP: restart pyright
+vim.keymap.set("n", "<leader>pr", "<cmd>PyrightRestart<cr>", {
+  desc = "Restart Pyright LSP",
+})
