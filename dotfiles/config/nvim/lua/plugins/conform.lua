@@ -8,7 +8,7 @@ return {
 				go = { "goimports" },
 				-- Conform will run multiple formatters sequentially
 				-- python = { "isort", "black" },
-				python = { "ruff_format" },
+				python = { "ruff_format", "ruff_organize_imports" },
 				-- You can customize some of the format options for the filetype (:help conform.format)
 				rust = { "rustfmt", lsp_format = "fallback" },
 				-- Conform will run the first available formatter
