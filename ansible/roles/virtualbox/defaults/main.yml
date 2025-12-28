@@ -1,7 +1,5 @@
 ---
-# TODO: Virtualbox is not yet available for Trixie
-# virtualbox_debian_codename: "{{ ansible_lsb.codename | default('trixie') }}"
-virtualbox_debian_codename: "bookworm"
+virtualbox_debian_codename: "{{ ansible_lsb.codename | default('trixie') }}"
 virtualbox_version: "7.2"
 virtualbox_key_url: "https://www.virtualbox.org/download/oracle_vbox_2016.asc"
 virtualbox_expected_fingerprint: "B9F8D658297AF3EFC18D5CDFA2F683C52980AECF"
