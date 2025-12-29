@@ -54,10 +54,12 @@ $ tree ~/.config/nvim
 - `lazy-lock.json`: the lock file for the `lazy.nvim` plugin, it lists currently installed Neovim plugins
 - `lsp/*`: that's where the configuration for the language servers lives. `.lua` files living there are automatically included, there's no need to manually import them.
 - `lua/config/*`: that's were basic Neovim config lives. Those files are imported in `init.lua`.
-- `lsp/config/lazy.lua`: that's where the `lazy.nvim` plugin manager is configured.
-- `lsp/config/lsp.lua`: that's where the LSP config is enabled (name should match the files in the `lsp` directory).
+- `lua/config/lazy.lua`: that's where the `lazy.nvim` plugin manager is configured.
+- `lua/config/lsp.lua`: that's where the LSP config is enabled (name should match the files in the `lsp` directory).
 - `lua/plugins/*`: that's where Neovim plugins managed by `lazy.nvim` store their configuration. All `.lua` files in this directory are automatically imported in the `lua/config/lazy.lua` file.
 ### Howto
+#### Add a plugin
+- add a `.lua` file in `lua/plugins`, e.g: `lua/plugins/colorscheme.lua`
 #### Add a new LSP server
 - Make sure the language server is installed on the system and available in the `$PATH`
 - Steal a default configuration from the [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig/tree/master/lsp) plugin and save it in the `lsp` directory, e.g: `~/.config/nvim/lsp/gopls.lua`
@@ -68,7 +70,7 @@ vim.lsp.enable({
 	"pyright",
 })
 ```
-#### Enable an autoformatter
+#### Enable or tweak an autoformatter
 - Make sure the tool is installed on the system and available in the `$PATH`
 - Add a line in `~/.config/nvim/lua/plugins/conform.lua`, e.g:
 ```lua
@@ -81,6 +83,18 @@ formatters_by_ft = {
 - In Neovim: `:checkhealth lsp`
 #### Debug  formatter tools/linter issues
 - Check the logs in `~/.local/state/nvim/conform.log`
+#### Restart PyRight
+Pyright doesn't detect when a file is added to the workspace because
+"The workspace/didChangeWatchedFiles LSP client capability is now
+enabled by default on Mac and Windows. Disabled on Linux since there
+currently isn't a viable backend for watching files that scales well for
+large directories.", as seen here:
+https://neovim.io/doc/user/news-0.10.html
+
+When I add a new python file and import it, the LSP gives a diagonstic error
+cause it cannot find the file. Running PyrightRestart will fix this. The
+command has been defined in `lua/config/lsp.lua` and the
+shortcut has been set in `lua/config/keymaps.lua`.
 #### Add a new Neovim plugin
 - Add its config in `lua/plugins`
 - Verify it's correctly installed in Neovim: `:Lazy`
