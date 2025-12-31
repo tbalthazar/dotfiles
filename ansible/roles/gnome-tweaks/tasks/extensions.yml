@@ -33,6 +33,15 @@
     executable: /bin/bash
   loop: "{{ gnome_extension_ids }}"
 
+# Address https://gitlab.com/lundal/tactile/-/issues/44
+- name: Compile GSettings schemas for GNOME extensions
+  become: false
+  ansible.builtin.command: glib-compile-schemas --strict schemas
+  args:
+    chdir: "~/.local/share/gnome-shell/extensions/{{ item }}"
+    creates: "~/.local/share/gnome-shell/extensions/{{ item }}/schemas/gschemas.compiled"
+  loop: "{{ gnome_extension_ids }}"
+
 - name: Load tactile config into GNOME dconf
   become: false
   ansible.builtin.shell: |
