@@ -1,0 +1,56 @@
+---
+- name: Check installed OpenSnitch version
+  ansible.builtin.command: opensnitchd --version
+  register: opensnitch_installed
+  failed_when: false
+  changed_when: false
+
+- name: Skip if correct version already installed
+  ansible.builtin.meta: end_play
+  when: opensnitch_installed.stdout | trim == opensnitch_version
+
+- name: Get GitHub release info
+  ansible.builtin.uri:
+    url: "https://api.github.com/repos/{{ opensnitch_repo }}/releases/tags/v{{ opensnitch_version }}"
+    headers:
+      Accept: "application/vnd.github+json"
+    return_content: true
+  register: release_info
+
+- name: Resolve OpenSnitch assets
+  ansible.builtin.set_fact:
+    resolved_assets: >-
+      {{
+        resolved_assets | default([]) + [
+          (
+            release_info.json.assets
+            | selectattr("name", "equalto", item.asset)
+            | first
+          )
+        ]
+      }}
+  loop: "{{ opensnitch_assets }}"
+
+- name: Fail if asset or digest is missing
+  ansible.builtin.assert:
+    that:
+      - item is defined
+      - item.digest is defined
+      - item.digest | length > 0
+    fail_msg: "Asset or checksum missing for {{ item.name }}"
+  loop: "{{ resolved_assets }}"
+
+- name: Download OpenSnitch packages with checksum verification
+  ansible.builtin.get_url:
+    url: "{{ item.browser_download_url }}"
+    dest: "/tmp/{{ item.name }}"
+    checksum: "{{ item.digest }}"
+    mode: "0644"
+    force: true
+  loop: "{{ resolved_assets }}"
+
+- name: Install OpenSnitch packages
+  ansible.builtin.apt:
+    deb: "/tmp/{{ item.name }}"
+  loop: "{{ resolved_assets }}"
+  notify: Restart OpenSnitch

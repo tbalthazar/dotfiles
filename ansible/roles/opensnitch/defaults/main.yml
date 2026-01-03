@@ -1,0 +1,9 @@
+---
+opensnitch_version: "1.8.0"
+opensnitch_repo: "evilsocket/opensnitch"
+
+opensnitch_assets:
+  - name: opensnitch
+    asset: "opensnitch_{{ opensnitch_version }}-1_amd64.deb"
+  - name: ui
+    asset: "python3-opensnitch-ui_{{ opensnitch_version }}-1_all.deb"

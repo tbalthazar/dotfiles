@@ -1,0 +1,7 @@
+---
+- name: Restart OpenSnitch
+  ansible.builtin.systemd:
+    name: opensnitch
+    state: restarted
+    enabled: true
+
