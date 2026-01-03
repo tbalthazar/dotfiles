@@ -1,12 +1,12 @@
 ---
-# - name: Ensure required tools are installed (wget, jq, sha512sum)
-#   ansible.builtin.apt:
-#     name:
-#       - wget
-#       - jq
-#       - coreutils
-#     state: present
-#     update_cache: true
+- name: Check if Proton Pass is already installed
+  ansible.builtin.stat:
+    path: /usr/bin/proton-pass
+  register: proton_pass_installed
+
+- name: End play if Proton Pass is already installed
+  ansible.builtin.meta: end_play
+  when: proton_pass_installed.stat.exists
 
 - name: Download Proton Pass .deb file
   ansible.builtin.get_url:
