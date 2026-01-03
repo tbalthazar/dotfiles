@@ -1,4 +1,13 @@
 ---
+- name: Check if Filen Desktop is already installed
+  ansible.builtin.stat:
+    path: /opt/Filen/@filendesktop
+  register: filen_installed
+
+- name: End play if Filen Desktop is already installed
+  ansible.builtin.meta: end_play
+  when: filen_installed.stat.exists
+
 - name: Ensure required tools are installed
   ansible.builtin.apt:
     name:
