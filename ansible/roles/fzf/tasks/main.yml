@@ -1,36 +1,32 @@
-- name: Ensure temporary directory exists
-  ansible.builtin.file:
-    path: "{{ fzf_tmp_dir }}"
-    state: directory
-    mode: '0755'
-
 - name: Check if fzf is installed
   ansible.builtin.command: fzf --version
   register: fzf_version_check
   failed_when: false
   changed_when: false
 
-- name: Extract installed version
-  ansible.builtin.set_fact:
-    fzf_installed_version: "{{ fzf_version_check.stdout.split(' ')[0] if fzf_version_check.rc == 0 else '' }}"
+- name: Skip if correct version already installed
+  ansible.builtin.meta: end_play
+  when:
+    - fzf_version_check.rc == 0
+    - (fzf_version_check.stdout | trim | regex_search('^[0-9.]+')) == fzf_version
 
-- name: Decide whether to install fzf
-  ansible.builtin.set_fact:
-    fzf_should_install: "{{ fzf_installed_version != fzf_version }}"
+- name: Ensure temporary directory exists
+  ansible.builtin.file:
+    path: "{{ fzf_tmp_dir }}"
+    state: directory
+    mode: '0755'
 
 - name: Download fzf archive
   ansible.builtin.get_url:
     url: "{{ fzf_download_url }}"
     dest: "{{ fzf_tmp_dir }}/{{ fzf_archive_name }}"
     mode: '0644'
-  when: fzf_should_install
 
 - name: Download fzf checksum file
   ansible.builtin.get_url:
     url: "{{ fzf_checksum_url }}"
     dest: "{{ fzf_tmp_dir }}/fzf-checksums.txt"
     mode: '0644'
-  when: fzf_should_install
 
 - name: Verify fzf checksum
   ansible.builtin.command: >
@@ -41,21 +37,18 @@
   register: fzf_checksum_result
   changed_when: false
   failed_when: "'OK' not in fzf_checksum_result.stdout"
-  when: fzf_should_install
 
 - name: Extract fzf binary
   ansible.builtin.unarchive:
     src: "{{ fzf_tmp_dir }}/{{ fzf_archive_name }}"
     dest: "{{ fzf_tmp_dir }}"
     remote_src: yes
-  when: fzf_should_install
 
 - name: Install fzf binary to /usr/bin
   ansible.builtin.copy:
     src: "{{ fzf_tmp_dir }}/fzf"
     dest: "{{ fzf_binary_path }}"
     mode: '0755'
-  when: fzf_should_install
 
 - name: Remove tmp dir
   ansible.builtin.file:
