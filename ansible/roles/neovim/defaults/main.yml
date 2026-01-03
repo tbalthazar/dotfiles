@@ -2,3 +2,4 @@
 neovim_version: "v0.11.5"
 neovim_font_name: "FiraMono"
 neovim_font_version: "v3.3.0"
+neovim_font_marker: "FiraMonoNerdFont-Regular.otf"

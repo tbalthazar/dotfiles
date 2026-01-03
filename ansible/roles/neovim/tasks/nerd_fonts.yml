@@ -1,6 +1,16 @@
 ---
 # Install a nerd font
 
+- name: Check if Nerd Font is already installed
+  become: false
+  ansible.builtin.stat:
+    path: "~/.local/share/fonts/{{ neovim_font_marker }}"
+  register: nerd_font_installed
+
+- name: End play if font is already installed
+  ansible.builtin.meta: end_play
+  when: nerd_font_installed.stat.exists
+
 - name: Ensure the fonts directory exists
   become: false
   ansible.builtin.file:
