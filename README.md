@@ -52,6 +52,8 @@ ansible-laptop full
 
 ## Post-install tweaks
 
+- [See Post-install notes](docs/post-install.md)
+
 ### Backup
 
 - add this backup task using `crontab -e`: `30 9,12,19 * * * /home/tb/.bin/backup-laptop > /tmp/backup-cron.log 2>&1`
