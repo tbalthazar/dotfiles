@@ -7,8 +7,8 @@
     path: "~/.local/share/fonts/{{ neovim_font_marker }}"
   register: nerd_font_installed
 
-- name: End play if font is already installed
-  ansible.builtin.meta: end_play
+- name: End role if font is already installed
+  ansible.builtin.meta: end_role
   when: nerd_font_installed.stat.exists
 
 - name: Ensure the fonts directory exists

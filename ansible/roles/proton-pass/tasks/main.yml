@@ -4,8 +4,8 @@
     path: /usr/bin/proton-pass
   register: proton_pass_installed
 
-- name: End play if Proton Pass is already installed
-  ansible.builtin.meta: end_play
+- name: End role if Proton Pass is already installed
+  ansible.builtin.meta: end_role
   when: proton_pass_installed.stat.exists
 
 - name: Download Proton Pass .deb file

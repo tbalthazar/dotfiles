@@ -5,7 +5,7 @@
   changed_when: false
 
 - name: Skip if correct version already installed
-  ansible.builtin.meta: end_play
+  ansible.builtin.meta: end_role
   when:
     - fzf_version_check.rc == 0
     - (fzf_version_check.stdout | trim | regex_search('^[0-9.]+')) == fzf_version

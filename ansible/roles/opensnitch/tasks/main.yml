@@ -6,7 +6,7 @@
   changed_when: false
 
 - name: Skip if correct version already installed
-  ansible.builtin.meta: end_play
+  ansible.builtin.meta: end_role
   when: opensnitch_installed.stdout | trim == opensnitch_version
 
 - name: Get GitHub release info
