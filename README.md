@@ -49,6 +49,10 @@ ansible-laptop full
 
 -----------------------------------
 
+## Before re-installing
+
+- Backup uBlock Origin config
+- Backup Obsidian Clipper Templates
 
 ## Post-install tweaks
 
