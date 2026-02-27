@@ -1,0 +1,110 @@
+---
+# Install Helix editor
+
+- name: Check installed version of Helix
+  become: false
+  ansible.builtin.shell:
+    cmd: "$HOME/.bin-dl/hx --version | cut -d ' ' -f 2"
+  register: helix_installed_version
+  failed_when: false
+  changed_when: false
+
+- name: Skip if correct version already installed
+  ansible.builtin.meta: end_role
+  when:
+    - helix_installed_version.rc == 0
+    - helix_installed_version.stdout | trim is search(helix_version)
+
+- name: Set asset name and extract dir
+  ansible.builtin.set_fact:
+    helix_asset_name: "helix-{{ helix_version }}-x86_64-linux.tar.xz"
+    helix_extract_dir: "/tmp/helix-{{ helix_version }}-x86_64-linux"
+
+- name: Get GitHub release info
+  ansible.builtin.uri:
+    url: "https://api.github.com/repos/helix-editor/helix/releases/tags/{{ helix_version }}"
+    headers:
+      Accept: "application/vnd.github+json"
+    return_content: yes
+  register: helix_release_info
+
+- name: Find asset with matching name
+  ansible.builtin.set_fact:
+    helix_matched_asset: "{{ item }}"
+  loop: "{{ helix_release_info.json.assets }}"
+  when: item.name == helix_asset_name
+
+- name: Fail if asset not found
+  ansible.builtin.fail:
+    msg: "Asset '{{ helix_asset_name }}' not found in GitHub release"
+  when: helix_matched_asset is not defined
+
+- name: Download Helix archive
+  become: false
+  ansible.builtin.get_url:
+    url: "{{ helix_matched_asset.browser_download_url }}"
+    dest: "/tmp/{{ helix_asset_name }}"
+    checksum: "{{ helix_matched_asset.digest }}"
+    force: true
+    mode: '0644'
+
+- name: Extract Helix archive
+  become: false
+  ansible.builtin.unarchive:
+    src: "/tmp/{{ helix_asset_name }}"
+    remote_src: yes
+    dest: "/tmp"
+  check_mode: false
+
+- name: Ensure ~/.bin-dl directory exists
+  become: false
+  ansible.builtin.file:
+    path: "$HOME/.bin-dl"
+    state: directory
+    mode: '0755'
+
+- name: Remove old hx binary
+  become: false
+  ansible.builtin.file:
+    path: "$HOME/.bin-dl/hx"
+    state: absent
+
+- name: Install hx binary to ~/.bin-dl
+  become: false
+  ansible.builtin.copy:
+    src: "{{ helix_extract_dir }}/hx"
+    dest: "$HOME/.bin-dl/hx"
+    remote_src: yes
+    mode: '0755'
+
+- name: Remove existing Helix runtime directory
+  become: false
+  ansible.builtin.file:
+    path: "$HOME/.config/helix/runtime"
+    state: absent
+
+- name: Ensure ~/.config/helix directory exists
+  become: false
+  ansible.builtin.file:
+    path: "$HOME/.config/helix"
+    state: directory
+    mode: '0755'
+
+- name: Copy Helix runtime directory
+  become: false
+  ansible.builtin.copy:
+    src: "{{ helix_extract_dir }}/runtime"
+    dest: "$HOME/.config/helix/"
+    remote_src: yes
+
+- name: Remove extracted archive directory
+  become: false
+  ansible.builtin.file:
+    path: "{{ helix_extract_dir }}"
+    state: absent
+
+- name: Remove downloaded archive
+  become: false
+  ansible.builtin.file:
+    path: "/tmp/{{ helix_asset_name }}"
+    state: absent
