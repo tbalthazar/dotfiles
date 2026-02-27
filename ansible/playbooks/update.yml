@@ -8,6 +8,7 @@
   roles:
   - fzf
   - neovim
+  - helix
   - zellij
   - obsidian
   - kube-ps1
