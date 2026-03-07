@@ -17,7 +17,7 @@
 [core]
   excludesfile = ~/.gitignore
   quotepath = false
-  editor = nvim -f
+  editor = hx
 [diff]
   tool = vimdiff
 [push]
