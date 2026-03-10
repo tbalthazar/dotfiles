@@ -12,17 +12,16 @@
 
 - name: Ensure pipx is initialized for the user
   become: false
-  ansible.builtin.shell: |
-    pipx ensurepath
-  args:
-    executable: /bin/bash
+  ansible.builtin.command: pipx ensurepath
+  register: pipx_ensurepath
+  changed_when: "'is already in PATH' not in pipx_ensurepath.stdout"
 
 - name: Install gnome-extensions-cli via pipx
-  ansible.builtin.shell: |
-    pipx install gnome-extensions-cli --system-site-packages --force
-  args:
-    executable: /bin/bash
   become: false
+  ansible.builtin.command: pipx install gnome-extensions-cli --system-site-packages
+  register: pipx_gext
+  changed_when: "'already installed' not in pipx_gext.stdout"
+  failed_when: pipx_gext.rc != 0 and 'already installed' not in pipx_gext.stdout
 
 - name: Install GNOME extensions with gext
   become: false
@@ -50,4 +49,5 @@
     executable: /bin/bash
   vars:
     tactile_config_path: "{{ role_path }}/files/tactile.conf"
+  changed_when: false
 

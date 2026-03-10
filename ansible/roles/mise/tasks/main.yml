@@ -25,9 +25,15 @@
     state: directory
     mode: '0755'
 
-- name: Download and install Mise GPG key
+- name: Download Mise GPG key
+  ansible.builtin.get_url:
+    url: https://mise.jdx.dev/gpg-key.pub
+    dest: /tmp/mise-gpg-key.pub
+    mode: '0644'
+
+- name: Dearmor and install Mise GPG key
   ansible.builtin.shell: |
-    wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | tee /etc/apt/keyrings/mise-archive-keyring.gpg > /dev/null
+    gpg --dearmor < /tmp/mise-gpg-key.pub > /etc/apt/keyrings/mise-archive-keyring.gpg
   args:
     creates: /etc/apt/keyrings/mise-archive-keyring.gpg
 

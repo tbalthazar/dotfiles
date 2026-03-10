@@ -69,3 +69,4 @@
     VBoxManage setextradata global GUI/Input/AutoCapture "false"
   args:
     executable: /bin/bash
+  changed_when: false

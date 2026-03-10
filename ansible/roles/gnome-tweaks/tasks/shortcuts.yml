@@ -11,4 +11,5 @@
   args:
     executable: /bin/bash
   become: false
+  changed_when: false
 

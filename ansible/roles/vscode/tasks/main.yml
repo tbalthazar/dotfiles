@@ -1,4 +1,14 @@
 ---
+- name: Check if VS Code is already installed
+  ansible.builtin.command: dpkg -s {{ vscode_package_name }}
+  register: vscode_installed
+  failed_when: false
+  changed_when: false
+
+- name: End role if VS Code is already installed
+  ansible.builtin.meta: end_role
+  when: vscode_installed.rc == 0
+
 - name: Ensure required packages are installed
   ansible.builtin.apt:
     name: apt-transport-https
@@ -8,6 +18,7 @@
 - name: Set debconf selection to auto-add Microsoft repo
   ansible.builtin.shell: |
     echo "code code/add-microsoft-repo boolean true" | debconf-set-selections
+  changed_when: false
 
 - name: Download the latest VS Code .deb package
   ansible.builtin.get_url:
@@ -20,12 +31,8 @@
     deb: "{{ vscode_deb_path }}"
     state: present
 
-- name: Run apt update
-  ansible.builtin.apt:
-    update_cache: true
-
-- name: Ensure VS Code is installed via apt
-  ansible.builtin.apt:
-    name: "{{ vscode_package_name }}"
-    state: present
+- name: Remove downloaded .deb file
+  ansible.builtin.file:
+    path: "{{ vscode_deb_path }}"
+    state: absent
 

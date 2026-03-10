@@ -1,6 +1,16 @@
 ---
 # Install ProtonVPN
 
+- name: Check if ProtonVPN is already installed
+  ansible.builtin.command: dpkg -s proton-vpn-gnome-desktop
+  register: protonvpn_installed
+  failed_when: false
+  changed_when: false
+
+- name: End role if ProtonVPN is already installed
+  ansible.builtin.meta: end_role
+  when: protonvpn_installed.rc == 0
+
 - name: Define .deb filename and URL
   ansible.builtin.set_fact:
     protonvpn_deb_url: "https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_{{ protonvpn_version }}_all.deb"

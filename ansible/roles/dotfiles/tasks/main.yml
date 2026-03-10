@@ -30,4 +30,4 @@
   become: false
   ansible.builtin.command:
     cmd: "rcup -f -v -d $HOME/.dotfiles/dotfiles -t {{ dotfiles_tag }}"
-  when: clone_dotfiles.changed
+  changed_when: false
