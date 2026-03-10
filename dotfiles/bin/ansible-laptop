@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-set -e # Exit on any error
+# Shortcut for: dotfiles-cli apply <playbook>
+# See 'dotfiles-cli help' for all available commands.
+
+set -e
 
 if [ "$EUID" -eq 0 ]; then
   echo "Don't run this script as root."

@@ -1,0 +1,126 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ "$EUID" -eq 0 ]; then
+  echo "Don't run this script as root."
+  exit 1
+fi
+
+usage() {
+  cat <<EOF
+Usage: dotfiles <command> [args]
+
+Commands:
+  update             Pull latest changes and re-apply dotfiles with rcm
+  apply <playbook>   Run an Ansible playbook (e.g: full, vm, wsl, update)
+  add <file>         Add an existing file to rcm (uses linux-desktop tag)
+  edit               Open the dotfiles repo in your editor
+  cd                 Print the dotfiles directory path (use: cd \$(dotfiles cd))
+  status             Show git status of the dotfiles repo
+  help               Show this help message
+
+Examples:
+  dotfiles update              # pull + re-apply dotfiles
+  dotfiles apply full          # run the full Ansible playbook
+  dotfiles apply update        # run the update playbook
+  dotfiles add ~/.config/app/config.toml
+  dotfiles edit
+  dotfiles status
+EOF
+}
+
+cmd_update() {
+  echo "[+] Updating dotfiles..."
+  cd ~/.dotfiles
+  git pull
+  rcup -v -f -d ~/.dotfiles/dotfiles -t linux-desktop
+  echo "[+] Done."
+}
+
+cmd_apply() {
+  local playbook_base="$1"
+  if [ -z "$playbook_base" ]; then
+    echo "Available playbooks:"
+    for f in ~/.dotfiles/ansible/playbooks/*.yml; do
+      echo "  - $(basename "$f" .yml)"
+    done
+    echo ""
+    echo "Usage: dotfiles apply <playbook>"
+    exit 1
+  fi
+
+  cd ~/.dotfiles/ansible || exit 1
+  local playbook="playbooks/${playbook_base}.yml"
+
+  if [ ! -f "$playbook" ]; then
+    echo "[-] ERROR: Playbook '$playbook' not found."
+    echo ""
+    echo "Available playbooks:"
+    for f in playbooks/*.yml; do
+      echo "  - $(basename "$f" .yml)"
+    done
+    exit 1
+  fi
+
+  ANSIBLE_ROLES_PATH=./roles ansible-playbook "$playbook" --ask-become-pass
+}
+
+cmd_add() {
+  local filepath="$1"
+  if [ -z "$filepath" ]; then
+    echo "Usage: dotfiles add <filepath>"
+    echo ""
+    echo "Example: dotfiles add ~/.config/app/config.toml"
+    exit 1
+  fi
+
+  mkrc -t linux-desktop "$filepath"
+  echo "[+] Added $filepath to dotfiles (tag: linux-desktop)"
+}
+
+cmd_edit() {
+  cd ~/.dotfiles
+  ${EDITOR:-vi} .
+}
+
+cmd_cd() {
+  echo "$HOME/.dotfiles"
+}
+
+cmd_status() {
+  cd ~/.dotfiles
+  git status --short --branch
+}
+
+case "${1:-}" in
+  update)
+    cmd_update
+    ;;
+  apply)
+    shift
+    cmd_apply "$@"
+    ;;
+  add)
+    shift
+    cmd_add "$@"
+    ;;
+  edit)
+    cmd_edit
+    ;;
+  cd)
+    cmd_cd
+    ;;
+  status)
+    cmd_status
+    ;;
+  help|--help|-h|"")
+    usage
+    ;;
+  *)
+    echo "Unknown command: $1"
+    echo ""
+    usage
+    exit 1
+    ;;
+esac

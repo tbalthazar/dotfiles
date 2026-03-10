@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Shortcut for: dotfiles-cli update
+# See 'dotfiles-cli help' for all available commands.
+
 echo "[+] Updating dotfiles..."
 cd ~/.dotfiles
 git pull

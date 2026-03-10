@@ -34,21 +34,18 @@ wget -qO /tmp/bootstrap https://code.h.tb.io/tb/dotfiles/raw/branch/main/bin/boo
 wget -qO /tmp/bootstrap https://raw.githubusercontent.com/tbalthazar/dotfiles/refs/heads/main/bin/bootstrap && chmod +x /tmp/bootstrap && /tmp/bootstrap wsl
 ```
 
-### Apply Ansible playbooks without bootstrap
+### Day-to-day commands (via `dotfiles-cli`)
 ```bash
-ansible-laptop full      # runs playbooks/full.yml from ~/.dotfiles/ansible/
-ansible-laptop update    # runs playbooks/update.yml
+dotfiles-cli help               # show all available commands
+dotfiles-cli update             # pull latest changes and re-apply dotfiles
+dotfiles-cli apply full         # run the full Ansible playbook
+dotfiles-cli apply update       # run only the update playbook
+dotfiles-cli add ~/.config/foo  # add a file to dotfiles (rcm, linux-desktop tag)
+dotfiles-cli status             # show git status of the dotfiles repo
+dotfiles-cli edit               # open the dotfiles repo in your editor
 ```
 
-### Update dotfiles after changes
-```bash
-update-dotfiles    # git pull + rcup for linux-desktop tag
-```
-
-### Manually run rcm to re-apply dotfiles
-```bash
-rcup -f -v -d ~/.dotfiles/dotfiles -t linux-desktop
-```
+Legacy commands (`ansible-laptop`, `update-dotfiles`) still work too.
 
 ## Ansible Conventions
 
@@ -63,7 +60,7 @@ rcup -f -v -d ~/.dotfiles/dotfiles -t linux-desktop
 - Source of truth is `~/.dotfiles/` (cloned from this repo)
 - Tags control which files are symlinked: `linux-desktop` vs `linux-server`
 - `rcrc` files in each tag directory set `DOTFILES_DIRS` and `TAGS`
-- To add a new dotfile: `mkrc -t linux-desktop ~/.config/somefile`
+- To add a new dotfile: `dotfiles-cli add ~/.config/somefile` (or `mkrc -t linux-desktop ~/.config/somefile`)
 
 ## Playbook Variants
 
