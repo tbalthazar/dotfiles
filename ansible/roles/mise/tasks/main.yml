@@ -37,6 +37,11 @@
   args:
     creates: /etc/apt/keyrings/mise-archive-keyring.gpg
 
+- name: Remove temporary GPG key file
+  ansible.builtin.file:
+    path: /tmp/mise-gpg-key.pub
+    state: absent
+
 - name: Add Mise APT repository
   ansible.builtin.copy:
     dest: /etc/apt/sources.list.d/mise.list
